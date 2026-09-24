@@ -160,6 +160,36 @@
       overflow: hidden;
       text-overflow: ellipsis;
       max-width: 100%;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 9999px;
+      padding: 0.25rem 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.25rem;
+      transition: background 0.2s ease;
+    }
+
+    .btn-subtext:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-subtext .copy-icon {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+      opacity: 0.7;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+    }
+
+    .btn-subtext .copy-icon:hover {
+      opacity: 1;
+    }
+
+    .btn-subtext.copied .copy-icon {
+      opacity: 1;
     }
 
     /* Responsive adjustments for mobile devices */
@@ -271,7 +301,7 @@
         <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         <div class="btn-text-block">
           <span class="btn-title">Email</span>
-          <span class="btn-subtext">ayush@joshi.contact</span>
+          <span class="btn-subtext" data-copy="ayush@joshi.contact">ayush@joshi.contact<svg class="copy-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>
         </div>
       </a>
 
@@ -280,7 +310,7 @@
         <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.3.7-1.75 1.4-1.75 1 0 1.35.75 1.35 1.75v4.93h2.79M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.6a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26z"/></svg>
         <div class="btn-text-block">
           <span class="btn-title">LinkedIn</span>
-          <span class="btn-subtext">joshi.contact/in</span>
+          <span class="btn-subtext" data-copy="https://joshi.contact/in">joshi.contact/in<svg class="copy-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>
         </div>
       </a>
 
@@ -289,7 +319,7 @@
         <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
         <div class="btn-text-block">
           <span class="btn-title">GitHub</span>
-          <span class="btn-subtext">ayushj190</span>
+          <span class="btn-subtext" data-copy="https://github.com/ayushj190">ayushj190<svg class="copy-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>
         </div>
       </a>
 
@@ -298,7 +328,7 @@
         <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
         <div class="btn-text-block">
           <span class="btn-title">Book a Meeting</span>
-          <span class="btn-subtext">calendar.app.google</span>
+          <span class="btn-subtext" data-copy="https://calendar.google.com/appointments/schedules/AcZssZ1MiX5x-suJWyl3ycGT6T1YJB3NXA4vSDW-9BnTHhoWXJhSisKZ1RWA1vedHljzEk_9nl9w1hix">calendar.app.google<svg class="copy-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>
         </div>
       </a>
     </div>
@@ -317,6 +347,26 @@
           } catch(err) {
             window.open(bookBtn.href, "_blank");
           }
+        }
+      });
+
+      // Copy functionality for subtext pills
+      document.querySelectorAll('.btn-subtext').forEach(function(subtext) {
+        const copyIcon = subtext.querySelector('.copy-icon');
+        if (copyIcon) {
+          copyIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const textToCopy = subtext.getAttribute('data-copy');
+            navigator.clipboard.writeText(textToCopy).then(function() {
+              subtext.classList.add('copied');
+              setTimeout(function() {
+                subtext.classList.remove('copied');
+              }, 1500);
+            }).catch(function(err) {
+              console.error('Failed to copy:', err);
+            });
+          });
         }
       });
     });
