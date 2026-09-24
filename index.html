@@ -141,7 +141,7 @@
       justify-content: center;
       text-align: center;
       line-height: 1.25;
-      padding: 0 2.5rem;
+      padding: 0 3.5rem; /* Increased to accommodate subtext pill */
     }
 
     .btn-title {
@@ -231,7 +231,7 @@
       }
 
       .btn-text-block {
-        padding: 0 2.75rem;
+        padding: 0 3.5rem;
       }
 
       .btn-title {
@@ -271,7 +271,7 @@
       }
 
       .btn-text-block {
-        padding: 0 2.35rem;
+        padding: 0 3rem;
       }
 
       .btn-title {
@@ -348,6 +348,17 @@
             window.open(bookBtn.href, "_blank");
           }
         }
+      });
+
+      // Prevent navigation when clicking copy icon
+      document.querySelectorAll('.btn').forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+          if (e.target.closest('.copy-icon')) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          }
+        });
       });
 
       // Copy functionality for subtext pills
