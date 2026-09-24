@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
   <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+  
   <style>
     * {
       box-sizing: border-box;
@@ -122,7 +123,7 @@
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
     }
 
-    /* FIX: Left-anchored larger icons. 
+    /* Left-anchored larger icons. 
        Using the direct child combinator (>) ensures small copy icons inside subtext are unaffected. */
     .btn > svg {
       width: 30px;
@@ -133,7 +134,7 @@
       left: 1.5rem;
     }
 
-    /* NEW: Tooltip Styling */
+    /* Tooltip Styling */
     .btn::after {
       content: "Link copied!";
       position: absolute;
@@ -194,10 +195,11 @@
       gap: 0.4rem;
       margin-top: 0.25rem;
       transition: background 0.2s ease;
+      cursor: pointer; /* Indicates the entire pill is clickable */
     }
 
     .btn-subtext:hover {
-      background: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.22);
     }
 
     .btn-subtext .copy-icon {
@@ -206,12 +208,12 @@
       fill: currentColor;
       opacity: 0.7;
       flex-shrink: 0;
-      cursor: pointer;
       transition: opacity 0.15s ease;
       margin-left: 0.5rem;
     }
 
-    .btn-subtext .copy-icon:hover {
+    /* Hover effect applies to the icon when ANY part of the subtext pill is hovered */
+    .btn-subtext:hover .copy-icon {
       opacity: 1;
     }
 
@@ -363,6 +365,8 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
+      
+      // Calendar Booking functionality
       const bookBtn = document.getElementById("book-btn");
       bookBtn.addEventListener("click", function(e) {
         if (window.calendar && window.calendar.schedulingButton && window.calendar.schedulingButton.load) {
@@ -377,42 +381,49 @@
         }
       });
 
-      // Prevent navigation when clicking copy icon
-      document.querySelectorAll('.btn').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          if (e.target.closest('.copy-icon')) {
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
+      // Copy functionality attached to the ENTIRE subtext pill
+      document.querySelectorAll('.btn-subtext').forEach(function(subtext) {
+        subtext.addEventListener('click', function(e) {
+          // Prevent the parent <a> tag from opening the link in a new tab
+          e.preventDefault();
+          // Stop the click from bubbling up (prevents the parent link or calendar logic from firing)
+          e.stopPropagation();
+
+          const textToCopy = subtext.getAttribute('data-copy');
+
+          // Create a temporary hidden textarea to perform the copy
+          // (This method ensures compatibility in restricted contexts like iFrames)
+          const tempTextArea = document.createElement("textarea");
+          tempTextArea.value = textToCopy;
+          tempTextArea.style.position = "absolute";
+          tempTextArea.style.left = "-9999px";
+          document.body.appendChild(tempTextArea);
+          
+          tempTextArea.select();
+          tempTextArea.setSelectionRange(0, 99999); // Ensures compatibility for mobile devices
+
+          try {
+            document.execCommand('copy');
+            
+            // UI Feedback: Highlight the pill
+            subtext.classList.add('copied');
+            
+            // UI Feedback: Trigger the floating tooltip over the parent button
+            const parentBtn = subtext.closest('.btn');
+            parentBtn.classList.add('show-tooltip');
+            
+            // Remove feedback classes after 1.5 seconds
+            setTimeout(function() {
+              subtext.classList.remove('copied');
+              parentBtn.classList.remove('show-tooltip');
+            }, 1500);
+          } catch (err) {
+            console.error('Failed to copy text: ', err);
+          } finally {
+            // Clean up the DOM
+            document.body.removeChild(tempTextArea);
           }
         });
-      });
-
-      // Copy functionality for subtext pills
-      document.querySelectorAll('.btn-subtext').forEach(function(subtext) {
-        const copyIcon = subtext.querySelector('.copy-icon');
-        if (copyIcon) {
-          copyIcon.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            const textToCopy = subtext.getAttribute('data-copy');
-            navigator.clipboard.writeText(textToCopy).then(function() {
-              // Add copied state
-              subtext.classList.add('copied');
-              
-              // NEW: Trigger the tooltip over the parent button
-              const parentBtn = subtext.closest('.btn');
-              parentBtn.classList.add('show-tooltip');
-              
-              setTimeout(function() {
-                subtext.classList.remove('copied');
-                parentBtn.classList.remove('show-tooltip');
-              }, 1500);
-            }).catch(function(err) {
-              console.error('Failed to copy:', err);
-            });
-          });
-        }
       });
     });
   </script>
