@@ -18,9 +18,9 @@ You can build, customize, and globally deploy your own version of this card comp
 I've have provided an AI Agent Skill (`SKILL.md`) in the digital-info-card-designer that knows exactly how this codebase works. It will guide you step-by-step through customizing the code and getting it hosted on the web.
 
 * **The Easy Path (For Non-Technical Users):** 
-  You don't need any coding software! Just open up your favorite AI chat (like **ChatGPT**, **Gemini**, or **Claude**), copy all the text inside the `SKILL.md` file, paste it into the chat, and say: 
+  You don't need any coding software. Just open up your favorite AI chat (like **ChatGPT**, **Gemini**, or **Claude**), copy all the text inside the `SKILL.md` file, paste it into the chat, and say: 
   > *"Act as this agent and guide me step-by-step to build, customize, and publish my digital business card."* 
-  The AI will hold your hand through the entire process.
+  Copy the contents of index.html into the chat as well. The AI will hold your hand through the entire process.
 
 * **For Developers & Pro Users:** 
   Feed `SKILL.md` directly into your AI coding environment (Cursor, Windsurf, Claude Code, GitHub Copilot). The agent will seamlessly execute the required Git commands, configure your personal data, and set up your deployment pipeline.
