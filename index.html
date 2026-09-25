@@ -1352,7 +1352,7 @@
       // Fallback check
       setTimeout(checkTextOverflow, 100);
 
-      /* --- GLOBAL 3D TILT, GYROSCOPE, EASTER EGG ENGINE --- */
+      /* --- GLOBAL 3D TILT, EASTER EGG ENGINE --- */
       const mainCard = document.getElementById('main-card');
       let globalMouseX = window.innerWidth / 2;
       let globalMouseY = window.innerHeight / 2;
@@ -1370,26 +1370,6 @@
       let easterEggTimeout = null;
       let avatarCycleInterval = null;
       let avatarCycleState = 0;
-      
-      // Gyroscope setup
-      let gyroX = 0;
-      let gyroY = 0;
-      let isGyroAvailable = false;
-
-      if (typeof window.DeviceOrientationEvent !== 'undefined') {
-        window.addEventListener('deviceorientation', (event) => {
-          if (event.beta !== null && event.gamma !== null) {
-            isGyroAvailable = true;
-            gyroX = event.gamma; // Left-to-right tilt
-            gyroY = event.beta;  // Front-to-back tilt
-            
-            // Constantly update tilt if mobile and not dragging
-            if (!isDragging && !isShaking && window.innerWidth <= 480) {
-              updateCardTilt();
-            }
-          }
-        });
-      }
 
       const updateCardTilt = () => {
         if (isShaking || isDragging) return;
@@ -1410,7 +1390,7 @@
           const distY = globalMouseY - centerY;
           const distance = Math.hypot(distX, distY) || 1;
           
-          // Disable the fleeing / tap avoidance feature on mobile devices
+          // Disable the fleeing / tap avoidance feature on mobile devices completely
           if (!isMobile && distance < 280) {
             const pushIntensity = (280 - distance) / 280;
             repulseX = -(distX / distance) * pushIntensity * 220;
@@ -1426,15 +1406,11 @@
         
         let tiltX, tiltY;
 
-        if (isMobile && isGyroAvailable) {
-          // Halved & Inverted Gyroscope Mapping
-          let adjustedGyroY = gyroY - 40; 
-          tiltX = Math.max(-7.5, Math.min(7.5, adjustedGyroY / 4));
-          tiltY = Math.max(-7.5, Math.min(7.5, -gyroX / 4));
-          
-          // Add shaking offset if in Easter Egg mode
-          tiltX += shakeOffsetRotX;
-          tiltY += shakeOffsetRotY;
+        if (isMobile) {
+          // Completely disable standard background tracking tilt on mobile 
+          // Only apply the shake/punch offsets (which are normally 0)
+          tiltX = shakeOffsetRotX.toFixed(2);
+          tiltY = shakeOffsetRotY.toFixed(2);
         } else {
           // Standard Desktop Mouse Mapping
           const isHovering = globalMouseX >= rect.left && globalMouseX <= rect.right && 
