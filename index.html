@@ -1,21 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ayush Joshi</title>
+  <title>Ayush Joshi | Data & AI Professional</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
   <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
-  
+
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    :root {
+      /* LIGHT THEME (Signature Olive) */
+      --bg-main: #879271; 
+      --card-bg-start: rgba(225, 230, 215, 0.88); 
+      --card-bg-end: rgba(215, 222, 205, 0.92);
+      --card-border: rgba(255, 255, 255, 0.35);
+      --card-shadow: 0 40px 80px rgba(24, 33, 18, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+      --text-main: #182112; 
+      --text-muted: #4a573b; 
+      --accent-green: #3b472e; 
+      --item-bg: rgba(0, 0, 0, 0.04);
+      --item-hover: rgba(0, 0, 0, 0.08);
+      --item-border: rgba(0, 0, 0, 0.07);
+      --icon-color: #182112;
+      --paper-fill: #182112;
+      --paper-line: #d8decb;
+      --action-bg: rgba(0, 0, 0, 0.05);
+      --action-border: rgba(0, 0, 0, 0.06);
+      --action-hover-bg: #182112;
+      --action-hover-text: #ffffff;
+      --tooltip-bg: rgba(24, 33, 18, 0.96);
+      --tooltip-text: #ffffff;
+      --tooltip-meta: #a1ad92;
+      --floating-btn-border: rgba(255, 255, 255, 0.40);
+      --toggle-shadow: 0 8px 24px rgba(24, 33, 18, 0.25), 0 0 15px rgba(255, 255, 255, 0.20);
+      
+      /* Vibrant Green-Tinted Clouds */
+      --cloud-tone-1: rgba(186, 212, 160, 0.94);
+      --cloud-tone-2: rgba(162, 192, 136, 0.90);
+      --cloud-tone-3: rgba(175, 204, 150, 0.86);
+      --cloud-tone-back: rgba(148, 178, 122, 0.92);
+      --cloud-tone-translucent: rgba(186, 212, 160, 0.58);
+      
+      --particle-color: 82, 98, 65;
+      --particle-line: 82, 98, 65;
+      
+      --tag-bg: rgba(0, 0, 0, 0.05);
+      --tag-border: rgba(0, 0, 0, 0.08);
+      --tag-text: #2c3821;
+      
+      --linkedin-dot-fill: #CAD1C0;
     }
+
+    [data-theme="dark"] {
+      /* DARK THEME (Lightened / Deep Cyber Forest) */
+      --bg-main: #18261e; 
+      --card-bg-start: rgba(32, 54, 42, 0.78); 
+      --card-bg-end: rgba(22, 38, 29, 0.92); 
+      --card-border: rgba(98, 181, 124, 0.28); 
+      --card-shadow: 0 40px 80px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+      --text-main: #ffffff;
+      --text-muted: #a6c4af;
+      --accent-green: #68c786; 
+      --item-bg: rgba(255, 255, 255, 0.04);
+      --item-hover: rgba(104, 199, 134, 0.12);
+      --item-border: rgba(255, 255, 255, 0.08);
+      --icon-color: #ffffff;
+      --paper-fill: #ffffff;
+      --paper-line: #1c3024;
+      --action-bg: rgba(255, 255, 255, 0.06);
+      --action-border: rgba(255, 255, 255, 0.06);
+      --action-hover-bg: #68c786;
+      --action-hover-text: #ffffff;
+      --tooltip-bg: rgba(255, 255, 255, 0.96);
+      --tooltip-text: #0d1712;
+      --tooltip-meta: #46584d;
+      --floating-btn-border: rgba(104, 199, 134, 0.35);
+      --toggle-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(104, 199, 134, 0.22);
+      
+      /* Vibrant Rich Olive Green Clouds in Dark Mode */
+      --cloud-tone-1: rgba(110, 195, 140, 0.92);
+      --cloud-tone-2: rgba(86, 168, 116, 0.88);
+      --cloud-tone-3: rgba(98, 180, 128, 0.84);
+      --cloud-tone-back: rgba(68, 142, 94, 0.90);
+      --cloud-tone-translucent: rgba(110, 195, 140, 0.60);
+
+      --particle-color: 60, 95, 72;
+      --particle-line: 60, 95, 72;
+      
+      --tag-bg: rgba(255, 255, 255, 0.06);
+      --tag-border: rgba(255, 255, 255, 0.09);
+      --tag-text: #b8e0c3;
+      
+      --linkedin-dot-fill: #26342B;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       height: 100%;
@@ -26,405 +108,1882 @@
       min-height: 100dvh;
       width: 100%;
       overflow-x: hidden;
-      overflow-y: auto;
-      font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: #1a2a1f;
-      color: #e2ebd8;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
       display: flex;
       justify-content: center;
       align-items: center;
       -webkit-font-smoothing: antialiased;
-      position: relative;
       padding: 2rem 1rem;
+      position: relative;
+      transition: background-color 0.5s ease;
     }
 
-    /* Subtle Circuit & Leaves Pattern Background */
+    /* Ambient Canvas */
+    #gravity-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .ambient-glow {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 48vw;
+      height: 48vw;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(var(--particle-color), 0.035) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 1;
+      filter: blur(80px);
+      transition: background 0.6s ease;
+    }
+
     .bg-layer {
       position: fixed;
       inset: 0;
-      background-image: url("bg-pattern.jpg");
-      background-repeat: repeat;
-      background-size: 550px auto;
-      opacity: 0.16;
-      filter: contrast(1.15) brightness(0.9);
+      background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+      opacity: 0.04;
       pointer-events: none;
+      z-index: 1;
     }
 
-    /* Vignette overlay */
-    .vignette-overlay {
+    /* FLOATING BUTTONS */
+    .floating-circle-btn {
       position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at center, transparent 35%, rgba(13, 22, 16, 0.75) 100%);
-      pointer-events: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--item-bg);
+      border: 1px solid var(--floating-btn-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: var(--toggle-shadow);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, transform 0.2s ease;
     }
 
+    .floating-circle-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Info Button Specific */
+    .info-circle-container { 
+      bottom: 1.5rem; 
+      right: 1.5rem; 
+      color: var(--icon-color);
+    }
+
+    /* Theme Toggle Specific */
+    .theme-toggle { 
+      top: 1.5rem; 
+      right: 1.5rem; 
+      overflow: hidden; 
+      color: var(--accent-green);
+    }
+
+    .theme-toggle svg {
+      width: 44px;
+      height: 44px;
+      position: absolute;
+      transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .moon-svg { opacity: 1; transform: rotate(0) scale(1); }
+    .sun-svg { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+    [data-theme="dark"] .moon-svg { opacity: 0; transform: rotate(90deg) scale(0.5); }
+    [data-theme="dark"] .sun-svg { opacity: 1; transform: rotate(0) scale(1); }
+
+    /* CONTINUOUS UNIDIRECTIONAL SLOW CLOUDS */
+    @keyframes cloudDriftLinear {
+      0% { transform: translateX(-160%); }
+      100% { transform: translateX(180%); }
+    }
+
+    .cloud-slow-back-1 { animation: cloudDriftLinear 20s linear infinite; fill: var(--cloud-tone-back); }
+    .cloud-slow-back-2 { animation: cloudDriftLinear 27s linear infinite -8s; fill: var(--cloud-tone-1); }
+    .cloud-slow-back-3 { animation: cloudDriftLinear 23s linear infinite -15s; fill: var(--cloud-tone-2); }
+    .cloud-slow-back-4 { animation: cloudDriftLinear 18s linear infinite -5s; fill: var(--cloud-tone-3); }
+
+    .cloud-slow-front-1 { animation: cloudDriftLinear 16s linear infinite -3s; fill: var(--cloud-tone-translucent); }
+    .cloud-slow-front-2 { animation: cloudDriftLinear 22s linear infinite -11s; fill: var(--cloud-tone-2); }
+    .cloud-slow-front-3 { animation: cloudDriftLinear 19s linear infinite -7s; fill: var(--cloud-tone-translucent); }
+
+    body.easter-egg .cloud-slow-back-1 { animation-duration: 4s !important; }
+    body.easter-egg .cloud-slow-back-2 { animation-duration: 5.4s !important; }
+    body.easter-egg .cloud-slow-back-3 { animation-duration: 4.6s !important; }
+    body.easter-egg .cloud-slow-back-4 { animation-duration: 3.6s !important; }
+    body.easter-egg .cloud-slow-front-1 { animation-duration: 3.2s !important; }
+    body.easter-egg .cloud-slow-front-2 { animation-duration: 4.4s !important; }
+    body.easter-egg .cloud-slow-front-3 { animation-duration: 3.8s !important; }
+
+    @keyframes sunRaysWaveDual {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      25% { transform: scale(1.08) rotate(7deg) skewX(3deg); }
+      50% { transform: scale(0.95) rotate(-5deg) skewY(-2.5deg); }
+      75% { transform: scale(1.06) rotate(6deg) skewX(-2.5deg); }
+    }
+    .sun-rays-group { animation: sunRaysWaveDual 9s ease-in-out infinite; transform-origin: 12px 12px; }
+    body.easter-egg .sun-rays-group { animation-duration: 1.5s !important; }
+
+    /* CARD STRUCTURE */
     .card {
       position: relative;
       z-index: 2;
-      width: 90%;
-      max-width: 460px;
-      background: linear-gradient(155deg, rgba(30, 52, 37, 0.82) 0%, rgba(38, 62, 45, 0.88) 100%);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-radius: 32px;
-      padding: 2.85rem 2.25rem;
+      width: 100%;
+      max-width: 540px;
+      background: linear-gradient(180deg, var(--card-bg-start) 0%, var(--card-bg-end) 100%);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--card-border);
+      border-radius: 36px; 
+      padding: 3rem 2.5rem;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
-      text-align: center;
+      gap: 2.4rem;
+      box-shadow: var(--card-shadow);
+      transform-style: preserve-3d;
+      will-change: transform;
+      transform-origin: center center;
+      transition: transform 0.2s ease-out, background 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+      cursor: default;
     }
 
-    .profile h1 {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.035em;
-    }
-
-    .profile p {
-      font-size: 1.05rem;
-      color: #a8caa4;
-      margin-top: 0.45rem;
-      margin-bottom: 2.1rem;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-    }
-
-    .button-group {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 1.05rem;
-    }
-
-    /* Pill-shaped buttons with uniform green styling */
-    .btn {
-      width: 100%;
-      height: 72px;
-      padding: 0 1.5rem;
+    .profile-header {
       display: flex;
       align-items: center;
+      gap: 1.5rem;
       position: relative;
-      background: #396748;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 9999px; /* Pill Shape */
-      color: #ffffff;
-      text-decoration: none;
-      transition: all 0.22s ease;
-      cursor: pointer;
     }
 
-    .btn:hover {
-      background: #447a55;
-      border-color: rgba(255, 255, 255, 0.38);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Left-anchored larger icons. 
-       Using the direct child combinator (>) ensures small copy icons inside subtext are unaffected. */
-    .btn > svg {
-      width: 30px;
-      height: 30px;
-      fill: currentColor;
+    /* AVATAR FLIPPER */
+    .avatar-flipper-container {
+      position: relative;
       flex-shrink: 0;
-      position: absolute;
-      left: 1.5rem;
+      width: 104px;
+      height: 104px;
+      perspective: 1000px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: border-radius 0.4s ease;
     }
 
-    /* Tooltip Styling */
-    .btn::after {
-      content: "Link copied!";
-      position: absolute;
-      bottom: calc(100% + 4px);
-      left: 50%;
-      transform: translateX(-50%) translateY(8px);
-      background: #ceebca; /* Matching subtext color */
-      color: #1a2a1f;
-      padding: 5px 12px;
-      border-radius: 8px;
-      font-size: 0.78rem;
-      font-weight: 700;
+    /* When QR code is active, remove clip, border, and shadow completely */
+    .avatar-flipper-container.qr-visible {
+      overflow: visible !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+    .avatar-flipper-container.qr-visible .flipper-face.flipper-front {
       opacity: 0;
       pointer-events: none;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    .avatar-flipper-container.qr-visible .flipper-face.flipper-back {
+      border-radius: 16px !important;
+      border: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+    }
+
+    .avatar-flipper {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 50%;
+    }
+
+    .avatar-flipper-container.flipped .avatar-flipper {
+      transform: rotateY(180deg);
+    }
+
+    .flipper-face {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      transition: border-radius 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+    }
+
+    .flipper-front img,
+    .flipper-back img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .light-avatar { opacity: 1; transform: scale(1); }
+    .dark-avatar { opacity: 0; transform: scale(0.95); }
+    [data-theme="dark"] .light-avatar { opacity: 0; transform: scale(0.95); }
+    [data-theme="dark"] .dark-avatar { opacity: 1; transform: scale(1); }
+
+    .flipper-back {
+      transform: rotateY(180deg);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    
+    .flipper-back img { object-fit: contain; }
+    .light-qr { opacity: 1; transform: scale(1); }
+    .dark-qr { opacity: 0; transform: scale(0.95); }
+    [data-theme="dark"] .light-qr { opacity: 0; transform: scale(0.95); }
+    [data-theme="dark"] .dark-qr { opacity: 1; transform: scale(1); }
+
+    /* UNIFIED RECTANGULAR QR TOOLTIP ON LEFT */
+    .avatar-tooltip-group {
+      position: absolute;
+      top: 50%;
+      right: calc(100% + 14px);
+      transform: translateY(-50%) translateX(8px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 60;
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar-qr-unified-tooltip {
+      background: var(--tooltip-bg);
+      color: var(--tooltip-text);
+      padding: 7px 12px;
+      border-radius: 10px;
+      font-size: 15px; 
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.24);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+    }
+
+    .avatar-qr-unified-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+      border-width: 5px 0 5px 6px;
+      border-style: solid;
+      border-color: transparent transparent transparent var(--tooltip-bg);
+    }
+
+    .qr-symbol-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    .avatar-flipper-container:not(.flipped):hover .avatar-tooltip-group,
+    .avatar-tooltip-group.persistent-visible {
+      opacity: 1 !important;
+      transform: translateY(-50%) translateX(0) !important;
+      pointer-events: auto !important;
+    }
+
+    .avatar-flipper-container.flipped .avatar-tooltip-group:not(.persistent-visible) {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    .profile-content-wrapper { position: relative; width: 100%; min-width: 0; }
+    .profile-text { display: flex; flex-direction: column; gap: 0.35rem; width: 100%; }
+
+    .profile-text h1 {
+      font-size: clamp(1.35rem, 2.2vw + 0.6rem, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .profile-text h2 {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: clamp(0.72rem, 1.15vw + 0.35rem, 0.95rem);
+      font-weight: 600;
+      color: var(--accent-green);
+      letter-spacing: -0.015em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .profile-text p {
+      font-size: clamp(0.72rem, 0.8vw + 0.42rem, 0.8rem);
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 0.2rem;
+      line-height: 1.45;
+      min-height: 2.9em;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-word;
+    }
+
+    /* LINKS GRID */
+    .links-grid { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 1rem; 
+      perspective: 1200px;
+    }
+
+    .stagger-in {
+      opacity: 0;
+      transform: translateY(15px);
+      animation: stripeReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.18s; }
+    .delay-3 { animation-delay: 0.26s; }
+    .delay-4 { animation-delay: 0.34s; }
+
+    @keyframes stripeReveal { to { opacity: 1; transform: translateY(0); } }
+
+    /* CARD PILL */
+    .link-item {
+      display: flex;
+      align-items: stretch;
+      background: var(--item-bg);
+      border: 1px solid var(--item-border);
+      border-radius: 9999px; 
+      padding: 0;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, transform 0.1s ease-out;
+    }
+
+    .link-item:hover {
+      background: var(--item-hover);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.14);
       z-index: 10;
     }
 
-    .btn.show-tooltip::after {
+    .link-info {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-main);
+      gap: 1.25rem;
+      min-width: 0; 
+      padding: 0.8rem 1rem 0.8rem 1.75rem; 
+      border-radius: 9999px 0 0 9999px;
+      cursor: pointer;
+    }
+
+    .link-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      pointer-events: none;
+      perspective: 600px;
+    }
+
+    .link-icon { width: 44px; height: 44px; flex-shrink: 0; pointer-events: none; }
+
+    /* 1. ENVELOPE */
+    .envelope-svg { overflow: visible; }
+    
+    .envelope-flap {
+      transform-origin: 12px 8.5px;
+      transform-style: preserve-3d;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), fill 0.3s ease;
+      fill: var(--icon-color);
+    }
+
+    .letter-paper {
+      transform-origin: 12px 14px;
+      transform: translateY(2px) scale(0.85, 0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, opacity 0.25s ease;
+    }
+
+    .paper-text-line {
+      stroke-dasharray: 12;
+      stroke-dashoffset: 12;
+      transition: stroke-dashoffset 0.35s ease;
+    }
+
+    .link-item:hover .envelope-flap,
+    .link-item.force-active .envelope-flap {
+      transform: rotateX(180deg);
+      fill: var(--accent-green);
+    }
+
+    .link-item:hover .letter-paper,
+    .link-item.force-active .letter-paper {
+      transform: translateY(-4px) scale(1, 1);
+      opacity: 1;
+    }
+
+    .link-item:hover .line-1, .link-item.force-active .line-1 { stroke-dashoffset: 0; transition-delay: 0.16s; }
+    .link-item:hover .line-2, .link-item.force-active .line-2 { stroke-dashoffset: 0; transition-delay: 0.26s; }
+    .link-item:hover .line-3, .link-item.force-active .line-3 { stroke-dashoffset: 0; transition-delay: 0.36s; }
+
+    body.easter-egg #email-link .envelope-flap {
+      animation: easterEnvelopeFlap 1s ease-in-out infinite alternate;
+    }
+    body.easter-egg #email-link .letter-paper {
+      animation: easterLetterSlide 1s ease-in-out infinite alternate;
+    }
+    body.easter-egg #email-link .paper-text-line {
+      stroke-dashoffset: 0 !important;
+    }
+
+    @keyframes easterEnvelopeFlap {
+      0% { transform: rotateX(0deg); fill: var(--icon-color); }
+      100% { transform: rotateX(180deg); fill: var(--accent-green); }
+    }
+
+    @keyframes easterLetterSlide {
+      0% { transform: translateY(2px) scale(0.85, 0.45); opacity: 0; }
+      100% { transform: translateY(-4px) scale(1, 1); opacity: 1; }
+    }
+
+    /* 2. LINKEDIN DOT */
+    .linkedin-dot { fill: var(--linkedin-dot-fill); transition: fill 0.4s ease; will-change: transform; }
+
+    /* 3. GITHUB LOGO: Rapid rotational jitter */
+    .github-svg {
+      transform-origin: 12px 12px;
+      will-change: transform;
+      transition: transform 0.04s linear;
+    }
+
+    /* 4. CALENDAR: Stepping grid */
+    @keyframes calendar6StepGridPaced {
+      0%  { transform: translate(0px, 0px); }
+      16%  { transform: translate(3.6px, 0px); }
+      33%  { transform: translate(7.2px, 0px); }
+      50%  { transform: translate(0px, 3.8px); }
+      66%  { transform: translate(3.6px, 3.8px); }
+      83%  { transform: translate(7.2px, 3.8px); }
+      100% { transform: translate(0px, 0px); }
+    }
+
+    .calendar-step-square { transform-origin: 6.8px 11.6px; fill: var(--icon-color); }
+    .calendar-cell-bg { fill: var(--icon-color); opacity: 0.18; }
+    .link-item:hover .calendar-step-square,
+    .link-item.force-active .calendar-step-square { animation: calendar6StepGridPaced 2.2s steps(1) infinite; }
+
+    .link-text { display: flex; flex-direction: column; gap: 0.1rem; overflow: hidden; pointer-events: none; }
+    .link-title { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+    
+    .link-url {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.4s ease;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    /* COPY BUTTON */
+    .copy-action {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--action-bg);
+      border: 1px solid var(--action-border);
+      color: var(--icon-color);
+      cursor: pointer;
+      transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease-out;
+      margin: 0.5rem 0.5rem 0.5rem 0; 
+      will-change: transform;
+      z-index: 20;
+    }
+
+    .copy-action:hover {
+      background: var(--action-hover-bg);
+      color: var(--action-hover-text);
+      border-color: var(--action-hover-bg);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .copy-action svg { width: 22px; height: 22px; fill: currentColor; pointer-events: none; }
+
+    /* RIGHT-SIDE ANCHORED TOOLTIP */
+    .rich-tooltip {
+      position: absolute;
+      left: calc(100% + 14px);
+      top: 50%;
+      transform: translateY(-50%) translateX(-8px) scale(0.95);
+      background: var(--tooltip-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 8px 14px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 3px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 100;
+    }
+
+    .rich-tooltip::after {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-width: 6px 6px 6px 0;
+      border-style: solid;
+      border-color: transparent var(--tooltip-bg) transparent transparent;
+    }
+
+    .copy-action:hover .rich-tooltip { opacity: 1; transform: translateY(-50%) translateX(0) scale(1); }
+    .tooltip-title { font-size: 0.75rem; font-weight: 700; color: var(--tooltip-text); white-space: nowrap; margin: 0; }
+    .tooltip-meta { font-size: 0.65rem; font-weight: 500; color: var(--tooltip-meta); white-space: nowrap; margin: 0; }
+    .copy-action.copied .tooltip-title { color: var(--accent-green); }
+    .copy-action.copied .tooltip-meta { display: none; }
+
+    /* INFO RADAR BUTTON & CLEAN TOOLTIP */
+    #info-canvas { width: 44px; height: 44px; }
+
+    .info-tooltip {
+      position: absolute;
+      right: 0;
+      bottom: calc(100% + 14px);
+      background: var(--tooltip-bg);
+      color: var(--tooltip-text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      line-height: 1.45;
+      font-weight: 500;
+      white-space: pre-line;
+      width: max-content;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transform: translateY(8px);
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .info-tooltip-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      fill: currentColor;
+      margin-top: 1px;
+    }
+
+    .info-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      right: 18px;
+      border-width: 6px 6px 0;
+      border-style: solid;
+      border-color: var(--tooltip-bg) transparent transparent transparent;
+    }
+
+    body:not(.info-open) .info-circle-container:hover .info-tooltip {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    body.info-open .info-tooltip {
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    /* EASTER EGG POPUP BANNER */
+    .easter-egg-banner {
+      position: fixed;
+      top: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: var(--tooltip-bg);
+      color: var(--tooltip-text);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.2);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 200;
+    }
+    .easter-egg-banner.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
 
-    /* Centered Text Block */
-    .btn-text-block {
-      width: 100%;
+    /* INFO POPOVER */
+    .info-popover {
+      position: fixed;
+      bottom: 5rem;
+      right: 1.5rem;
+      width: 330px;
+      max-height: 380px;
+      background: var(--card-bg-start);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid var(--card-border);
+      border-radius: 22px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      z-index: 150;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      line-height: 1.25;
-      padding: 0 3.5rem; /* Increased to accommodate subtext pill */
-    }
-
-    .btn-title {
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: -0.015em;
-    }
-
-    .btn-subtext {
-      font-size: 0.88rem;
-      color: #ceebca;
-      font-weight: 500;
-      letter-spacing: -0.01em;
-      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.92) translateY(12px);
+      transform-origin: bottom right;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 100%;
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 9999px;
-      padding: 0.25rem 0.75rem;
-      display: inline-flex;
+    }
+
+    .info-popover.active { opacity: 1; pointer-events: auto; transform: scale(1) translateY(0); }
+
+    .popover-header {
+      padding: 0.95rem 1.2rem 0.75rem;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid var(--item-border);
+    }
+
+    .popover-title-group { display: flex; align-items: center; gap: 0.5rem; }
+    .popover-title-group svg { width: 16px; height: 16px; fill: var(--accent-green); }
+
+    .popover-header span {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .popover-body {
+      padding: 0.9rem 1.15rem 1.1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      font-size: 0.74rem;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    .popover-body::-webkit-scrollbar { width: 4px; }
+    .popover-body::-webkit-scrollbar-thumb { background: var(--item-border); border-radius: 4px; }
+
+    .tech-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      background: var(--item-bg);
+      padding: 0.7rem 0.85rem;
+      border-radius: 12px;
+      border: 1px solid var(--item-border);
+    }
+
+    .tech-name {
+      font-family: 'Fira Code', monospace;
+      font-weight: 600;
+      color: var(--accent-green);
+      font-size: 0.78rem;
+    }
+
+    .tech-desc { color: var(--text-main); font-size: 0.72rem; line-height: 1.45; }
+    
+    .popover-footer {
+      margin-top: 0.3rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid var(--item-border);
+      text-align: center;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .popover-footer a {
+      color: var(--accent-green);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .popover-footer a:hover { opacity: 0.8; text-decoration: underline; }
+
+    .pill-marquee-wrapper {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      margin-top: 0.3rem;
+      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+
+    .pill-marquee-track {
+      display: flex;
       gap: 0.4rem;
-      margin-top: 0.25rem;
-      transition: background 0.2s ease;
-      cursor: pointer; /* Indicates the entire pill is clickable */
+      width: max-content;
+      animation: pillTrackScroll 16s linear infinite;
     }
 
-    .btn-subtext:hover {
-      background: rgba(255, 255, 255, 0.22);
+    .pill-marquee-track:hover { animation-play-state: paused; }
+
+    @keyframes pillTrackScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
-    .btn-subtext .copy-icon {
-      width: 14px;
-      height: 14px;
-      fill: currentColor;
-      opacity: 0.7;
+    .mini-pill {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--tag-text);
+      padding: 2px 7px;
+      border-radius: 9999px;
+      white-space: nowrap;
       flex-shrink: 0;
-      transition: opacity 0.15s ease;
-      margin-left: 0.5rem;
     }
 
-    /* Hover effect applies to the icon when ANY part of the subtext pill is hovered */
-    .btn-subtext:hover .copy-icon {
-      opacity: 1;
-    }
-
-    .btn-subtext.copied .copy-icon {
-      opacity: 1;
-    }
-
-    /* Responsive adjustments for mobile devices */
     @media (max-width: 480px) {
-      body {
-        padding: 1.25rem 0.75rem;
+      .card { padding: 2.25rem 1.5rem; border-radius: 32px; }
+      .floating-circle-btn { width: 42px; height: 42px; }
+      .theme-toggle { top: 1rem; right: 1rem; }
+      .info-circle-container { bottom: 1rem; right: 1rem; }
+      .info-tooltip { width: max-content; max-width: 300px; }
+      .info-popover { right: 1rem; bottom: 4.5rem; width: calc(100vw - 2rem); max-width: 330px; }
+      .link-info { padding: 0.6rem 1rem 0.6rem 1.25rem; gap: 1rem; }
+      .link-icon { width: 38px; height: 38px; }
+      .copy-action { width: 46px; height: 46px; margin: 0.4rem 0.4rem 0.4rem 0; }
+      
+      .avatar-tooltip-group {
+        right: auto;
+        left: 50%;
+        top: calc(100% + 12px);
+        transform: translateX(-50%) translateY(4px);
+      }
+      .avatar-qr-unified-tooltip::after {
+        right: auto;
+        top: auto;
+        left: 50%;
+        bottom: 100%;
+        transform: translateX(-50%);
+        border-width: 0 5px 6px 5px;
+        border-color: transparent transparent var(--tooltip-bg) transparent;
+      }
+      .avatar-flipper-container:not(.flipped):hover .avatar-tooltip-group {
+        transform: translateX(-50%) translateY(0);
       }
 
-      .card {
-        width: 100%;
-        max-width: 420px;
-        padding: 2.25rem 1.25rem;
-        border-radius: 28px;
+      .rich-tooltip {
+        left: auto;
+        right: calc(100% + 14px);
+        transform: translateY(-50%) translateX(8px) scale(0.95);
       }
-
-      .profile h1 {
-        font-size: 2rem;
+      .rich-tooltip::after {
+        right: auto;
+        left: 100%;
+        border-width: 6px 0 6px 6px;
+        border-color: transparent transparent transparent var(--tooltip-bg);
       }
-
-      .profile p {
-        font-size: 0.98rem;
-        margin-top: 0.35rem;
-        margin-bottom: 1.75rem;
-      }
-
-      .button-group {
-        gap: 0.85rem;
-      }
-
-      .btn {
-        height: 66px;
-        padding: 0 1.25rem;
-      }
-
-      .btn > svg {
-        width: 26px;
-        height: 26px;
-        left: 1.25rem;
-      }
-
-      .btn-text-block {
-        padding: 0 3.5rem;
-      }
-
-      .btn-title {
-        font-size: 1.05rem;
-      }
-
-      .btn-subtext {
-        font-size: 0.82rem;
-      }
-    }
-
-    /* Ultra-narrow devices (e.g. 320px - 360px) */
-    @media (max-width: 380px) {
-      .card {
-        padding: 1.85rem 1rem;
-        border-radius: 24px;
-      }
-
-      .profile h1 {
-        font-size: 1.75rem;
-      }
-
-      .profile p {
-        font-size: 0.92rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .btn {
-        height: 62px;
-        padding: 0 1rem;
-      }
-
-      .btn > svg {
-        width: 22px;
-        height: 22px;
-        left: 1rem;
-      }
-
-      .btn-text-block {
-        padding: 0 3rem;
-      }
-
-      .btn-title {
-        font-size: 0.98rem;
-      }
-
-      .btn-subtext {
-        font-size: 0.76rem;
-      }
+      .copy-action:hover .rich-tooltip { transform: translateY(-50%) translateX(0) scale(1); }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-layer"></div>
-  <div class="vignette-overlay"></div>
+  <!-- Dynamic Antigravity Canvas -->
+  <canvas id="gravity-canvas"></canvas>
 
-  <div class="card">
-    <div class="profile">
-      <h1>Ayush Joshi</h1>
-      <p>Data & AI Professional</p>
-    </div>
+  <!-- Easter Egg Tooltip Notification -->
+  <div class="easter-egg-banner" id="easter-egg-banner">Easter Egg! ⚡</div>
 
-    <div class="button-group">
-      <!-- Email Button -->
-      <a href="mailto:ayush@joshi.contact" class="btn">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        <div class="btn-text-block">
-          <span class="btn-title">Email</span>
-          <span class="btn-subtext" data-copy="ayush@joshi.contact">ayush@joshi.contact<svg class="copy-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>
-        </div>
-      </a>
-
-      <!-- LinkedIn Button -->
-      <a href="https://joshi.contact/in" target="_blank" rel="noopener noreferrer" class="btn">
-        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.3.7-1.75 1.4-1.75 1 0 1.35.75 1.35 1.75v4.93h2.79M6.46 10.9v8.37H9.25V10.9H6.46M7.86 6.6a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26z"/></svg>
-        <div class="btn-text-block">
-          <span class="btn-title">LinkedIn</span>
-          <span class="btn-subtext" data-copy="https://joshi.contact/in">joshi.contact/in<svg class="copy-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>
-        </div>
-      </a>
-
-      <!-- GitHub Button -->
-      <a href="https://github.com/ayushj190" target="_blank" rel="noopener noreferrer" class="btn">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-        <div class="btn-text-block">
-          <span class="btn-title">GitHub</span>
-          <span class="btn-subtext" data-copy="https://github.com/ayushj190">ayushj190<svg class="copy-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>
-        </div>
-      </a>
-
-      <!-- Google Calendar Booking Button -->
-      <a href="https://calendar.google.com/appointments/schedules/AcZssZ1MiX5x-suJWyl3ycGT6T1YJB3NXA4vSDW-9BnTHhoWXJhSisKZ1RWA1vedHljzEk_9nl9w1hix" id="book-btn" target="_blank" rel="noopener noreferrer" class="btn">
-        <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
-        <div class="btn-text-block">
-          <span class="btn-title">Book a Meeting</span>
-          <span class="btn-subtext" data-copy="https://calendar.google.com/appointments/schedules/AcZssZ1MiX5x-suJWyl3ycGT6T1YJB3NXA4vSDW-9BnTHhoWXJhSisKZ1RWA1vedHljzEk_9nl9w1hix">calendar.app.google<svg class="copy-icon" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg></span>
-        </div>
-      </a>
+  <!-- Circular Info Radar Button -->
+  <div class="floating-circle-btn info-circle-container" id="info-btn" aria-label="Project Information">
+    <canvas id="info-canvas"></canvas>
+    <!-- Sleek 2-Line Tooltip -->
+    <div class="info-tooltip">
+      <svg class="info-tooltip-icon" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+      </svg>
+      <div>Ayush's AI Agents on the grind. ⚡<br>They built this digital card, they say hi! 🤖</div>
     </div>
   </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
+  <!-- Info Popover -->
+  <div class="info-popover" id="info-popover">
+    <div class="popover-header">
+      <div class="popover-title-group">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+        </svg>
+        <span>Info</span>
+      </div>
+    </div>
+    <div class="popover-body">
+      <!-- 1. Vanilla DOM -->
+      <div class="tech-item">
+        <span class="tech-name">Plain JavaScript</span>
+        <span class="tech-desc">Zero frameworks, zero dependencies, and instant baseline execution. Built purely with native web standards.</span>
+        <div class="pill-marquee-wrapper">
+          <div class="pill-marquee-track">
+            <span class="mini-pill">Vanilla DOM</span>
+            <span class="mini-pill">Zero Bloat</span>
+            <span class="mini-pill">ES6 Modules</span>
+            <span class="mini-pill">Web APIs</span>
+            <span class="mini-pill">Native Events</span>
+            <span class="mini-pill">Vanilla DOM</span>
+            <span class="mini-pill">Zero Bloat</span>
+            <span class="mini-pill">ES6 Modules</span>
+            <span class="mini-pill">Web APIs</span>
+            <span class="mini-pill">Native Events</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Canvas2D Vector Graphics -->
+      <div class="tech-item">
+        <span class="tech-name">Canvas Graphics</span>
+        <span class="tech-desc">A custom 820-node vector math loop handles floating background particles, elastic mesh links, and radar telemetry.</span>
+        <div class="pill-marquee-wrapper">
+          <div class="pill-marquee-track">
+            <span class="mini-pill">HTML5 Canvas</span>
+            <span class="mini-pill">Spatial Hash</span>
+            <span class="mini-pill">60 FPS</span>
+            <span class="mini-pill">Vector Physics</span>
+            <span class="mini-pill">Euler Spring</span>
+            <span class="mini-pill">HTML5 Canvas</span>
+            <span class="mini-pill">Spatial Hash</span>
+            <span class="mini-pill">60 FPS</span>
+            <span class="mini-pill">Vector Physics</span>
+            <span class="mini-pill">Euler Spring</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. AI Agent Harness -->
+      <div class="tech-item">
+        <span class="tech-name">AI Agent Harness</span>
+        <span class="tech-desc">Iteratively engineered using autonomous agent loops, dynamic prompt contexts, and human-in-the-loop pair programming.</span>
+        <div class="pill-marquee-wrapper">
+          <div class="pill-marquee-track">
+            <span class="mini-pill">Google Antigravity</span>
+            <span class="mini-pill">GitHub Copilot</span>
+            <span class="mini-pill">Multi Model</span>
+            <span class="mini-pill">Agentic Flow</span>
+            <span class="mini-pill">LSP MCP</span>
+            <span class="mini-pill">Google Antigravity</span>
+            <span class="mini-pill">GitHub Copilot</span>
+            <span class="mini-pill">Multi Model</span>
+            <span class="mini-pill">Agentic Flow</span>
+            <span class="mini-pill">LSP MCP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Cloudflare Edge Delivery -->
+      <div class="tech-item">
+        <span class="tech-name">Cloudflare Edge</span>
+        <span class="tech-desc">Continuous deployment wired directly from Git to Cloudflare's edge network for global single-millisecond TTFB.</span>
+        <div class="pill-marquee-wrapper">
+          <div class="pill-marquee-track">
+            <span class="mini-pill">Cloudflare Pages</span>
+            <span class="mini-pill">Global CDN</span>
+            <span class="mini-pill">Domain DNS</span>
+            <span class="mini-pill">Instant TTFB</span>
+            <span class="mini-pill">Git Webhook</span>
+            <span class="mini-pill">Cloudflare Pages</span>
+            <span class="mini-pill">Global CDN</span>
+            <span class="mini-pill">Domain DNS</span>
+            <span class="mini-pill">Instant TTFB</span>
+            <span class="mini-pill">Git Webhook</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Call to Action -->
+      <div class="popover-footer">
+        Want to build your own AI-generated digital card?<br>
+        <a href="https://github.com/ayushj190" target="_blank">Check out the GitHub repo</a>.
+      </div>
+    </div>
+  </div>
+
+  <!-- Theme Toggle -->
+  <button id="theme-toggle" class="floating-circle-btn theme-toggle" aria-label="Toggle theme">
+    <svg class="moon-svg" viewBox="-2 -2 28 28">
+      <g>
+        <path class="cloud-slow-back-1" d="M-12 26V8.5c0-4.2 3.8-7.5 8.2-7.5 2.1 0 4 .8 5.4 2.2 1.6-2.4 4.3-3.9 7.4-3.9 5 0 9 4 9 9V26H-12z"/>
+        <path class="cloud-slow-back-2" d="M-8 26V10c0-3.6 3.2-6.5 7-6.5 1.6 0 3 .5 4.1 1.4 1.4-2 3.7-3.4 6.4-3.4 4.5 0 8.2 3.6 8.2 8.2 0 .5-.06 1-.16 1.5V26H-8z"/>
+        <path class="cloud-slow-back-3" d="M-14 26V12c0-3.2 2.8-5.8 6.2-5.8 1.4 0 2.7.5 3.7 1.3 1.2-1.8 3.2-3 5.5-3 3.8 0 7 3.1 7 7V26H-14z"/>
+        <path class="cloud-slow-back-4" d="M-6 26V14c0-2.8 2.3-5 5-5 1.1 0 2.1.4 2.9 1.1 1-1.5 2.7-2.6 4.7-2.6 3.2 0 5.8 2.6 5.8 5.8V26H-6z"/>
+      </g>
+      <path fill="currentColor" d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10c0-.52-.04-1.02-.12-1.51-1.09 1.52-2.87 2.51-4.88 2.51-3.31 0-6-2.69-6-6 0-2.01.99-3.79 2.51-4.88-.49-.08-.99-.12-1.51-.12z"/>
+      <g>
+        <path class="cloud-slow-front-1" d="M-12 26v-4.5c0-3.2 2.6-5.8 5.8-5.8 1.2 0 2.3.4 3.2 1 1.4-1.8 3.6-2.9 6-2.9 4.4 0 7.9 3.4 7.9 7.7V26H-12z"/>
+        <path class="cloud-slow-front-2" d="M-4 26v-3.5c0-2.5 2-4.5 4.5-4.5.9 0 1.7.3 2.4.8 1.1-1.3 2.8-2.1 4.7-2.1 3.4 0 6.2 2.6 6.2 5.8V26H-4z"/>
+        <path class="cloud-slow-front-3" d="M-8 26v-2.8c0-2.2 1.8-4 4-4 .8 0 1.5.2 2.1.6 1-1.2 2.5-2 4.2-2 3.1 0 5.6 2.5 5.6 5.6V26H-8z"/>
+      </g>
+    </svg>
+    <svg class="sun-svg" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3.9" fill="currentColor"/>
+      <g class="sun-rays-group" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none">
+        <path d="M12 1.2 C13.2 2.5, 10.8 3.8, 12 4.8"/>
+        <path d="M12 19.2 C10.8 20.2, 13.2 21.5, 12 22.8"/>
+        <path d="M1.2 12 C2.5 10.8, 3.8 13.2, 4.8 12"/>
+        <path d="M19.2 12 C20.2 13.2, 21.5 10.8, 22.8 12"/>
+        <path d="M4.4 4.4 C5.8 4.9, 5.2 6.5, 6.7 6.7"/>
+        <path d="M17.3 17.3 C18.7 17.5, 18.2 19.1, 19.6 19.6"/>
+        <path d="M4.4 19.6 C4.9 18.2, 6.5 18.7, 6.7 17.3"/>
+        <path d="M19.6 4.4 C18.2 4.9, 18.7 6.5, 17.3 6.7"/>
+      </g>
+    </svg>
+  </button>
+
+  <div class="ambient-glow"></div>
+  <div class="bg-layer"></div>
+
+  <!-- Primary Card Container -->
+  <main class="card" id="main-card">
+    <header class="profile-header">
+      <div class="avatar-flipper-container" id="avatar-flipper-btn">
+        <div class="avatar-flipper" id="avatar-flipper-el">
+          <div class="flipper-face flipper-front">
+            <img id="avatar-light-img" alt="Avatar light" class="avatar light-avatar">
+            <img id="avatar-dark-img" alt="Avatar dark" class="avatar dark-avatar">
+          </div>
+          <div class="flipper-face flipper-back">
+            <img id="qr-light-img" alt="QR Code Light" class="qr light-qr">
+            <img id="qr-dark-img" alt="QR Code Dark" class="qr dark-qr">
+          </div>
+        </div>
+
+        <!-- Unified Rectangular QR Tooltip with Stylized Square QR Symbol -->
+        <div class="avatar-tooltip-group" id="avatar-tooltips" aria-label="QR Code">
+          <div class="avatar-qr-unified-tooltip">
+            <svg class="qr-symbol-icon" viewBox="0 0 24 24">
+              <path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 6h2v3h-2v-3zm3 0h3v3h-3v-3zm3 3h3v2h-3v-2z"/>
+            </svg>
+            <span>Continue on mobile</span>
+          </div>
+        </div>
+      </div>
       
-      // Calendar Booking functionality
-      const bookBtn = document.getElementById("book-btn");
-      bookBtn.addEventListener("click", function(e) {
-        if (window.calendar && window.calendar.schedulingButton && window.calendar.schedulingButton.load) {
-          try {
-            e.preventDefault();
-            window.calendar.schedulingButton.load({
-              url: "https://calendar.google.com/appointments/schedules/AcZssZ1MiX5x-suJWyl3ycGT6T1YJB3NXA4vSDW-9BnTHhoWXJhSisKZ1RWA1vedHljzEk_9nl9w1hix"
-            });
-          } catch(err) {
-            window.open(bookBtn.href, "_blank");
+      <div class="profile-content-wrapper">
+        <div class="profile-text">
+          <h1 id="profile-name"></h1>
+          <h2 id="profile-title"></h2>
+          <p id="decryption-text"></p>
+        </div>
+      </div>
+    </header>
+
+    <nav class="links-grid" id="links-grid"></nav>
+  </main>
+
+  <script>
+    /**
+     * =========================================================================
+     * 1. CENTRAL PROFILE & LOCAL ASSET PATH CONFIGURATION
+     * =========================================================================
+     */
+    const CONFIG = {
+      profile: {
+        name: "Ayush Joshi",
+        title: "Data & AI | Analytics | Technical Enablement",
+        bio: "Solving complex problems by scoping real needs over norms, and lean systems over products.",
+        qrLink: "https://fyi.joshi.contact",
+        avatarLight: "assets/avatar-light.jpg",
+        avatarDark: "assets/avatar-dark.jpg"
+      },
+      links: [
+        {
+          id: "email-link",
+          title: "Email",
+          urlText: "ayush@joshi.contact",
+          actionUrl: "mailto:ayush@joshi.contact",
+          copyValue: "ayush@joshi.contact",
+          tooltipTitle: "Copy Email",
+          tooltipMeta: "Drop me a line",
+          delayClass: "delay-1",
+          iconHtml: `
+            <svg class="link-icon envelope-svg" viewBox="0 0 24 24">
+              <path fill="var(--icon-color)" opacity="0.28" d="M3 9C3 7.9 3.9 7 5 7H19C20.1 7 21 7.9 21 9V17C21 18.1 20.1 19 19 19H5C3.9 19 3 18.1 3 17V9Z"/>
+              <polygon class="envelope-flap" points="3,8.5 12,14.8 21,8.5"/>
+              <path fill="var(--icon-color)" d="M3 9.5L12 15.6L21 9.5V17C21 18.1 20.1 19 19 19H5C3.9 19 3 18.1 3 17V9.5Z"/>
+              <g class="letter-paper">
+                <rect x="4" y="6.5" width="16" height="12.5" rx="1.8" fill="var(--paper-fill)" stroke="var(--paper-line)" stroke-width="0.75"/>
+                <line class="paper-text-line line-1" x1="6.8" y1="9.8" x2="17.2" y2="9.8" stroke="var(--paper-line)" stroke-width="1.1" stroke-linecap="round"/>
+                <line class="paper-text-line line-2" x1="6.8" y1="12.8" x2="15.5" y2="12.8" stroke="var(--paper-line)" stroke-width="1.1" stroke-linecap="round"/>
+                <line class="paper-text-line line-3" x1="6.8" y1="15.8" x2="13.2" y2="15.8" stroke="var(--paper-line)" stroke-width="1.1" stroke-linecap="round"/>
+              </g>
+            </svg>`
+        },
+        {
+          id: "linkedin-link",
+          title: "LinkedIn",
+          urlText: "Ayush Joshi",
+          actionUrl: "https://joshi.contact/in",
+          copyValue: "https://joshi.contact/in",
+          tooltipTitle: "Copy Link",
+          tooltipMeta: "Professional network",
+          delayClass: "delay-2",
+          iconHtml: `
+            <svg class="link-icon" viewBox="0 0 24 24">
+              <path fill="var(--icon-color)" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-1.3.7-1.75 1.4-1.75 1 0 1.35.75 1.35 1.75v4.93h2.79M6.46 10.9v8.37H9.25V10.9H6.46"/>
+              <circle class="linkedin-dot" id="linkedin-dot-el" cx="7.86" cy="7.2" r="1.42"/>
+            </svg>`
+        },
+        {
+          id: "github-link",
+          title: "GitHub",
+          urlText: "ayushj190",
+          actionUrl: "https://github.com/ayushj190",
+          copyValue: "https://github.com/ayushj190",
+          tooltipTitle: "Copy Profile",
+          tooltipMeta: "Active commits & stars",
+          delayClass: "delay-3",
+          iconHtml: `
+            <svg class="link-icon github-svg" id="github-icon-el" viewBox="0 0 24 24">
+              <path fill="var(--icon-color)" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>`
+        },
+        {
+          id: "book-btn",
+          title: "Book a Meeting",
+          urlText: "Google Calendar",
+          actionUrl: "https://calendar.google.com/appointments/schedules/AcZssZ1MiX5x-suJWyl3ycGT6T1YJB3NXA4vSDW-9BnTHhoWXJhSisKZ1RWA1vedHljzEk_9nl9w1hix",
+          copyValue: "https://calendar.google.com/appointments/schedules/AcZssZ1MiX5x-suJWyl3ycGT6T1YJB3NXA4vSDW-9BnTHhoWXJhSisKZ1RWA1vedHljzEk_9nl9w1hix",
+          tooltipTitle: "Copy Link",
+          tooltipMeta: "Local Time: --:-- CEST",
+          tooltipMetaId: "dynamic-time-meta",
+          delayClass: "delay-4",
+          iconHtml: `
+            <svg class="link-icon" viewBox="0 0 24 24">
+              <path fill="var(--icon-color)" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9.5h14v10.5zm0-12.5H5V6h14v1.5z"/>
+              <rect class="calendar-cell-bg" x="6.8" y="11.6" width="2.4" height="2.4" rx="0.4"/>
+              <rect class="calendar-cell-bg" x="10.4" y="11.6" width="2.4" height="2.4" rx="0.4"/>
+              <rect class="calendar-cell-bg" x="14" y="11.6" width="2.4" height="2.4" rx="0.4"/>
+              <rect class="calendar-cell-bg" x="6.8" y="15.4" width="2.4" height="2.4" rx="0.4"/>
+              <rect class="calendar-cell-bg" x="10.4" y="15.4" width="2.4" height="2.4" rx="0.4"/>
+              <rect class="calendar-cell-bg" x="14" y="15.4" width="2.4" height="2.4" rx="0.4"/>
+              <rect class="calendar-step-square" x="6.8" y="11.6" width="2.4" height="2.4" rx="0.4"/>
+            </svg>`
+        }
+      ]
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      /* --- Cached Canvas Colors to Prevent Layout Thrashing --- */
+      let cachedAccent = '#3b472e';
+      let cachedParticleColor = '82, 98, 65';
+      let cachedLineColor = '82, 98, 65';
+
+      const updateCanvasColors = () => {
+        const style = getComputedStyle(document.body);
+        cachedAccent = style.getPropertyValue('--accent-green').trim() || cachedAccent;
+        cachedParticleColor = style.getPropertyValue('--particle-color').trim() || cachedParticleColor;
+        cachedLineColor = style.getPropertyValue('--particle-line').trim() || cachedLineColor;
+      };
+      updateCanvasColors();
+
+      /* --- Render Profile Data --- */
+      document.getElementById('profile-name').textContent = CONFIG.profile.name;
+      document.getElementById('profile-title').textContent = CONFIG.profile.title;
+      document.getElementById('avatar-light-img').src = CONFIG.profile.avatarLight;
+      document.getElementById('avatar-dark-img').src = CONFIG.profile.avatarDark;
+
+      /* --- Pre-Load Both QR Codes --- */
+      document.getElementById('qr-light-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(CONFIG.profile.qrLink)}&color=3b472e&bgcolor=D6DCCA&margin=2`;
+      document.getElementById('qr-dark-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(CONFIG.profile.qrLink)}&color=ffffff&bgcolor=203227&margin=2`;
+
+      /* --- Theme Toggle --- */
+      document.getElementById('theme-toggle').addEventListener('click', () => {
+        const doc = document.documentElement;
+        doc.setAttribute('data-theme', doc.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        setTimeout(updateCanvasColors, 50); // Small delay allows CSS variables to apply before cache
+      });
+
+      /* --- Render Navigation Links --- */
+      const linksContainer = document.getElementById('links-grid');
+      linksContainer.innerHTML = CONFIG.links.map(link => `
+        <div class="link-item stagger-in ${link.delayClass}" id="${link.id}" data-url="${link.actionUrl}">
+          <div class="link-info">
+            <div class="link-icon-wrapper">${link.iconHtml}</div>
+            <div class="link-text">
+              <span class="link-title">${link.title}</span>
+              <span class="link-url crypto-subtext" data-text="${link.urlText}">${link.urlText}</span>
+            </div>
+          </div>
+          <button class="copy-action" data-copy="${link.copyValue}" aria-label="Copy ${link.title}">
+            <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            <div class="rich-tooltip">
+              <span class="tooltip-title">${link.tooltipTitle}</span>
+              <span class="tooltip-meta" ${link.tooltipMetaId ? `id="${link.tooltipMetaId}"` : ''}>${link.tooltipMeta}</span>
+            </div>
+          </button>
+        </div>
+      `).join('');
+
+      /* --- Cryptographic Text Scramble --- */
+      const chars = '01#$<>%&*+?@~';
+      const scrambleElement = (el, originalText, speed = 2.4, startDelay = 100) => {
+        let iterations = 0;
+        setTimeout(() => {
+          const interval = setInterval(() => {
+            el.textContent = originalText.split('').map((char, i) => {
+              if (char === ' ') return ' ';
+              return i < iterations ? char : chars[Math.floor(Math.random() * chars.length)];
+            }).join('');
+            
+            if (iterations >= originalText.length) {
+              el.textContent = originalText;
+              clearInterval(interval);
+            }
+            iterations += speed;
+          }, 16);
+        }, startDelay);
+      };
+
+      scrambleElement(document.getElementById('decryption-text'), CONFIG.profile.bio, 3.2, 120);
+
+      document.querySelectorAll('.crypto-subtext').forEach((subEl, idx) => {
+        const text = subEl.getAttribute('data-text');
+        scrambleElement(subEl, text, 1.8, 250 + idx * 160);
+      });
+
+      /* --- GLOBAL 3D TILT, MAGNETIC TETHER DRAG, EASTER EGG ENGINE --- */
+      const mainCard = document.getElementById('main-card');
+      let globalMouseX = window.innerWidth / 2;
+      let globalMouseY = window.innerHeight / 2;
+      let isShaking = false;
+      
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let currentTranslateX = 0;
+      let currentTranslateY = 0;
+
+      let clickCount = 0;
+      let clickTimer = null;
+      let easterEggActive = false;
+      let easterEggTimeout = null;
+      let avatarCycleInterval = null;
+      let avatarCycleState = 0;
+
+      const updateCardTilt = () => {
+        if (isShaking || isDragging) return;
+        
+        const rect = mainCard.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        
+        const isHovering = globalMouseX >= rect.left && globalMouseX <= rect.right && 
+                           globalMouseY >= rect.top && globalMouseY <= rect.bottom;
+                           
+        const maxTilt = isHovering ? 0.25 : 1.8; 
+        
+        const deltaX = globalMouseX - centerX;
+        const deltaY = globalMouseY - centerY;
+        
+        let repulseX = 0;
+        let repulseY = 0;
+        let shakeOffsetRotX = 0;
+        let shakeOffsetRotY = 0;
+
+        if (easterEggActive) {
+          const distX = globalMouseX - centerX;
+          const distY = globalMouseY - centerY;
+          const distance = Math.hypot(distX, distY) || 1;
+          
+          if (distance < 280) {
+            const pushIntensity = (280 - distance) / 280;
+            repulseX = -(distX / distance) * pushIntensity * 220;
+            repulseY = -(distY / distance) * pushIntensity * 220;
           }
+
+          const currentDistanceFromCenter = Math.hypot(currentTranslateX + repulseX, currentTranslateY + repulseY);
+          const borderResistanceFactor = 1 + (currentDistanceFromCenter / 100);
+
+          shakeOffsetRotX = (Math.sin(performance.now() * 0.06 * borderResistanceFactor) * 3.5 * borderResistanceFactor);
+          shakeOffsetRotY = (Math.cos(performance.now() * 0.065 * borderResistanceFactor) * 3.5 * borderResistanceFactor);
+        }
+        
+        const percentX = Math.max(-1, Math.min(1, deltaX / (window.innerWidth / 2)));
+        const percentY = Math.max(-1, Math.min(1, deltaY / (window.innerHeight / 2)));
+        
+        const tiltX = (percentY * -maxTilt + shakeOffsetRotX).toFixed(2);
+        const tiltY = (percentX * maxTilt + shakeOffsetRotY).toFixed(2);
+        
+        const maxAllowedX = window.innerWidth / 2 - rect.width / 2 - 20;
+        const maxAllowedY = window.innerHeight / 2 - rect.height / 2 - 20;
+        
+        let targetX = currentTranslateX + repulseX;
+        let targetY = currentTranslateY + repulseY;
+        
+        targetX = Math.max(-maxAllowedX, Math.min(maxAllowedX, targetX));
+        targetY = Math.max(-maxAllowedY, Math.min(maxAllowedY, targetY));
+
+        mainCard.style.transition = 'transform 0.1s ease-out';
+        mainCard.style.transform = `translate(${targetX}px, ${targetY}px) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1, 1, 1)`;
+      };
+
+      window.addEventListener('mousemove', (e) => {
+        globalMouseX = e.clientX;
+        globalMouseY = e.clientY;
+        resetQrInactivityTimer();
+        
+        if (isDragging) {
+          const rawDx = e.clientX - dragStartX;
+          const rawDy = e.clientY - dragStartY;
+          
+          const maxStretch = 180;
+          currentTranslateX = maxStretch * Math.atan(rawDx / maxStretch);
+          currentTranslateY = maxStretch * Math.atan(rawDy / maxStretch);
+          
+          mainCard.style.transition = 'none';
+          mainCard.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+          return;
+        }
+
+        updateCardTilt();
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (isDragging) {
+          isDragging = false;
+          currentTranslateX = 0;
+          currentTranslateY = 0;
+          mainCard.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+          mainCard.style.transform = `translate(0px, 0px) perspective(1000px) rotateX(0deg) rotateY(0deg)`;
         }
       });
 
-      // Copy functionality attached to the ENTIRE subtext pill
-      document.querySelectorAll('.btn-subtext').forEach(function(subtext) {
-        subtext.addEventListener('click', function(e) {
-          // Prevent the parent <a> tag from opening the link in a new tab
-          e.preventDefault();
-          // Stop the click from bubbling up (prevents the parent link or calendar logic from firing)
-          e.stopPropagation();
+      document.addEventListener('mouseleave', () => {
+        if (isShaking || isDragging) return;
+        mainCard.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        mainCard.style.transform = `translate(0px, 0px) perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      });
 
-          const textToCopy = subtext.getAttribute('data-copy');
+      mainCard.addEventListener('mousedown', (e) => {
+        if (e.target.closest('.avatar-flipper-container') || 
+            e.target.closest('.link-item') || 
+            e.target.closest('.copy-action')) {
+          return;
+        }
 
-          // Create a temporary hidden textarea to perform the copy
-          // (This method ensures compatibility in restricted contexts like iFrames)
-          const tempTextArea = document.createElement("textarea");
-          tempTextArea.value = textToCopy;
-          tempTextArea.style.position = "absolute";
-          tempTextArea.style.left = "-9999px";
-          document.body.appendChild(tempTextArea);
+        isDragging = true;
+        dragStartX = e.clientX - currentTranslateX;
+        dragStartY = e.clientY - currentTranslateY;
+
+        clickCount++;
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => { clickCount = 0; }, 1500);
+
+        if (clickCount >= 8) {
+          clickCount = 0;
+          triggerEasterEgg();
+        }
+
+        isShaking = true;
+        const rect = mainCard.getBoundingClientRect();
+        const cardCenterX = rect.left + rect.width / 2;
+        const cardCenterY = rect.top + rect.height / 2;
+        
+        const clickOffsetX = e.clientX - cardCenterX;
+        const clickOffsetY = e.clientY - cardCenterY;
+        
+        const shakeTiltX = (clickOffsetY / (rect.height / 2)) * -1.2;
+        const shakeTiltY = (clickOffsetX / (rect.width / 2)) * 1.2;
+        
+        mainCard.style.transition = 'transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1)';
+        mainCard.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) perspective(1000px) rotateX(${shakeTiltX.toFixed(2)}deg) rotateY(${shakeTiltY.toFixed(2)}deg) scale3d(0.985, 0.985, 0.985)`;
+        
+        setTimeout(() => {
+          mainCard.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) perspective(1000px) rotateX(${(-shakeTiltX * 0.4).toFixed(2)}deg) rotateY(${(-shakeTiltY * 0.4).toFixed(2)}deg) scale3d(1.002, 1.002, 1.002)`;
           
-          tempTextArea.select();
-          tempTextArea.setSelectionRange(0, 99999); // Ensures compatibility for mobile devices
+          setTimeout(() => {
+            isShaking = false;
+            updateCardTilt(); 
+          }, 150);
+        }, 80);
+      });
 
-          try {
-            document.execCommand('copy');
-            
-            // UI Feedback: Highlight the pill
-            subtext.classList.add('copied');
-            
-            // UI Feedback: Trigger the floating tooltip over the parent button
-            const parentBtn = subtext.closest('.btn');
-            parentBtn.classList.add('show-tooltip');
-            
-            // Remove feedback classes after 1.5 seconds
-            setTimeout(function() {
-              subtext.classList.remove('copied');
-              parentBtn.classList.remove('show-tooltip');
-            }, 1500);
-          } catch (err) {
-            console.error('Failed to copy text: ', err);
-          } finally {
-            // Clean up the DOM
-            document.body.removeChild(tempTextArea);
+      const triggerEasterEgg = () => {
+        if (easterEggActive) return;
+        easterEggActive = true;
+        document.body.classList.add('easter-egg');
+
+        const banner = document.getElementById('easter-egg-banner');
+        banner.classList.add('show');
+        setTimeout(() => { banner.classList.remove('show'); }, 3000);
+
+        document.querySelectorAll('.link-item').forEach(item => item.classList.add('force-active'));
+
+        const avatarContainer = document.getElementById('avatar-flipper-btn');
+        const lightImg = document.getElementById('avatar-light-img');
+        const darkImg = document.getElementById('avatar-dark-img');
+        
+        avatarCycleInterval = setInterval(() => {
+          avatarCycleState = (avatarCycleState + 1) % 2;
+          avatarContainer.classList.remove('flipped');
+          if (avatarCycleState === 0) {
+            lightImg.style.opacity = '1';
+            darkImg.style.opacity = '0';
+          } else {
+            lightImg.style.opacity = '0';
+            darkImg.style.opacity = '1';
+          }
+        }, 200);
+
+        if (typeof navigator.vibrate === 'function') {
+          try { navigator.vibrate([50, 100, 50, 100, 200]); } catch(_) {}
+        }
+
+        clearTimeout(easterEggTimeout);
+        easterEggTimeout = setTimeout(() => {
+          easterEggActive = false;
+          document.body.classList.remove('easter-egg');
+          document.querySelectorAll('.link-item').forEach(item => item.classList.remove('force-active'));
+          clearInterval(avatarCycleInterval);
+          avatarContainer.classList.remove('flipped');
+          lightImg.style.opacity = '';
+          darkImg.style.opacity = '';
+        }, 20000);
+      };
+
+      /* --- Avatar 3D Flip & 2-Minute Inactivity Reset --- */
+      const avatarBtn = document.getElementById('avatar-flipper-btn');
+      const tooltipGroup = document.getElementById('avatar-tooltips');
+      let qrInactivityTimer = null;
+
+      const resetQrInactivityTimer = () => {
+        clearTimeout(qrInactivityTimer);
+        if (avatarBtn.classList.contains('flipped')) {
+          qrInactivityTimer = setTimeout(() => {
+            avatarBtn.classList.remove('flipped');
+            avatarBtn.classList.remove('qr-visible');
+            tooltipGroup.classList.remove('persistent-visible');
+          }, 120000); // 2 minutes
+        }
+      };
+
+      avatarBtn.addEventListener('click', () => {
+        avatarBtn.classList.toggle('flipped');
+        const isFlipped = avatarBtn.classList.contains('flipped');
+        
+        if (isFlipped) {
+          avatarBtn.classList.add('qr-visible');
+          tooltipGroup.classList.add('persistent-visible');
+          resetQrInactivityTimer();
+        } else {
+          avatarBtn.classList.remove('qr-visible');
+          tooltipGroup.classList.remove('persistent-visible');
+          clearTimeout(qrInactivityTimer);
+        }
+      });
+
+      /* --- Info Popover --- */
+      const infoBtn = document.getElementById('info-btn');
+      const infoPopover = document.getElementById('info-popover');
+      
+      infoBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = infoPopover.classList.toggle('active');
+        document.body.classList.toggle('info-open', isOpen);
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!infoPopover.contains(e.target) && !infoBtn.contains(e.target)) {
+          infoPopover.classList.remove('active');
+          document.body.classList.remove('info-open');
+        }
+      });
+
+      /* --- Link Navigation --- */
+      document.querySelectorAll('.link-item').forEach(item => {
+        item.addEventListener('click', function(e) {
+          if (e.target.closest('.copy-action')) return;
+          const url = this.getAttribute('data-url');
+          if (this.id === 'book-btn') {
+            if (window.calendar?.schedulingButton?.load) {
+              try { window.calendar.schedulingButton.load({ url }); return; } catch(_) {}
+            }
+            window.open(url, '_blank');
+          } else if (url.startsWith('mailto:')) {
+            window.location.href = url;
+          } else {
+            window.open(url, '_blank');
           }
         });
       });
+
+      /* --- Pill Copy Action --- */
+      document.querySelectorAll('.copy-action').forEach(btn => {
+        btn.addEventListener('mousemove', function(e) {
+          const rect = this.getBoundingClientRect();
+          const mx = (e.clientX - rect.left - rect.width / 2) * 0.16;
+          const my = (e.clientY - rect.top - rect.height / 2) * 0.16;
+          this.style.transform = `translate(${mx}px, ${my}px)`;
+        });
+        btn.addEventListener('mouseleave', function() {
+          this.style.transform = 'translate(0px, 0px)';
+        });
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (typeof navigator.vibrate === 'function') {
+            try { navigator.vibrate([12, 40, 15]); } catch (_) {}
+          }
+
+          const text = this.getAttribute('data-copy');
+          const title = this.querySelector('.tooltip-title');
+          const original = title.textContent;
+          
+          const onCopied = () => {
+            this.classList.add('copied');
+            title.textContent = 'Copied!';
+            setTimeout(() => {
+              this.classList.remove('copied');
+              title.textContent = original;
+            }, 1500);
+          };
+
+          if (navigator.clipboard?.writeText) {
+            navigator.clipboard.writeText(text).then(onCopied);
+          } else {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); onCopied(); } catch(_) {}
+            ta.remove();
+          }
+        });
+      });
+
+      /* --- Live Time Indicator --- */
+      const timeMeta = document.getElementById('dynamic-time-meta');
+      const updateClock = () => {
+        if (!timeMeta) return;
+        const time = new Date().toLocaleTimeString('en-US', {
+          timeZone: 'Europe/Berlin',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false
+        });
+        timeMeta.textContent = `Local Time: ${time} CEST`;
+      };
+      updateClock();
+      setInterval(updateClock, 60000);
+
+      /* --- LINKEDIN DOT ANIMATION --- */
+      const linkedinItem = document.getElementById('linkedin-link');
+      const linkedinDot = document.getElementById('linkedin-dot-el');
+      let isLinkedInHovered = false;
+      let state = 'BOUNCE_I';
+      let iBounceCount = 0;
+      let targetJumpsToN = Math.floor(4 + Math.random() * 6);
+      let nBounceCount = 0;
+      let targetBouncesOnN = 2;
+      let progress = 0;
+
+      const getBeatDuration = () => easterEggActive ? 120 : 420;
+      const DISTANCE_TO_N = 5.0; 
+      const BASE_OFFSET_Y = 1.65; 
+      const MAX_HEIGHT_I = 2.2;   
+      const MAX_HEIGHT_N = 2.9; 
+
+      linkedinItem?.addEventListener('mouseenter', () => isLinkedInHovered = true);
+      linkedinItem?.addEventListener('mouseleave', () => isLinkedInHovered = false);
+
+      let lastTime = performance.now();
+      const updateLinkedInHop = (now) => {
+        const dt = now - lastTime;
+        lastTime = now;
+
+        const forceActive = linkedinItem?.classList.contains('force-active');
+        if (linkedinDot && (isLinkedInHovered || forceActive || state !== 'BOUNCE_I' || (progress > 0.05 && progress < 0.95))) {
+          progress += dt / getBeatDuration();
+          if (progress >= 1) {
+            progress = 0;
+            if (state === 'BOUNCE_I') {
+              if (++iBounceCount >= targetJumpsToN) {
+                state = 'JUMP_TO_N';
+                targetBouncesOnN = Math.floor(2 + Math.random() * 4);
+                if (targetBouncesOnN >= targetJumpsToN) {
+                  targetBouncesOnN = Math.max(1, targetJumpsToN - 1);
+                }
+              }
+            } else if (state === 'JUMP_TO_N') {
+              state = 'BOUNCE_N';
+              nBounceCount = 1;
+            } else if (state === 'BOUNCE_N') {
+              if (++nBounceCount >= targetBouncesOnN) state = 'JUMP_TO_I';
+            } else if (state === 'JUMP_TO_I') {
+              state = 'BOUNCE_I';
+              iBounceCount = 0;
+              targetJumpsToN = Math.floor(4 + Math.random() * 6);
+            }
+          }
+
+          let x = 0, y = BASE_OFFSET_Y;
+          if (state === 'BOUNCE_I') {
+            const parabola = Math.sin(progress * Math.PI);
+            y = BASE_OFFSET_Y - parabola * MAX_HEIGHT_I;
+          } else if (state === 'JUMP_TO_N') {
+            x = progress * DISTANCE_TO_N;
+            y = BASE_OFFSET_Y - Math.sin(progress * Math.PI) * 3.8;
+          } else if (state === 'BOUNCE_N') {
+            x = DISTANCE_TO_N;
+            const parabola = Math.sin(progress * Math.PI);
+            y = BASE_OFFSET_Y - parabola * MAX_HEIGHT_N;
+          } else if (state === 'JUMP_TO_I') {
+            x = (1 - progress) * DISTANCE_TO_N;
+            y = BASE_OFFSET_Y - Math.sin(progress * Math.PI) * 3.8;
+          }
+          linkedinDot.setAttribute('transform', `translate(${x.toFixed(2)}, ${y.toFixed(2)})`);
+        } else if (linkedinDot) {
+          progress = 0;
+          linkedinDot.setAttribute('transform', `translate(0, ${BASE_OFFSET_Y.toFixed(2)})`);
+        }
+        requestAnimationFrame(updateLinkedInHop);
+      };
+      requestAnimationFrame(updateLinkedInHop);
+
+      /* --- GITHUB LOGO JITTER FIX --- */
+      const githubLink = document.getElementById('github-link');
+      const githubIcon = document.getElementById('github-icon-el');
+      let isGithubHovered = false;
+      let githubLoopActive = false;
+      let isJitterPhase = false;
+      let githubPhaseTimer = null;
+      let lastDuration = 0;
+
+      githubLink?.addEventListener('mouseenter', () => isGithubHovered = true);
+      githubLink?.addEventListener('mouseleave', () => isGithubHovered = false);
+
+      const getNextDuration = (min, max, prev) => {
+        let dur = min + Math.random() * (max - min);
+        while (Math.abs(dur - prev) < 0.25) {
+          dur = min + Math.random() * (max - min);
+        }
+        return easterEggActive ? dur * 0.35 : dur;
+      };
+
+      const toggleJitterPhase = () => {
+        if (!githubLoopActive) return;
+        isJitterPhase = !isJitterPhase;
+        
+        if (!isJitterPhase && githubIcon) githubIcon.style.transform = 'rotate(0deg)';
+        
+        const dur = isJitterPhase ? getNextDuration(0.35, 1.05, lastDuration) : getNextDuration(0.40, 1.20, lastDuration);
+        lastDuration = dur;
+        githubPhaseTimer = setTimeout(toggleJitterPhase, dur * 1000);
+      };
+
+      const updateGithubFrame = (now) => {
+        const forceActive = githubLink?.classList.contains('force-active');
+        const shouldRun = isGithubHovered || forceActive;
+
+        if (shouldRun && !githubLoopActive) {
+          githubLoopActive = true;
+          isJitterPhase = true;
+          lastDuration = 0.55;
+          toggleJitterPhase();
+        } else if (!shouldRun && githubLoopActive) {
+          githubLoopActive = false;
+          isJitterPhase = false;
+          clearTimeout(githubPhaseTimer);
+          if (githubIcon) githubIcon.style.transform = 'rotate(0deg)';
+        }
+
+        if (githubLoopActive && isJitterPhase && githubIcon) {
+          const speedMultiplier = easterEggActive ? 0.15 : 0.058;
+          const angle = Math.sin(now * speedMultiplier) * 5.2 + (Math.random() - 0.5) * 3.6;
+          githubIcon.style.transform = `rotate(${angle.toFixed(1)}deg)`;
+        }
+        requestAnimationFrame(updateGithubFrame);
+      };
+      requestAnimationFrame(updateGithubFrame);
+
+      /* --- INFO RADAR GAUGE CACHED BUFFER FIX --- */
+      const infoCanvas = document.getElementById('info-canvas');
+      const infoCtx = infoCanvas.getContext('2d');
+      let angle = 0, pulse = 0;
+      
+      const dpr = window.devicePixelRatio || 1;
+      const size = 44;
+      infoCanvas.width = size * dpr;
+      infoCanvas.height = size * dpr;
+      infoCtx.scale(dpr, dpr);
+
+      const drawInfoGauge = () => {
+        infoCtx.clearRect(0, 0, size, size);
+
+        const center = size / 2;
+        const speedMultiplier = easterEggActive ? 3.5 : 1.0;
+        angle += 0.011 * speedMultiplier; 
+        pulse += 0.013 * speedMultiplier;
+        
+        const pulseSine = Math.sin(pulse);
+
+        const coreRadius = 5.2 + (pulseSine + 1) * 3.1;
+        infoCtx.beginPath();
+        infoCtx.arc(center, center, coreRadius, 0, Math.PI * 2);
+        infoCtx.fillStyle = cachedAccent;
+        infoCtx.fill();
+
+        const sharedOrbitRadius = 14.2 + (pulseSine + 1) * 1.8; 
+        const satAngle = -angle * 0.95;
+        const satStrokeWidth = 2.4; 
+        const dotRadius = satStrokeWidth / 2;
+
+        const nx = center + Math.cos(satAngle) * sharedOrbitRadius;
+        const ny = center + Math.sin(satAngle) * sharedOrbitRadius;
+        infoCtx.beginPath();
+        infoCtx.arc(nx, ny, dotRadius, 0, Math.PI * 2);
+        infoCtx.fillStyle = cachedAccent;
+        infoCtx.fill();
+
+        const trailGap = 0.52; 
+        const trailLength = 0.32; 
+        infoCtx.beginPath();
+        infoCtx.arc(center, center, sharedOrbitRadius, satAngle - trailGap - trailLength, satAngle - trailGap);
+        infoCtx.strokeStyle = cachedAccent;
+        infoCtx.lineWidth = satStrokeWidth;
+        infoCtx.lineCap = 'round';
+        infoCtx.stroke();
+
+        const outerRadius = 19.8;
+        infoCtx.beginPath();
+        infoCtx.arc(center, center, outerRadius, 0, Math.PI * 2);
+        infoCtx.strokeStyle = 'rgba(120, 140, 110, 0.18)';
+        infoCtx.lineWidth = 1.0;
+        infoCtx.stroke();
+
+        infoCtx.beginPath();
+        infoCtx.arc(center, center, outerRadius, angle, angle + 1.15);
+        infoCtx.strokeStyle = cachedAccent;
+        infoCtx.lineWidth = 1.8;
+        infoCtx.lineCap = 'round';
+        infoCtx.stroke();
+
+        requestAnimationFrame(drawInfoGauge);
+      };
+      drawInfoGauge();
+
+      /* --- EVENLY DISTRIBUTED 820-NODE ANCHORED SUBTLE MESH --- */
+      const canvas = document.getElementById('gravity-canvas');
+      const ctx = canvas.getContext('2d');
+      let width, height;
+      let particles = [];
+      let mouse = { x: null, y: null, active: false };
+      let lastMouse = { x: null, y: null };
+      let mouseDecay = 0;
+
+      const onPointerMove = (x, y) => {
+        lastMouse.x = mouse.x;
+        lastMouse.y = mouse.y;
+        mouse.x = x;
+        mouse.y = y;
+        mouse.active = true;
+        mouseDecay = 1.0;
+      };
+
+      window.addEventListener('mousemove', (e) => onPointerMove(e.clientX, e.clientY));
+      window.addEventListener('mouseleave', () => { mouse.active = false; mouseDecay = 0; });
+      window.addEventListener('touchstart', (e) => e.touches.length && onPointerMove(e.touches[0].clientX, e.touches[0].clientY));
+      window.addEventListener('touchend', () => { mouse.active = false; mouseDecay = 0; });
+
+      const PARTICLE_COUNT = 820;
+      const BASE_LINK_DIST = 0; 
+
+      class Particle {
+        constructor() {
+          this.ox = Math.random() * width;
+          this.oy = Math.random() * height;
+          this.x = this.ox;
+          this.y = this.oy;
+          this.vx = 0;
+          this.vy = 0;
+          this.angle = Math.random() * Math.PI * 2;
+          this.orbit = 0.5 + Math.random() * 1.5;
+          this.speed = 0.0005 + Math.random() * 0.0010;
+        }
+
+        update() {
+          this.angle += this.speed * (easterEggActive ? 2.5 : 1.0);
+          const tx = this.ox + Math.cos(this.angle) * this.orbit;
+          const ty = this.oy + Math.sin(this.angle) * this.orbit;
+
+          let fx = 0, fy = 0;
+          if (mouse.active && mouse.x !== null) {
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const dist = Math.hypot(dx, dy);
+            const influenceRadius = 240;
+
+            if (dist < influenceRadius && dist > 1) {
+              const pull = Math.sin((1 - dist / influenceRadius) * Math.PI * 0.5) * 0.034;
+              fx = (dx / dist) * pull;
+              fy = (dy / dist) * pull;
+            }
+          }
+
+          this.vx = (this.vx + (tx - this.x) * 0.012 + fx) * 0.93;
+          this.vy = (this.vy + (ty - this.y) * 0.012 + fy) * 0.93;
+          this.x += this.vx;
+          this.y += this.vy;
+        }
+
+        draw(color) {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, 1.1, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${color}, 0.85)`;
+          ctx.fill();
+        }
+      }
+
+      const resizeCanvas = () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        particles = Array.from({ length: PARTICLE_COUNT }, () => new Particle());
+      };
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      const animateMesh = () => {
+        ctx.clearRect(0, 0, width, height);
+
+        mouseDecay *= 0.975;
+
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw(cachedParticleColor);
+        }
+
+        const hasMouse = mouse.active && mouse.x !== null;
+        const cellSize = 82; 
+        const grid = new Map();
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          const cellX = Math.floor(p.x / cellSize);
+          const cellY = Math.floor(p.y / cellSize);
+          const key = `${cellX},${cellY}`;
+          if (!grid.has(key)) grid.set(key, []);
+          grid.get(key).push(i);
+        }
+
+        for (let i = 0; i < particles.length; i++) {
+          const pi = particles[i];
+          let bonus = 0;
+          if (hasMouse) {
+            const md = Math.hypot(pi.x - mouse.x, pi.y - mouse.y);
+            const reach = 280; 
+            if (md < reach) {
+              bonus = (1 - md / reach) * 85 * (0.4 + mouseDecay * 0.6);
+            }
+          }
+          
+          const maxDist = BASE_LINK_DIST + bonus;
+          if (maxDist <= 0) continue; 
+
+          const cx = Math.floor(pi.x / cellSize);
+          const cy = Math.floor(pi.y / cellSize);
+
+          for (let ox = -1; ox <= 1; ox++) {
+            for (let oy = -1; oy <= 1; oy++) {
+              const neighbors = grid.get(`${cx + ox},${cy + oy}`);
+              if (!neighbors) continue;
+
+              for (let n = 0; n < neighbors.length; n++) {
+                const j = neighbors[n];
+                if (j <= i) continue;
+
+                const pj = particles[j];
+                const dist = Math.hypot(pi.x - pj.x, pi.y - pj.y);
+                if (dist < maxDist) {
+                  const alpha = (1 - dist / maxDist) * (bonus > 0 ? 0.42 : 0);
+                  ctx.beginPath();
+                  ctx.strokeStyle = `rgba(${cachedLineColor}, ${alpha})`;
+                  ctx.lineWidth = 0.52;
+                  ctx.moveTo(pi.x, pi.y);
+                  ctx.lineTo(pj.x, pj.y);
+                  ctx.stroke();
+                }
+              }
+            }
+          }
+        }
+
+        requestAnimationFrame(animateMesh);
+      };
+      animateMesh();
     });
   </script>
 </body>
