@@ -421,15 +421,27 @@
     .profile-content-wrapper { position: relative; width: 100%; min-width: 0; }
     .profile-text { display: flex; flex-direction: column; gap: 0.35rem; width: 100%; }
 
+    /* Horizontal Scrolling text fix */
+    .profile-text h1, .profile-text h2, .link-title, .link-url {
+      white-space: nowrap;
+      overflow-x: auto;
+      text-overflow: clip;
+      scrollbar-width: none; /* Hide scrollbar Firefox */
+      -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+    }
+    .profile-text h1::-webkit-scrollbar, 
+    .profile-text h2::-webkit-scrollbar, 
+    .link-title::-webkit-scrollbar, 
+    .link-url::-webkit-scrollbar {
+      display: none; /* Hide scrollbar Chrome/Safari */
+    }
+
     .profile-text h1 {
       font-size: clamp(1.35rem, 2.2vw + 0.6rem, 1.85rem);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.1;
       color: var(--text-main);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .profile-text h2 {
@@ -438,9 +450,6 @@
       font-weight: 600;
       color: var(--accent-green);
       letter-spacing: -0.015em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .profile-text p {
@@ -617,9 +626,6 @@
       font-size: 0.85rem;
       color: var(--text-muted);
       font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
       transition: color 0.4s ease;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
@@ -916,22 +922,11 @@
       .copy-action { width: 46px; height: 46px; margin: 0.4rem 0.4rem 0.4rem 0; }
       
       .avatar-tooltip-group {
-        right: auto;
-        left: 50%;
-        top: calc(100% + 12px);
-        transform: translateX(-50%) translateY(4px);
+        display: none !important; /* Disabled on mobile */
       }
-      .avatar-qr-unified-tooltip::after {
-        right: auto;
-        top: auto;
-        left: 50%;
-        bottom: 100%;
-        transform: translateX(-50%);
-        border-width: 0 5px 6px 5px;
-        border-color: transparent transparent var(--tooltip-bg) transparent;
-      }
+      
       .avatar-flipper-container:not(.flipped):hover .avatar-tooltip-group {
-        transform: translateX(-50%) translateY(0);
+        transform: none;
       }
 
       .rich-tooltip {
@@ -1312,7 +1307,7 @@
         scrambleElement(subEl, text, 1.8, 250 + idx * 160);
       });
 
-      /* --- GLOBAL 3D TILT, MAGNETIC TETHER DRAG, EASTER EGG ENGINE --- */
+      /* --- GLOBAL 3D TILT, GYROSCOPE, EASTER EGG ENGINE --- */
       const mainCard = document.getElementById('main-card');
       let globalMouseX = window.innerWidth / 2;
       let globalMouseY = window.innerHeight / 2;
@@ -1330,6 +1325,26 @@
       let easterEggTimeout = null;
       let avatarCycleInterval = null;
       let avatarCycleState = 0;
+      
+      // Gyroscope setup
+      let gyroX = 0;
+      let gyroY = 0;
+      let isGyroAvailable = false;
+
+      if (typeof window.DeviceOrientationEvent !== 'undefined') {
+        window.addEventListener('deviceorientation', (event) => {
+          if (event.beta !== null && event.gamma !== null) {
+            isGyroAvailable = true;
+            gyroX = event.gamma; // Left-to-right tilt
+            gyroY = event.beta;  // Front-to-back tilt
+            
+            // Constantly update tilt if mobile and not dragging
+            if (!isDragging && !isShaking && window.innerWidth <= 480) {
+              updateCardTilt();
+            }
+          }
+        });
+      }
 
       const updateCardTilt = () => {
         if (isShaking || isDragging) return;
@@ -1337,26 +1352,21 @@
         const rect = mainCard.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
-        
-        const isHovering = globalMouseX >= rect.left && globalMouseX <= rect.right && 
-                           globalMouseY >= rect.top && globalMouseY <= rect.bottom;
-                           
-        const maxTilt = isHovering ? 0.25 : 1.8; 
-        
-        const deltaX = globalMouseX - centerX;
-        const deltaY = globalMouseY - centerY;
+        const isMobile = window.innerWidth <= 480;
         
         let repulseX = 0;
         let repulseY = 0;
         let shakeOffsetRotX = 0;
         let shakeOffsetRotY = 0;
 
+        // Easter Egg Logic
         if (easterEggActive) {
           const distX = globalMouseX - centerX;
           const distY = globalMouseY - centerY;
           const distance = Math.hypot(distX, distY) || 1;
           
-          if (distance < 280) {
+          // Disable the fleeing / tap avoidance feature on mobile devices
+          if (!isMobile && distance < 280) {
             const pushIntensity = (280 - distance) / 280;
             repulseX = -(distX / distance) * pushIntensity * 220;
             repulseY = -(distY / distance) * pushIntensity * 220;
@@ -1369,11 +1379,32 @@
           shakeOffsetRotY = (Math.cos(performance.now() * 0.065 * borderResistanceFactor) * 3.5 * borderResistanceFactor);
         }
         
-        const percentX = Math.max(-1, Math.min(1, deltaX / (window.innerWidth / 2)));
-        const percentY = Math.max(-1, Math.min(1, deltaY / (window.innerHeight / 2)));
-        
-        const tiltX = (percentY * -maxTilt + shakeOffsetRotX).toFixed(2);
-        const tiltY = (percentX * maxTilt + shakeOffsetRotY).toFixed(2);
+        let tiltX, tiltY;
+
+        if (isMobile && isGyroAvailable) {
+          // Subtle Gyroscope Mapping (Assuming phone is held at ~40 degree angle)
+          let adjustedGyroY = gyroY - 40; 
+          tiltX = Math.max(-15, Math.min(15, -adjustedGyroY / 2));
+          tiltY = Math.max(-15, Math.min(15, gyroX / 2));
+          
+          // Add shaking offset if in Easter Egg mode
+          tiltX += shakeOffsetRotX;
+          tiltY += shakeOffsetRotY;
+        } else {
+          // Standard Desktop Mouse Mapping
+          const isHovering = globalMouseX >= rect.left && globalMouseX <= rect.right && 
+                             globalMouseY >= rect.top && globalMouseY <= rect.bottom;
+                             
+          const maxTilt = isHovering ? 0.25 : 1.8; 
+          const deltaX = globalMouseX - centerX;
+          const deltaY = globalMouseY - centerY;
+          
+          const percentX = Math.max(-1, Math.min(1, deltaX / (window.innerWidth / 2)));
+          const percentY = Math.max(-1, Math.min(1, deltaY / (window.innerHeight / 2)));
+          
+          tiltX = (percentY * -maxTilt + shakeOffsetRotX).toFixed(2);
+          tiltY = (percentX * maxTilt + shakeOffsetRotY).toFixed(2);
+        }
         
         const maxAllowedX = window.innerWidth / 2 - rect.width / 2 - 20;
         const maxAllowedY = window.innerHeight / 2 - rect.height / 2 - 20;
@@ -1388,14 +1419,15 @@
         mainCard.style.transform = `translate(${targetX}px, ${targetY}px) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1, 1, 1)`;
       };
 
-      window.addEventListener('mousemove', (e) => {
-        globalMouseX = e.clientX;
-        globalMouseY = e.clientY;
+      // Unified Pointer Handling for Dragging / Magnetic Pull
+      const handlePointerMove = (clientX, clientY) => {
+        globalMouseX = clientX;
+        globalMouseY = clientY;
         resetQrInactivityTimer();
         
         if (isDragging) {
-          const rawDx = e.clientX - dragStartX;
-          const rawDy = e.clientY - dragStartY;
+          const rawDx = clientX - dragStartX;
+          const rawDy = clientY - dragStartY;
           
           const maxStretch = 180;
           currentTranslateX = maxStretch * Math.atan(rawDx / maxStretch);
@@ -1407,9 +1439,14 @@
         }
 
         updateCardTilt();
-      });
+      };
 
-      window.addEventListener('mouseup', () => {
+      window.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+
+      const handlePointerUp = () => {
         if (isDragging) {
           isDragging = false;
           currentTranslateX = 0;
@@ -1417,7 +1454,10 @@
           mainCard.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
           mainCard.style.transform = `translate(0px, 0px) perspective(1000px) rotateX(0deg) rotateY(0deg)`;
         }
-      });
+      };
+
+      window.addEventListener('mouseup', handlePointerUp);
+      window.addEventListener('touchend', handlePointerUp);
 
       document.addEventListener('mouseleave', () => {
         if (isShaking || isDragging) return;
@@ -1425,16 +1465,25 @@
         mainCard.style.transform = `translate(0px, 0px) perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
       });
 
-      mainCard.addEventListener('mousedown', (e) => {
+      // Unified Punch/Shake handler
+      const handleCardTap = (e) => {
         if (e.target.closest('.avatar-flipper-container') || 
             e.target.closest('.link-item') || 
             e.target.closest('.copy-action')) {
           return;
         }
 
+        let clientX = e.clientX;
+        let clientY = e.clientY;
+        
+        if (e.type === 'touchstart') {
+          clientX = e.touches[0].clientX;
+          clientY = e.touches[0].clientY;
+        }
+
         isDragging = true;
-        dragStartX = e.clientX - currentTranslateX;
-        dragStartY = e.clientY - currentTranslateY;
+        dragStartX = clientX - currentTranslateX;
+        dragStartY = clientY - currentTranslateY;
 
         clickCount++;
         clearTimeout(clickTimer);
@@ -1450,8 +1499,8 @@
         const cardCenterX = rect.left + rect.width / 2;
         const cardCenterY = rect.top + rect.height / 2;
         
-        const clickOffsetX = e.clientX - cardCenterX;
-        const clickOffsetY = e.clientY - cardCenterY;
+        const clickOffsetX = clientX - cardCenterX;
+        const clickOffsetY = clientY - cardCenterY;
         
         const shakeTiltX = (clickOffsetY / (rect.height / 2)) * -1.2;
         const shakeTiltY = (clickOffsetX / (rect.width / 2)) * 1.2;
@@ -1467,7 +1516,10 @@
             updateCardTilt(); 
           }, 150);
         }, 80);
-      });
+      };
+
+      mainCard.addEventListener('mousedown', handleCardTap);
+      mainCard.addEventListener('touchstart', handleCardTap, { passive: true });
 
       const triggerEasterEgg = () => {
         if (easterEggActive) return;
@@ -1486,7 +1538,12 @@
         
         avatarCycleInterval = setInterval(() => {
           avatarCycleState = (avatarCycleState + 1) % 2;
-          avatarContainer.classList.remove('flipped');
+          
+          // Disable flipping to back-face on Mobile during easter egg
+          if (window.innerWidth > 480) {
+            avatarContainer.classList.remove('flipped');
+          }
+          
           if (avatarCycleState === 0) {
             lightImg.style.opacity = '1';
             darkImg.style.opacity = '0';
@@ -1512,7 +1569,7 @@
         }, 20000);
       };
 
-      /* --- Avatar 3D Flip & 2-Minute Inactivity Reset --- */
+      /* --- Avatar Flip & Mobile Swap Logic --- */
       const avatarBtn = document.getElementById('avatar-flipper-btn');
       const tooltipGroup = document.getElementById('avatar-tooltips');
       let qrInactivityTimer = null;
@@ -1528,18 +1585,36 @@
         }
       };
 
+      let mobileAvatarState = 0; // 0 = light, 1 = dark
+
       avatarBtn.addEventListener('click', () => {
-        avatarBtn.classList.toggle('flipped');
-        const isFlipped = avatarBtn.classList.contains('flipped');
-        
-        if (isFlipped) {
-          avatarBtn.classList.add('qr-visible');
-          tooltipGroup.classList.add('persistent-visible');
-          resetQrInactivityTimer();
+        if (window.innerWidth <= 480) {
+          // Mobile: Fade between light and dark versions without flipping to QR
+          mobileAvatarState = 1 - mobileAvatarState;
+          const lightImg = document.getElementById('avatar-light-img');
+          const darkImg = document.getElementById('avatar-dark-img');
+          
+          if (mobileAvatarState === 1) {
+            lightImg.style.opacity = '0';
+            darkImg.style.opacity = '1';
+          } else {
+            lightImg.style.opacity = '1';
+            darkImg.style.opacity = '0';
+          }
         } else {
-          avatarBtn.classList.remove('qr-visible');
-          tooltipGroup.classList.remove('persistent-visible');
-          clearTimeout(qrInactivityTimer);
+          // Desktop: Flip to QR code
+          avatarBtn.classList.toggle('flipped');
+          const isFlipped = avatarBtn.classList.contains('flipped');
+          
+          if (isFlipped) {
+            avatarBtn.classList.add('qr-visible');
+            tooltipGroup.classList.add('persistent-visible');
+            resetQrInactivityTimer();
+          } else {
+            avatarBtn.classList.remove('qr-visible');
+            tooltipGroup.classList.remove('persistent-visible');
+            clearTimeout(qrInactivityTimer);
+          }
         }
       });
 
@@ -1836,7 +1911,7 @@
       };
       drawInfoGauge();
 
-      /* --- EVENLY DISTRIBUTED 820-NODE ANCHORED SUBTLE MESH --- */
+      /* --- EVENLY DISTRIBUTED MESH --- */
       const canvas = document.getElementById('gravity-canvas');
       const ctx = canvas.getContext('2d');
       let width, height;
@@ -1856,7 +1931,7 @@
 
       window.addEventListener('mousemove', (e) => onPointerMove(e.clientX, e.clientY));
       window.addEventListener('mouseleave', () => { mouse.active = false; mouseDecay = 0; });
-      window.addEventListener('touchstart', (e) => e.touches.length && onPointerMove(e.touches[0].clientX, e.touches[0].clientY));
+      window.addEventListener('touchstart', (e) => e.touches.length && onPointerMove(e.touches[0].clientX, e.touches[0].clientY), {passive: true});
       window.addEventListener('touchend', () => { mouse.active = false; mouseDecay = 0; });
 
       const PARTICLE_COUNT = 820;

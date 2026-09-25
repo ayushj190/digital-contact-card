@@ -20,7 +20,7 @@ Guide the user sequentially through these phases.
 ### Phase 1: Forking the Repository
 Help the user get their own copy of the code.
 1. Instruct the user to create a free account on [GitHub](https://github.com/) (if they don't have one).
-2. Give them the link to the original repository (e.g., `https://github.com/ayushj190/digital-card`).
+2. Give them the link to the original repository (e.g., `https://github.com/ayushj190/digital-contact-card`).
 3. Tell them to click the **"Fork"** button in the top right corner to create a copy of the repository in their own GitHub account.
 4. For non-technical users, tell them they can easily edit files right in their browser by opening their new forked repository and clicking the pencil icon on `index.html` (or by pressing the `.` key to open the web editor).
 
