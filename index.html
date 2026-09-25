@@ -52,6 +52,10 @@
       --tag-text: #2c3821;
       
       --linkedin-dot-fill: #CAD1C0;
+
+      /* Avatar letterbox matching background colors */
+      --avatar-bg-light: #D6DCCA;
+      --avatar-bg-dark: #203227;
     }
 
     [data-theme="dark"] {
@@ -95,6 +99,9 @@
       --tag-text: #b8e0c3;
       
       --linkedin-dot-fill: #26342B;
+
+      --avatar-bg-light: #D6DCCA;
+      --avatar-bg-dark: #203227;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -321,7 +328,16 @@
       overflow: hidden;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.28);
-      transition: border-radius 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+      transition: border-radius 0.4s ease, box-shadow 0.4s ease, border 0.4s ease, background-color 0.4s ease;
+      background-color: var(--avatar-bg-dark); /* Default fallback base */
+    }
+
+    .flipper-face.show-light {
+      background-color: var(--avatar-bg-light) !important;
+    }
+
+    .flipper-face.show-dark {
+      background-color: var(--avatar-bg-dark) !important;
     }
 
     .flipper-front img,
@@ -929,13 +945,27 @@
     @media (max-width: 480px) {
       .card { padding: 2.25rem 1.5rem; border-radius: 32px; }
       .floating-circle-btn { width: 42px; height: 42px; }
-      .theme-toggle { top: 1rem; right: 1rem; }
-      .info-circle-container { bottom: 1rem; right: 1rem; }
+      
+      /* Theme Toggle moved to bottom right corner on mobile */
+      .theme-toggle { top: auto; bottom: 1rem; right: 1rem; }
+      
+      /* Info Button moved to the left of the theme toggle on mobile */
+      .info-circle-container { bottom: 1rem; right: calc(1rem + 42px + 10px); }
+      
       .info-tooltip { width: max-content; max-width: 300px; }
+      
+      /* Info Popover positioning adjusted for bottom-right button cluster */
       .info-popover { right: 1rem; bottom: 4.5rem; width: calc(100vw - 2rem); max-width: 330px; }
+      
       .link-info { padding: 0.6rem 1rem 0.6rem 1.25rem; gap: 1rem; }
       .link-icon { width: 38px; height: 38px; }
       .copy-action { width: 46px; height: 46px; margin: 0.4rem 0.4rem 0.4rem 0; }
+      
+      /* Bio paragraph line-clamp extended to 3 lines on mobile to prevent cutting */
+      .profile-text p {
+        -webkit-line-clamp: 3;
+        min-height: 4.35em;
+      }
       
       .avatar-tooltip-group {
         display: none !important; /* Disabled entirely on mobile */
@@ -1118,7 +1148,7 @@
     <header class="profile-header">
       <div class="avatar-flipper-container" id="avatar-flipper-btn">
         <div class="avatar-flipper" id="avatar-flipper-el">
-          <div class="flipper-face flipper-front">
+          <div class="flipper-face flipper-front" id="flipper-front-face">
             <img id="avatar-light-img" alt="Avatar light" class="avatar light-avatar">
             <img id="avatar-dark-img" alt="Avatar dark" class="avatar dark-avatar">
           </div>
@@ -1264,6 +1294,24 @@
       document.getElementById('avatar-light-img').src = CONFIG.profile.avatarLight;
       document.getElementById('avatar-dark-img').src = CONFIG.profile.avatarDark;
 
+      /* --- Helper to update avatar container background match depending on active visible image --- */
+      const updateAvatarFaceBackground = () => {
+        const frontFace = document.getElementById('flipper-front-face');
+        const lightImg = document.getElementById('avatar-light-img');
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        
+        // Check if light image is currently visible (either via light theme, or forced visibility overrides)
+        const isLightVisible = lightImg.style.opacity === '1' || (lightImg.style.opacity !== '0' && currentTheme === 'light');
+        
+        if (isLightVisible) {
+          frontFace.classList.add('show-light');
+          frontFace.classList.remove('show-dark');
+        } else {
+          frontFace.classList.add('show-dark');
+          frontFace.classList.remove('show-light');
+        }
+      };
+
       /* --- Pre-Load Both QR Codes --- */
       document.getElementById('qr-light-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(CONFIG.profile.qrLink)}&color=3b472e&bgcolor=D6DCCA&margin=2`;
       document.getElementById('qr-dark-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(CONFIG.profile.qrLink)}&color=ffffff&bgcolor=203227&margin=2`;
@@ -1272,8 +1320,14 @@
       document.getElementById('theme-toggle').addEventListener('click', () => {
         const doc = document.documentElement;
         doc.setAttribute('data-theme', doc.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-        setTimeout(updateCanvasColors, 50); // Small delay allows CSS variables to apply before cache
+        setTimeout(() => {
+          updateCanvasColors();
+          updateAvatarFaceBackground();
+        }, 50);
       });
+
+      // Initial check for avatar background match
+      updateAvatarFaceBackground();
 
       /* --- Render Navigation Links --- */
       const linksContainer = document.getElementById('links-grid');
@@ -1300,7 +1354,6 @@
       const checkTextOverflow = () => {
         const elements = document.querySelectorAll('#profile-name, #profile-title, .link-title, .link-url');
         elements.forEach(el => {
-          // Reset classes to measure accurately
           el.classList.remove('auto-scroll-text');
           el.style.removeProperty('--overflow-amount');
           el.style.removeProperty('--scroll-duration');
@@ -1311,7 +1364,6 @@
           if (scrollWidth > parentWidth + 2) {
             const overflowAmount = scrollWidth - parentWidth;
             el.style.setProperty('--overflow-amount', `-${overflowAmount}px`);
-            // Dynamic speed based on overflow distance
             const duration = Math.max(3, overflowAmount / 20); 
             el.style.setProperty('--scroll-duration', `${duration}s`);
             el.classList.add('auto-scroll-text');
@@ -1334,7 +1386,6 @@
             if (iterations >= originalText.length) {
               el.textContent = originalText;
               clearInterval(interval);
-              // Check overflow immediately after scramble finishes
               setTimeout(checkTextOverflow, 50); 
             }
             iterations += speed;
@@ -1349,7 +1400,6 @@
         scrambleElement(subEl, text, 1.8, 250 + idx * 160);
       });
       
-      // Fallback check
       setTimeout(checkTextOverflow, 100);
 
       /* --- GLOBAL 3D TILT, EASTER EGG ENGINE --- */
@@ -1384,13 +1434,11 @@
         let shakeOffsetRotX = 0;
         let shakeOffsetRotY = 0;
 
-        // Easter Egg Logic
         if (easterEggActive) {
           const distX = globalMouseX - centerX;
           const distY = globalMouseY - centerY;
           const distance = Math.hypot(distX, distY) || 1;
           
-          // Disable the fleeing / tap avoidance feature on mobile devices completely
           if (!isMobile && distance < 280) {
             const pushIntensity = (280 - distance) / 280;
             repulseX = -(distX / distance) * pushIntensity * 220;
@@ -1407,15 +1455,12 @@
         let tiltX, tiltY;
 
         if (isMobile) {
-          // Completely disable standard background tracking tilt on mobile 
-          // Only apply the shake/punch offsets (which are normally 0)
           tiltX = shakeOffsetRotX.toFixed(2);
           tiltY = shakeOffsetRotY.toFixed(2);
         } else {
-          // Standard Desktop Mouse Mapping
           const isHovering = globalMouseX >= rect.left && globalMouseX <= rect.right && 
                              globalMouseY >= rect.top && globalMouseY <= rect.bottom;
-                             
+                           
           const maxTilt = isHovering ? 0.25 : 1.8; 
           const deltaX = globalMouseX - centerX;
           const deltaY = globalMouseY - centerY;
@@ -1440,7 +1485,6 @@
         mainCard.style.transform = `translate(${targetX}px, ${targetY}px) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1, 1, 1)`;
       };
 
-      // Unified Pointer Handling for Dragging / Magnetic Pull
       const handlePointerMove = (clientX, clientY) => {
         globalMouseX = clientX;
         globalMouseY = clientY;
@@ -1486,7 +1530,6 @@
         mainCard.style.transform = `translate(0px, 0px) perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
       });
 
-      // Unified Punch/Shake handler for clicks and mobile taps
       const handleCardTap = (e) => {
         if (e.target.closest('.avatar-flipper-container') || 
             e.target.closest('.link-item') || 
@@ -1560,7 +1603,6 @@
         avatarCycleInterval = setInterval(() => {
           avatarCycleState = (avatarCycleState + 1) % 2;
           
-          // Disable flipping to back-face on Mobile during easter egg
           if (window.innerWidth > 480) {
             avatarContainer.classList.remove('flipped');
           }
@@ -1572,6 +1614,7 @@
             lightImg.style.opacity = '0';
             darkImg.style.opacity = '1';
           }
+          updateAvatarFaceBackground();
         }, 200);
 
         if (typeof navigator.vibrate === 'function') {
@@ -1587,6 +1630,7 @@
           avatarContainer.classList.remove('flipped');
           lightImg.style.opacity = '';
           darkImg.style.opacity = '';
+          updateAvatarFaceBackground();
         }, 20000);
       };
 
@@ -1610,7 +1654,6 @@
 
       avatarBtn.addEventListener('click', () => {
         if (window.innerWidth <= 480) {
-          // Mobile: Fade between light and dark versions without flipping to QR
           mobileAvatarState = 1 - mobileAvatarState;
           const lightImg = document.getElementById('avatar-light-img');
           const darkImg = document.getElementById('avatar-dark-img');
@@ -1622,8 +1665,8 @@
             lightImg.style.opacity = '1';
             darkImg.style.opacity = '0';
           }
+          updateAvatarFaceBackground();
         } else {
-          // Desktop: Flip to QR code
           avatarBtn.classList.toggle('flipped');
           const isFlipped = avatarBtn.classList.contains('flipped');
           
