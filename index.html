@@ -280,7 +280,6 @@
       transition: border-radius 0.4s ease;
     }
 
-    /* When QR code is active, remove clip, border, and shadow completely */
     .avatar-flipper-container.qr-visible {
       overflow: visible !important;
       border-radius: 0 !important;
@@ -418,22 +417,22 @@
       pointer-events: none !important;
     }
 
+    /* HORIZONTAL AUTO-SCROLLING OVERFLOW SYSTEM */
     .profile-content-wrapper { position: relative; width: 100%; min-width: 0; }
-    .profile-text { display: flex; flex-direction: column; gap: 0.35rem; width: 100%; }
+    
+    .profile-text { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 0.35rem; 
+      width: 100%; 
+      overflow: hidden; 
+    }
 
-    /* Horizontal Scrolling text fix */
     .profile-text h1, .profile-text h2, .link-title, .link-url {
       white-space: nowrap;
-      overflow-x: auto;
-      text-overflow: clip;
-      scrollbar-width: none; /* Hide scrollbar Firefox */
-      -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
-    }
-    .profile-text h1::-webkit-scrollbar, 
-    .profile-text h2::-webkit-scrollbar, 
-    .link-title::-webkit-scrollbar, 
-    .link-url::-webkit-scrollbar {
-      display: none; /* Hide scrollbar Chrome/Safari */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
     }
 
     .profile-text h1 {
@@ -464,6 +463,18 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
       word-break: break-word;
+    }
+
+    /* Auto Scroll Dynamic Class applied via JavaScript */
+    .auto-scroll-text {
+      width: max-content !important;
+      overflow: visible !important;
+      animation: textPingPong var(--scroll-duration, 4s) ease-in-out infinite alternate;
+    }
+
+    @keyframes textPingPong {
+      0%, 15% { transform: translateX(0); }
+      85%, 100% { transform: translateX(var(--overflow-amount, 0px)); }
     }
 
     /* LINKS GRID */
@@ -620,7 +631,12 @@
     .link-item.force-active .calendar-step-square { animation: calendar6StepGridPaced 2.2s steps(1) infinite; }
 
     .link-text { display: flex; flex-direction: column; gap: 0.1rem; overflow: hidden; pointer-events: none; }
-    .link-title { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+    
+    .link-title { 
+      font-size: 1.1rem; 
+      font-weight: 700; 
+      letter-spacing: -0.01em; 
+    }
     
     .link-url {
       font-size: 0.85rem;
@@ -922,7 +938,7 @@
       .copy-action { width: 46px; height: 46px; margin: 0.4rem 0.4rem 0.4rem 0; }
       
       .avatar-tooltip-group {
-        display: none !important; /* Disabled on mobile */
+        display: none !important; /* Disabled entirely on mobile */
       }
       
       .avatar-flipper-container:not(.flipped):hover .avatar-tooltip-group {
@@ -1280,6 +1296,30 @@
         </div>
       `).join('');
 
+      /* --- Horizontal Auto-Scroll Engine for Overflowing Text --- */
+      const checkTextOverflow = () => {
+        const elements = document.querySelectorAll('#profile-name, #profile-title, .link-title, .link-url');
+        elements.forEach(el => {
+          // Reset classes to measure accurately
+          el.classList.remove('auto-scroll-text');
+          el.style.removeProperty('--overflow-amount');
+          el.style.removeProperty('--scroll-duration');
+          
+          const parentWidth = el.parentElement.clientWidth;
+          const scrollWidth = el.scrollWidth;
+          
+          if (scrollWidth > parentWidth + 2) {
+            const overflowAmount = scrollWidth - parentWidth;
+            el.style.setProperty('--overflow-amount', `-${overflowAmount}px`);
+            // Dynamic speed based on overflow distance
+            const duration = Math.max(3, overflowAmount / 20); 
+            el.style.setProperty('--scroll-duration', `${duration}s`);
+            el.classList.add('auto-scroll-text');
+          }
+        });
+      };
+      window.addEventListener('resize', checkTextOverflow);
+
       /* --- Cryptographic Text Scramble --- */
       const chars = '01#$<>%&*+?@~';
       const scrambleElement = (el, originalText, speed = 2.4, startDelay = 100) => {
@@ -1294,6 +1334,8 @@
             if (iterations >= originalText.length) {
               el.textContent = originalText;
               clearInterval(interval);
+              // Check overflow immediately after scramble finishes
+              setTimeout(checkTextOverflow, 50); 
             }
             iterations += speed;
           }, 16);
@@ -1306,6 +1348,9 @@
         const text = subEl.getAttribute('data-text');
         scrambleElement(subEl, text, 1.8, 250 + idx * 160);
       });
+      
+      // Fallback check
+      setTimeout(checkTextOverflow, 100);
 
       /* --- GLOBAL 3D TILT, GYROSCOPE, EASTER EGG ENGINE --- */
       const mainCard = document.getElementById('main-card');
@@ -1382,10 +1427,10 @@
         let tiltX, tiltY;
 
         if (isMobile && isGyroAvailable) {
-          // Subtle Gyroscope Mapping (Assuming phone is held at ~40 degree angle)
+          // Halved & Inverted Gyroscope Mapping
           let adjustedGyroY = gyroY - 40; 
-          tiltX = Math.max(-15, Math.min(15, -adjustedGyroY / 2));
-          tiltY = Math.max(-15, Math.min(15, gyroX / 2));
+          tiltX = Math.max(-7.5, Math.min(7.5, adjustedGyroY / 4));
+          tiltY = Math.max(-7.5, Math.min(7.5, -gyroX / 4));
           
           // Add shaking offset if in Easter Egg mode
           tiltX += shakeOffsetRotX;
@@ -1465,7 +1510,7 @@
         mainCard.style.transform = `translate(0px, 0px) perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
       });
 
-      // Unified Punch/Shake handler
+      // Unified Punch/Shake handler for clicks and mobile taps
       const handleCardTap = (e) => {
         if (e.target.closest('.avatar-flipper-container') || 
             e.target.closest('.link-item') || 
