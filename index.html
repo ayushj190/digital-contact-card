@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta id="theme-color-meta" name="theme-color" content="#879271">
   <title>Ayush Joshi | Data & AI Professional</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap"
+    rel="stylesheet">
   <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
   <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+
+  <!-- Dynamic Favicon Container (Updated by JS) -->
+  <link id="dynamic-favicon" rel="icon" type="image/png" href="assets/avatar-light.jpg">
+  <script>
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.getElementById('dynamic-favicon').setAttribute('href', 'assets/avatar-dark.jpg');
+    }
+  </script>
 
   <style>
     :root {
       /* LIGHT THEME (Signature Olive) */
-      --bg-main: #879271; 
-      --card-bg-start: rgba(225, 230, 215, 0.88); 
+      --bg-main: #879271;
+      --card-bg-start: rgba(225, 230, 215, 0.88);
       --card-bg-end: rgba(215, 222, 205, 0.92);
       --card-border: rgba(255, 255, 255, 0.35);
       --card-shadow: 0 40px 80px rgba(24, 33, 18, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.85);
-      --text-main: #182112; 
-      --text-muted: #4a573b; 
-      --accent-green: #3b472e; 
+      --text-main: #182112;
+      --text-muted: #4a573b;
+      --accent-green: #3b472e;
       --item-bg: rgba(0, 0, 0, 0.04);
       --item-hover: rgba(0, 0, 0, 0.08);
       --item-border: rgba(0, 0, 0, 0.07);
@@ -36,21 +50,21 @@
       --tooltip-meta: #a1ad92;
       --floating-btn-border: rgba(255, 255, 255, 0.40);
       --toggle-shadow: 0 8px 24px rgba(24, 33, 18, 0.25), 0 0 15px rgba(255, 255, 255, 0.20);
-      
+
       /* Vibrant Green-Tinted Clouds */
       --cloud-tone-1: rgba(186, 212, 160, 0.94);
       --cloud-tone-2: rgba(162, 192, 136, 0.90);
       --cloud-tone-3: rgba(175, 204, 150, 0.86);
       --cloud-tone-back: rgba(148, 178, 122, 0.92);
       --cloud-tone-translucent: rgba(186, 212, 160, 0.58);
-      
+
       --particle-color: 82, 98, 65;
       --particle-line: 82, 98, 65;
-      
+
       --tag-bg: rgba(0, 0, 0, 0.05);
       --tag-border: rgba(0, 0, 0, 0.08);
       --tag-text: #2c3821;
-      
+
       --linkedin-dot-fill: #CAD1C0;
 
       /* Avatar letterbox matching background colors */
@@ -60,14 +74,14 @@
 
     [data-theme="dark"] {
       /* DARK THEME (Lightened / Deep Cyber Forest) */
-      --bg-main: #18261e; 
-      --card-bg-start: rgba(32, 54, 42, 0.78); 
-      --card-bg-end: rgba(22, 38, 29, 0.92); 
-      --card-border: rgba(98, 181, 124, 0.28); 
+      --bg-main: #18261e;
+      --card-bg-start: rgba(32, 54, 42, 0.78);
+      --card-bg-end: rgba(22, 38, 29, 0.92);
+      --card-border: rgba(98, 181, 124, 0.28);
       --card-shadow: 0 40px 80px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.10);
       --text-main: #ffffff;
       --text-muted: #a6c4af;
-      --accent-green: #68c786; 
+      --accent-green: #68c786;
       --item-bg: rgba(255, 255, 255, 0.04);
       --item-hover: rgba(104, 199, 134, 0.12);
       --item-border: rgba(255, 255, 255, 0.08);
@@ -83,7 +97,7 @@
       --tooltip-meta: #46584d;
       --floating-btn-border: rgba(104, 199, 134, 0.35);
       --toggle-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(104, 199, 134, 0.22);
-      
+
       /* Vibrant Rich Olive Green Clouds in Dark Mode */
       --cloud-tone-1: rgba(110, 195, 140, 0.92);
       --cloud-tone-2: rgba(86, 168, 116, 0.88);
@@ -93,18 +107,22 @@
 
       --particle-color: 60, 95, 72;
       --particle-line: 60, 95, 72;
-      
+
       --tag-bg: rgba(255, 255, 255, 0.06);
       --tag-border: rgba(255, 255, 255, 0.09);
       --tag-text: #b8e0c3;
-      
+
       --linkedin-dot-fill: #26342B;
 
       --avatar-bg-light: #D6DCCA;
       --avatar-bg-dark: #203227;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     html {
       height: 100%;
@@ -185,18 +203,32 @@
     }
 
     /* Info Button Specific */
-    .info-circle-container { 
-      bottom: 1.5rem; 
-      right: 1.5rem; 
+    .info-circle-container {
+      bottom: 1.5rem;
+      right: 1.5rem;
       color: var(--icon-color);
     }
 
     /* Theme Toggle Specific */
-    .theme-toggle { 
-      top: 1.5rem; 
-      right: 1.5rem; 
-      overflow: hidden; 
+    .theme-toggle {
+      top: 1.5rem;
+      right: 1.5rem;
+      overflow: hidden;
       color: var(--accent-green);
+    }
+
+    /* Share Button Specific */
+    .share-circle-container {
+      top: 1.5rem;
+      right: calc(1.5rem + 48px + 10px);
+      color: var(--icon-color);
+    }
+
+    /* HIDE SHARE BUTTON ON NON-MOBILE */
+    @media (min-width: 481px) {
+      .share-circle-container {
+        display: none !important;
+      }
     }
 
     .theme-toggle svg {
@@ -208,42 +240,128 @@
       overflow: hidden;
     }
 
-    .moon-svg { opacity: 1; transform: rotate(0) scale(1); }
-    .sun-svg { opacity: 0; transform: rotate(-90deg) scale(0.5); }
-    [data-theme="dark"] .moon-svg { opacity: 0; transform: rotate(90deg) scale(0.5); }
-    [data-theme="dark"] .sun-svg { opacity: 1; transform: rotate(0) scale(1); }
+    .moon-svg {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
+
+    .sun-svg {
+      opacity: 0;
+      transform: rotate(-90deg) scale(0.5);
+    }
+
+    [data-theme="dark"] .moon-svg {
+      opacity: 0;
+      transform: rotate(90deg) scale(0.5);
+    }
+
+    [data-theme="dark"] .sun-svg {
+      opacity: 1;
+      transform: rotate(0) scale(1);
+    }
 
     /* CONTINUOUS UNIDIRECTIONAL SLOW CLOUDS */
     @keyframes cloudDriftLinear {
-      0% { transform: translateX(-160%); }
-      100% { transform: translateX(180%); }
+      0% {
+        transform: translateX(-160%);
+      }
+
+      100% {
+        transform: translateX(180%);
+      }
     }
 
-    .cloud-slow-back-1 { animation: cloudDriftLinear 20s linear infinite; fill: var(--cloud-tone-back); }
-    .cloud-slow-back-2 { animation: cloudDriftLinear 27s linear infinite -8s; fill: var(--cloud-tone-1); }
-    .cloud-slow-back-3 { animation: cloudDriftLinear 23s linear infinite -15s; fill: var(--cloud-tone-2); }
-    .cloud-slow-back-4 { animation: cloudDriftLinear 18s linear infinite -5s; fill: var(--cloud-tone-3); }
+    .cloud-slow-back-1 {
+      animation: cloudDriftLinear 20s linear infinite;
+      fill: var(--cloud-tone-back);
+    }
 
-    .cloud-slow-front-1 { animation: cloudDriftLinear 16s linear infinite -3s; fill: var(--cloud-tone-translucent); }
-    .cloud-slow-front-2 { animation: cloudDriftLinear 22s linear infinite -11s; fill: var(--cloud-tone-2); }
-    .cloud-slow-front-3 { animation: cloudDriftLinear 19s linear infinite -7s; fill: var(--cloud-tone-translucent); }
+    .cloud-slow-back-2 {
+      animation: cloudDriftLinear 27s linear infinite -8s;
+      fill: var(--cloud-tone-1);
+    }
 
-    body.easter-egg .cloud-slow-back-1 { animation-duration: 4s !important; }
-    body.easter-egg .cloud-slow-back-2 { animation-duration: 5.4s !important; }
-    body.easter-egg .cloud-slow-back-3 { animation-duration: 4.6s !important; }
-    body.easter-egg .cloud-slow-back-4 { animation-duration: 3.6s !important; }
-    body.easter-egg .cloud-slow-front-1 { animation-duration: 3.2s !important; }
-    body.easter-egg .cloud-slow-front-2 { animation-duration: 4.4s !important; }
-    body.easter-egg .cloud-slow-front-3 { animation-duration: 3.8s !important; }
+    .cloud-slow-back-3 {
+      animation: cloudDriftLinear 23s linear infinite -15s;
+      fill: var(--cloud-tone-2);
+    }
+
+    .cloud-slow-back-4 {
+      animation: cloudDriftLinear 18s linear infinite -5s;
+      fill: var(--cloud-tone-3);
+    }
+
+    .cloud-slow-front-1 {
+      animation: cloudDriftLinear 16s linear infinite -3s;
+      fill: var(--cloud-tone-translucent);
+    }
+
+    .cloud-slow-front-2 {
+      animation: cloudDriftLinear 22s linear infinite -11s;
+      fill: var(--cloud-tone-2);
+    }
+
+    .cloud-slow-front-3 {
+      animation: cloudDriftLinear 19s linear infinite -7s;
+      fill: var(--cloud-tone-translucent);
+    }
+
+    body.easter-egg .cloud-slow-back-1 {
+      animation-duration: 4s !important;
+    }
+
+    body.easter-egg .cloud-slow-back-2 {
+      animation-duration: 5.4s !important;
+    }
+
+    body.easter-egg .cloud-slow-back-3 {
+      animation-duration: 4.6s !important;
+    }
+
+    body.easter-egg .cloud-slow-back-4 {
+      animation-duration: 3.6s !important;
+    }
+
+    body.easter-egg .cloud-slow-front-1 {
+      animation-duration: 3.2s !important;
+    }
+
+    body.easter-egg .cloud-slow-front-2 {
+      animation-duration: 4.4s !important;
+    }
+
+    body.easter-egg .cloud-slow-front-3 {
+      animation-duration: 3.8s !important;
+    }
 
     @keyframes sunRaysWaveDual {
-      0%, 100% { transform: scale(1) rotate(0deg); }
-      25% { transform: scale(1.08) rotate(7deg) skewX(3deg); }
-      50% { transform: scale(0.95) rotate(-5deg) skewY(-2.5deg); }
-      75% { transform: scale(1.06) rotate(6deg) skewX(-2.5deg); }
+
+      0%,
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
+
+      25% {
+        transform: scale(1.08) rotate(7deg) skewX(3deg);
+      }
+
+      50% {
+        transform: scale(0.95) rotate(-5deg) skewY(-2.5deg);
+      }
+
+      75% {
+        transform: scale(1.06) rotate(6deg) skewX(-2.5deg);
+      }
     }
-    .sun-rays-group { animation: sunRaysWaveDual 9s ease-in-out infinite; transform-origin: 12px 12px; }
-    body.easter-egg .sun-rays-group { animation-duration: 1.5s !important; }
+
+    .sun-rays-group {
+      animation: sunRaysWaveDual 9s ease-in-out infinite;
+      transform-origin: 12px 12px;
+    }
+
+    body.easter-egg .sun-rays-group {
+      animation-duration: 1.5s !important;
+    }
 
     /* CARD STRUCTURE */
     .card {
@@ -255,7 +373,7 @@
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--card-border);
-      border-radius: 36px; 
+      border-radius: 36px;
       padding: 3rem 2.5rem;
       display: flex;
       flex-direction: column;
@@ -293,10 +411,12 @@
       box-shadow: none !important;
       background: transparent !important;
     }
+
     .avatar-flipper-container.qr-visible .flipper-face.flipper-front {
       opacity: 0;
       pointer-events: none;
     }
+
     .avatar-flipper-container.qr-visible .flipper-face.flipper-back {
       border-radius: 16px !important;
       border: none !important;
@@ -329,7 +449,7 @@
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
       border: 1px solid rgba(255, 255, 255, 0.28);
       transition: border-radius 0.4s ease, box-shadow 0.4s ease, border 0.4s ease, background-color 0.4s ease;
-      background-color: var(--avatar-bg-dark); /* Default fallback base */
+      background-color: var(--avatar-bg-dark);
     }
 
     .flipper-face.show-light {
@@ -351,10 +471,25 @@
       transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    .light-avatar { opacity: 1; transform: scale(1); }
-    .dark-avatar { opacity: 0; transform: scale(0.95); }
-    [data-theme="dark"] .light-avatar { opacity: 0; transform: scale(0.95); }
-    [data-theme="dark"] .dark-avatar { opacity: 1; transform: scale(1); }
+    .light-avatar {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .dark-avatar {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    [data-theme="dark"] .light-avatar {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    [data-theme="dark"] .dark-avatar {
+      opacity: 1;
+      transform: scale(1);
+    }
 
     .flipper-back {
       transform: rotateY(180deg);
@@ -366,12 +501,30 @@
       border-radius: 16px;
       overflow: hidden;
     }
-    
-    .flipper-back img { object-fit: contain; }
-    .light-qr { opacity: 1; transform: scale(1); }
-    .dark-qr { opacity: 0; transform: scale(0.95); }
-    [data-theme="dark"] .light-qr { opacity: 0; transform: scale(0.95); }
-    [data-theme="dark"] .dark-qr { opacity: 1; transform: scale(1); }
+
+    .flipper-back img {
+      object-fit: contain;
+    }
+
+    .light-qr {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .dark-qr {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    [data-theme="dark"] .light-qr {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    [data-theme="dark"] .dark-qr {
+      opacity: 1;
+      transform: scale(1);
+    }
 
     /* UNIFIED RECTANGULAR QR TOOLTIP ON LEFT */
     .avatar-tooltip-group {
@@ -392,7 +545,7 @@
       color: var(--tooltip-text);
       padding: 7px 12px;
       border-radius: 10px;
-      font-size: 15px; 
+      font-size: 15px;
       font-weight: 600;
       white-space: nowrap;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.24);
@@ -434,17 +587,24 @@
     }
 
     /* HORIZONTAL AUTO-SCROLLING OVERFLOW SYSTEM */
-    .profile-content-wrapper { position: relative; width: 100%; min-width: 0; }
-    
-    .profile-text { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 0.35rem; 
-      width: 100%; 
-      overflow: hidden; 
+    .profile-content-wrapper {
+      position: relative;
+      width: 100%;
+      min-width: 0;
     }
 
-    .profile-text h1, .profile-text h2, .link-title, .link-url {
+    .profile-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .profile-text h1,
+    .profile-text h2,
+    .link-title,
+    .link-url {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -481,7 +641,6 @@
       word-break: break-word;
     }
 
-    /* Auto Scroll Dynamic Class applied via JavaScript */
     .auto-scroll-text {
       width: max-content !important;
       overflow: visible !important;
@@ -489,15 +648,23 @@
     }
 
     @keyframes textPingPong {
-      0%, 15% { transform: translateX(0); }
-      85%, 100% { transform: translateX(var(--overflow-amount, 0px)); }
+
+      0%,
+      15% {
+        transform: translateX(0);
+      }
+
+      85%,
+      100% {
+        transform: translateX(var(--overflow-amount, 0px));
+      }
     }
 
     /* LINKS GRID */
-    .links-grid { 
-      display: flex; 
-      flex-direction: column; 
-      gap: 1rem; 
+    .links-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       perspective: 1200px;
     }
 
@@ -506,12 +673,29 @@
       transform: translateY(15px);
       animation: stripeReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.18s; }
-    .delay-3 { animation-delay: 0.26s; }
-    .delay-4 { animation-delay: 0.34s; }
 
-    @keyframes stripeReveal { to { opacity: 1; transform: translateY(0); } }
+    .delay-1 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-2 {
+      animation-delay: 0.18s;
+    }
+
+    .delay-3 {
+      animation-delay: 0.26s;
+    }
+
+    .delay-4 {
+      animation-delay: 0.34s;
+    }
+
+    @keyframes stripeReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     /* CARD PILL */
     .link-item {
@@ -519,7 +703,7 @@
       align-items: stretch;
       background: var(--item-bg);
       border: 1px solid var(--item-border);
-      border-radius: 9999px; 
+      border-radius: 9999px;
       padding: 0;
       position: relative;
       cursor: pointer;
@@ -541,8 +725,8 @@
       text-decoration: none;
       color: var(--text-main);
       gap: 1.25rem;
-      min-width: 0; 
-      padding: 0.8rem 1rem 0.8rem 1.75rem; 
+      min-width: 0;
+      padding: 0.8rem 1rem 0.8rem 1.75rem;
       border-radius: 9999px 0 0 9999px;
       cursor: pointer;
     }
@@ -558,11 +742,18 @@
       perspective: 600px;
     }
 
-    .link-icon { width: 44px; height: 44px; flex-shrink: 0; pointer-events: none; }
+    .link-icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      pointer-events: none;
+    }
 
     /* 1. ENVELOPE */
-    .envelope-svg { overflow: visible; }
-    
+    .envelope-svg {
+      overflow: visible;
+    }
+
     .envelope-flap {
       transform-origin: 12px 8.5px;
       transform-style: preserve-3d;
@@ -596,32 +787,66 @@
       opacity: 1;
     }
 
-    .link-item:hover .line-1, .link-item.force-active .line-1 { stroke-dashoffset: 0; transition-delay: 0.16s; }
-    .link-item:hover .line-2, .link-item.force-active .line-2 { stroke-dashoffset: 0; transition-delay: 0.26s; }
-    .link-item:hover .line-3, .link-item.force-active .line-3 { stroke-dashoffset: 0; transition-delay: 0.36s; }
+    .link-item:hover .line-1,
+    .link-item.force-active .line-1 {
+      stroke-dashoffset: 0;
+      transition-delay: 0.16s;
+    }
+
+    .link-item:hover .line-2,
+    .link-item.force-active .line-2 {
+      stroke-dashoffset: 0;
+      transition-delay: 0.26s;
+    }
+
+    .link-item:hover .line-3,
+    .link-item.force-active .line-3 {
+      stroke-dashoffset: 0;
+      transition-delay: 0.36s;
+    }
 
     body.easter-egg #email-link .envelope-flap {
       animation: easterEnvelopeFlap 1s ease-in-out infinite alternate;
     }
+
     body.easter-egg #email-link .letter-paper {
       animation: easterLetterSlide 1s ease-in-out infinite alternate;
     }
+
     body.easter-egg #email-link .paper-text-line {
       stroke-dashoffset: 0 !important;
     }
 
     @keyframes easterEnvelopeFlap {
-      0% { transform: rotateX(0deg); fill: var(--icon-color); }
-      100% { transform: rotateX(180deg); fill: var(--accent-green); }
+      0% {
+        transform: rotateX(0deg);
+        fill: var(--icon-color);
+      }
+
+      100% {
+        transform: rotateX(180deg);
+        fill: var(--accent-green);
+      }
     }
 
     @keyframes easterLetterSlide {
-      0% { transform: translateY(2px) scale(0.85, 0.45); opacity: 0; }
-      100% { transform: translateY(-4px) scale(1, 1); opacity: 1; }
+      0% {
+        transform: translateY(2px) scale(0.85, 0.45);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(-4px) scale(1, 1);
+        opacity: 1;
+      }
     }
 
     /* 2. LINKEDIN DOT */
-    .linkedin-dot { fill: var(--linkedin-dot-fill); transition: fill 0.4s ease; will-change: transform; }
+    .linkedin-dot {
+      fill: var(--linkedin-dot-fill);
+      transition: fill 0.4s ease;
+      will-change: transform;
+    }
 
     /* 3. GITHUB LOGO: Rapid rotational jitter */
     .github-svg {
@@ -632,28 +857,64 @@
 
     /* 4. CALENDAR: Stepping grid */
     @keyframes calendar6StepGridPaced {
-      0%  { transform: translate(0px, 0px); }
-      16%  { transform: translate(3.6px, 0px); }
-      33%  { transform: translate(7.2px, 0px); }
-      50%  { transform: translate(0px, 3.8px); }
-      66%  { transform: translate(3.6px, 3.8px); }
-      83%  { transform: translate(7.2px, 3.8px); }
-      100% { transform: translate(0px, 0px); }
+      0% {
+        transform: translate(0px, 0px);
+      }
+
+      16% {
+        transform: translate(3.6px, 0px);
+      }
+
+      33% {
+        transform: translate(7.2px, 0px);
+      }
+
+      50% {
+        transform: translate(0px, 3.8px);
+      }
+
+      66% {
+        transform: translate(3.6px, 3.8px);
+      }
+
+      83% {
+        transform: translate(7.2px, 3.8px);
+      }
+
+      100% {
+        transform: translate(0px, 0px);
+      }
     }
 
-    .calendar-step-square { transform-origin: 6.8px 11.6px; fill: var(--icon-color); }
-    .calendar-cell-bg { fill: var(--icon-color); opacity: 0.18; }
+    .calendar-step-square {
+      transform-origin: 6.8px 11.6px;
+      fill: var(--icon-color);
+    }
+
+    .calendar-cell-bg {
+      fill: var(--icon-color);
+      opacity: 0.18;
+    }
+
     .link-item:hover .calendar-step-square,
-    .link-item.force-active .calendar-step-square { animation: calendar6StepGridPaced 2.2s steps(1) infinite; }
-
-    .link-text { display: flex; flex-direction: column; gap: 0.1rem; overflow: hidden; pointer-events: none; }
-    
-    .link-title { 
-      font-size: 1rem; 
-      font-weight: 700; 
-      letter-spacing: -0.01em; 
+    .link-item.force-active .calendar-step-square {
+      animation: calendar6StepGridPaced 2.2s steps(1) infinite;
     }
-    
+
+    .link-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .link-title {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
     .link-url {
       font-size: 0.85rem;
       color: var(--text-muted);
@@ -677,7 +938,7 @@
       color: var(--icon-color);
       cursor: pointer;
       transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease-out;
-      margin: 0.5rem 0.5rem 0.5rem 0; 
+      margin: 0.5rem 0.5rem 0.5rem 0;
       will-change: transform;
       z-index: 20;
     }
@@ -689,7 +950,12 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
 
-    .copy-action svg { width: 22px; height: 22px; fill: currentColor; pointer-events: none; }
+    .copy-action svg {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      pointer-events: none;
+    }
 
     /* RIGHT-SIDE ANCHORED TOOLTIP */
     .rich-tooltip {
@@ -725,14 +991,40 @@
       border-color: transparent var(--tooltip-bg) transparent transparent;
     }
 
-    .copy-action:hover .rich-tooltip { opacity: 1; transform: translateY(-50%) translateX(0) scale(1); }
-    .tooltip-title { font-size: 0.75rem; font-weight: 700; color: var(--tooltip-text); white-space: nowrap; margin: 0; }
-    .tooltip-meta { font-size: 0.65rem; font-weight: 500; color: var(--tooltip-meta); white-space: nowrap; margin: 0; }
-    .copy-action.copied .tooltip-title { color: var(--accent-green); }
-    .copy-action.copied .tooltip-meta { display: none; }
+    .copy-action:hover .rich-tooltip {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0) scale(1);
+    }
+
+    .tooltip-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--tooltip-text);
+      white-space: nowrap;
+      margin: 0;
+    }
+
+    .tooltip-meta {
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--tooltip-meta);
+      white-space: nowrap;
+      margin: 0;
+    }
+
+    .copy-action.copied .tooltip-title {
+      color: var(--accent-green);
+    }
+
+    .copy-action.copied .tooltip-meta {
+      display: none;
+    }
 
     /* INFO RADAR BUTTON & CLEAN TOOLTIP */
-    #info-canvas { width: 44px; height: 44px; }
+    #info-canvas {
+      width: 44px;
+      height: 44px;
+    }
 
     .info-tooltip {
       position: absolute;
@@ -781,6 +1073,7 @@
       opacity: 1;
       transform: translateY(0);
     }
+
     body.info-open .info-tooltip {
       opacity: 0 !important;
       pointer-events: none !important;
@@ -798,13 +1091,14 @@
       border-radius: 20px;
       font-size: 0.75rem;
       font-weight: 700;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       opacity: 0;
       pointer-events: none;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 200;
     }
+
     .easter-egg-banner.show {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
@@ -834,7 +1128,11 @@
       overflow: hidden;
     }
 
-    .info-popover.active { opacity: 1; pointer-events: auto; transform: scale(1) translateY(0); }
+    .info-popover.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+    }
 
     .popover-header {
       padding: 0.95rem 1.2rem 0.75rem;
@@ -844,8 +1142,17 @@
       border-bottom: 1px solid var(--item-border);
     }
 
-    .popover-title-group { display: flex; align-items: center; gap: 0.5rem; }
-    .popover-title-group svg { width: 16px; height: 16px; fill: var(--accent-green); }
+    .popover-title-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .popover-title-group svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--accent-green);
+    }
 
     .popover-header span {
       font-size: 0.85rem;
@@ -865,8 +1172,14 @@
       color: var(--text-muted);
     }
 
-    .popover-body::-webkit-scrollbar { width: 4px; }
-    .popover-body::-webkit-scrollbar-thumb { background: var(--item-border); border-radius: 4px; }
+    .popover-body::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .popover-body::-webkit-scrollbar-thumb {
+      background: var(--item-border);
+      border-radius: 4px;
+    }
 
     .tech-item {
       display: flex;
@@ -885,8 +1198,12 @@
       font-size: 0.78rem;
     }
 
-    .tech-desc { color: var(--text-main); font-size: 0.72rem; line-height: 1.45; }
-    
+    .tech-desc {
+      color: var(--text-main);
+      font-size: 0.72rem;
+      line-height: 1.45;
+    }
+
     .popover-footer {
       margin-top: 0.3rem;
       padding-top: 0.8rem;
@@ -904,7 +1221,10 @@
       transition: opacity 0.2s;
     }
 
-    .popover-footer a:hover { opacity: 0.8; text-decoration: underline; }
+    .popover-footer a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
 
     .pill-marquee-wrapper {
       position: relative;
@@ -922,11 +1242,18 @@
       animation: pillTrackScroll 16s linear infinite;
     }
 
-    .pill-marquee-track:hover { animation-play-state: paused; }
+    .pill-marquee-track:hover {
+      animation-play-state: paused;
+    }
 
     @keyframes pillTrackScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     .mini-pill {
@@ -943,34 +1270,70 @@
     }
 
     @media (max-width: 480px) {
-      .card { padding: 2.25rem 1.5rem; border-radius: 32px; }
-      .floating-circle-btn { width: 42px; height: 42px; }
-      
-      /* Theme Toggle moved to bottom right corner on mobile */
-      .theme-toggle { top: auto; bottom: 1rem; right: 1rem; }
-      
-      /* Info Button moved to the left of the theme toggle on mobile */
-      .info-circle-container { bottom: 1rem; right: calc(1rem + 42px + 10px); }
-      
-      .info-tooltip { width: max-content; max-width: 300px; }
-      
-      /* Info Popover positioning adjusted for bottom-right button cluster */
-      .info-popover { right: 1rem; bottom: 4.5rem; width: calc(100vw - 2rem); max-width: 330px; }
-      
-      .link-info { padding: 0.6rem 1rem 0.6rem 1.25rem; gap: 1rem; }
-      .link-icon { width: 38px; height: 38px; }
-      .copy-action { width: 46px; height: 46px; margin: 0.4rem 0.4rem 0.4rem 0; }
-      
-      /* Bio paragraph line-clamp extended to 4 lines on mobile to prevent cutting */
+      .card {
+        padding: 2.25rem 1.5rem;
+        border-radius: 32px;
+      }
+
+      .floating-circle-btn {
+        width: 42px;
+        height: 42px;
+      }
+
+      .theme-toggle {
+        top: auto;
+        bottom: 1rem;
+        right: 1rem;
+      }
+
+      .info-circle-container {
+        bottom: 1rem;
+        right: calc(1rem + 42px + 10px);
+      }
+
+      .share-circle-container {
+        top: auto;
+        bottom: 1rem;
+        right: calc(1rem + 84px + 20px);
+      }
+
+      .info-tooltip {
+        width: max-content;
+        max-width: 300px;
+      }
+
+      .info-popover {
+        right: 1rem;
+        bottom: 4.5rem;
+        width: calc(100vw - 2rem);
+        max-width: 330px;
+      }
+
+      .link-info {
+        padding: 0.6rem 1rem 0.6rem 1.25rem;
+        gap: 1rem;
+      }
+
+      .link-icon {
+        width: 38px;
+        height: 38px;
+      }
+
+      .copy-action {
+        width: 46px;
+        height: 46px;
+        margin: 0.4rem 0.4rem 0.4rem 0;
+      }
+
       .profile-text p {
         -webkit-line-clamp: 4;
         min-height: 5.8em;
       }
-      
+
       .avatar-tooltip-group {
-        display: none !important; /* Disabled entirely on mobile */
+        display: none !important;
       }
-      
+
       .avatar-flipper-container:not(.flipped):hover .avatar-tooltip-group {
         transform: none;
       }
@@ -980,16 +1343,21 @@
         right: calc(100% + 14px);
         transform: translateY(-50%) translateX(8px) scale(0.95);
       }
+
       .rich-tooltip::after {
         right: auto;
         left: 100%;
         border-width: 6px 0 6px 6px;
         border-color: transparent transparent transparent var(--tooltip-bg);
       }
-      .copy-action:hover .rich-tooltip { transform: translateY(-50%) translateX(0) scale(1); }
+
+      .copy-action:hover .rich-tooltip {
+        transform: translateY(-50%) translateX(0) scale(1);
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Dynamic Antigravity Canvas -->
@@ -1004,7 +1372,7 @@
     <!-- Sleek 2-Line Tooltip -->
     <div class="info-tooltip">
       <svg class="info-tooltip-icon" viewBox="0 0 24 24">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
       </svg>
       <div>Ayush's AI Agents on the grind. ⚡<br>They built this digital card, they say hi! 🤖</div>
     </div>
@@ -1015,7 +1383,7 @@
     <div class="popover-header">
       <div class="popover-title-group">
         <svg viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
         </svg>
         <span>Info</span>
       </div>
@@ -1024,7 +1392,8 @@
       <!-- 1. Vanilla DOM -->
       <div class="tech-item">
         <span class="tech-name">Plain JavaScript</span>
-        <span class="tech-desc">Zero frameworks, zero dependencies, and instant baseline execution. Built purely with native web standards.</span>
+        <span class="tech-desc">Zero frameworks, zero dependencies, and instant baseline execution. Built purely with
+          native web standards.</span>
         <div class="pill-marquee-wrapper">
           <div class="pill-marquee-track">
             <span class="mini-pill">Vanilla DOM</span>
@@ -1044,7 +1413,8 @@
       <!-- 2. Canvas2D Vector Graphics -->
       <div class="tech-item">
         <span class="tech-name">Canvas Graphics</span>
-        <span class="tech-desc">A custom 820-node vector math loop handles floating background particles, elastic mesh links, and radar telemetry.</span>
+        <span class="tech-desc">A custom 820-node vector math loop handles floating background particles, elastic mesh
+          links, and radar telemetry.</span>
         <div class="pill-marquee-wrapper">
           <div class="pill-marquee-track">
             <span class="mini-pill">HTML5 Canvas</span>
@@ -1064,7 +1434,8 @@
       <!-- 3. AI Agent Harness -->
       <div class="tech-item">
         <span class="tech-name">AI Agent Harness</span>
-        <span class="tech-desc">Iteratively engineered using autonomous agent loops, dynamic prompt contexts, and human-in-the-loop pair programming.</span>
+        <span class="tech-desc">Iteratively engineered using autonomous agent loops, dynamic prompt contexts, and
+          human-in-the-loop pair programming.</span>
         <div class="pill-marquee-wrapper">
           <div class="pill-marquee-track">
             <span class="mini-pill">Google Antigravity</span>
@@ -1084,7 +1455,8 @@
       <!-- 4. Cloudflare Edge Delivery -->
       <div class="tech-item">
         <span class="tech-name">Cloudflare Edge</span>
-        <span class="tech-desc">Continuous deployment wired directly from Git to Cloudflare's edge network for global single-millisecond TTFB.</span>
+        <span class="tech-desc">Continuous deployment wired directly from Git to Cloudflare's edge network for global
+          single-millisecond TTFB.</span>
         <div class="pill-marquee-wrapper">
           <div class="pill-marquee-track">
             <span class="mini-pill">Cloudflare Pages</span>
@@ -1103,39 +1475,55 @@
 
       <!-- Footer Call to Action -->
       <div class="popover-footer">
-        Want to build your own AI-generated digital card?<br>
-        <a href="https://github.com/ayushj190" target="_blank">Check out the GitHub repo</a>.
+        Want to easily make your own digital card?<br>
+        <a href="https://github.com/ayushj190/digital-contact-card" target="_blank">Check out the GitHub repo</a>.
       </div>
     </div>
   </div>
+
+  <!-- Share Button -->
+  <button id="share-btn" class="floating-circle-btn share-circle-container" aria-label="Share">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+      <path
+        d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z" />
+    </svg>
+  </button>
 
   <!-- Theme Toggle -->
   <button id="theme-toggle" class="floating-circle-btn theme-toggle" aria-label="Toggle theme">
     <svg class="moon-svg" viewBox="-2 -2 28 28">
       <g>
-        <path class="cloud-slow-back-1" d="M-12 26V8.5c0-4.2 3.8-7.5 8.2-7.5 2.1 0 4 .8 5.4 2.2 1.6-2.4 4.3-3.9 7.4-3.9 5 0 9 4 9 9V26H-12z"/>
-        <path class="cloud-slow-back-2" d="M-8 26V10c0-3.6 3.2-6.5 7-6.5 1.6 0 3 .5 4.1 1.4 1.4-2 3.7-3.4 6.4-3.4 4.5 0 8.2 3.6 8.2 8.2 0 .5-.06 1-.16 1.5V26H-8z"/>
-        <path class="cloud-slow-back-3" d="M-14 26V12c0-3.2 2.8-5.8 6.2-5.8 1.4 0 2.7.5 3.7 1.3 1.2-1.8 3.2-3 5.5-3 3.8 0 7 3.1 7 7V26H-14z"/>
-        <path class="cloud-slow-back-4" d="M-6 26V14c0-2.8 2.3-5 5-5 1.1 0 2.1.4 2.9 1.1 1-1.5 2.7-2.6 4.7-2.6 3.2 0 5.8 2.6 5.8 5.8V26H-6z"/>
+        <path class="cloud-slow-back-1"
+          d="M-12 26V8.5c0-4.2 3.8-7.5 8.2-7.5 2.1 0 4 .8 5.4 2.2 1.6-2.4 4.3-3.9 7.4-3.9 5 0 9 4 9 9V26H-12z" />
+        <path class="cloud-slow-back-2"
+          d="M-8 26V10c0-3.6 3.2-6.5 7-6.5 1.6 0 3 .5 4.1 1.4 1.4-2 3.7-3.4 6.4-3.4 4.5 0 8.2 3.6 8.2 8.2 0 .5-.06 1-.16 1.5V26H-8z" />
+        <path class="cloud-slow-back-3"
+          d="M-14 26V12c0-3.2 2.8-5.8 6.2-5.8 1.4 0 2.7.5 3.7 1.3 1.2-1.8 3.2-3 5.5-3 3.8 0 7 3.1 7 7V26H-14z" />
+        <path class="cloud-slow-back-4"
+          d="M-6 26V14c0-2.8 2.3-5 5-5 1.1 0 2.1.4 2.9 1.1 1-1.5 2.7-2.6 4.7-2.6 3.2 0 5.8 2.6 5.8 5.8V26H-6z" />
       </g>
-      <path fill="currentColor" d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10c0-.52-.04-1.02-.12-1.51-1.09 1.52-2.87 2.51-4.88 2.51-3.31 0-6-2.69-6-6 0-2.01.99-3.79 2.51-4.88-.49-.08-.99-.12-1.51-.12z"/>
+      <path fill="currentColor"
+        d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10c0-.52-.04-1.02-.12-1.51-1.09 1.52-2.87 2.51-4.88 2.51-3.31 0-6-2.69-6-6 0-2.01.99-3.79 2.51-4.88-.49-.08-.99-.12-1.51-.12z" />
       <g>
-        <path class="cloud-slow-front-1" d="M-12 26v-4.5c0-3.2 2.6-5.8 5.8-5.8 1.2 0 2.3.4 3.2 1 1.4-1.8 3.6-2.9 6-2.9 4.4 0 7.9 3.4 7.9 7.7V26H-12z"/>
-        <path class="cloud-slow-front-2" d="M-4 26v-3.5c0-2.5 2-4.5 4.5-4.5.9 0 1.7.3 2.4.8 1.1-1.3 2.8-2.1 4.7-2.1 3.4 0 6.2 2.6 6.2 5.8V26H-4z"/>
-        <path class="cloud-slow-front-3" d="M-8 26v-2.8c0-2.2 1.8-4 4-4 .8 0 1.5.2 2.1.6 1-1.2 2.5-2 4.2-2 3.1 0 5.6 2.5 5.6 5.6V26H-8z"/>
+        <path class="cloud-slow-front-1"
+          d="M-12 26v-4.5c0-3.2 2.6-5.8 5.8-5.8 1.2 0 2.3.4 3.2 1 1.4-1.8 3.6-2.9 6-2.9 4.4 0 7.9 3.4 7.9 7.7V26H-12z" />
+        <path class="cloud-slow-front-2"
+          d="M-4 26v-3.5c0-2.5 2-4.5 4.5-4.5.9 0 1.7.3 2.4.8 1.1-1.3 2.8-2.1 4.7-2.1 3.4 0 6.2 2.6 6.2 5.8V26H-4z" />
+        <path class="cloud-slow-front-3"
+          d="M-8 26v-2.8c0-2.2 1.8-4 4-4 .8 0 1.5.2 2.1.6 1-1.2 2.5-2 4.2-2 3.1 0 5.6 2.5 5.6 5.6V26H-8z" />
       </g>
     </svg>
     <svg class="sun-svg" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="3.9" fill="currentColor"/>
+      <circle cx="12" cy="12" r="3.9" fill="currentColor" />
       <g class="sun-rays-group" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none">
-        <path d="M12 1.2 C13.2 2.5, 10.8 3.8, 12 4.8"/>
-        <path d="M12 19.2 C10.8 20.2, 13.2 21.5, 12 22.8"/>
-        <path d="M1.2 12 C2.5 10.8, 3.8 13.2, 4.8 12"/>
-        <path d="M19.2 12 C20.2 13.2, 21.5 10.8, 22.8 12"/>
-        <path d="M4.4 4.4 C5.8 4.9, 5.2 6.5, 6.7 6.7"/>
-        <path d="M17.3 17.3 C18.7 17.5, 18.2 19.1, 19.6 19.6"/>
-        <path d="M4.4 19.6 C4.9 18.2, 6.5 18.7, 6.7 17.3"/>
-        <path d="M19.6 4.4 C18.2 4.9, 18.7 6.5, 17.3 6.7"/>
+        <path d="M12 1.2 C13.2 2.5, 10.8 3.8, 12 4.8" />
+        <path d="M12 19.2 C10.8 20.2, 13.2 21.5, 12 22.8" />
+        <path d="M1.2 12 C2.5 10.8, 3.8 13.2, 4.8 12" />
+        <path d="M19.2 12 C20.2 13.2, 21.5 10.8, 22.8 12" />
+        <path d="M4.4 4.4 C5.8 4.9, 5.2 6.5, 6.7 6.7" />
+        <path d="M17.3 17.3 C18.7 17.5, 18.2 19.1, 19.6 19.6" />
+        <path d="M4.4 19.6 C4.9 18.2, 6.5 18.7, 6.7 17.3" />
+        <path d="M19.6 4.4 C18.2 4.9, 18.7 6.5, 17.3 6.7" />
       </g>
     </svg>
   </button>
@@ -1162,13 +1550,14 @@
         <div class="avatar-tooltip-group" id="avatar-tooltips" aria-label="QR Code">
           <div class="avatar-qr-unified-tooltip">
             <svg class="qr-symbol-icon" viewBox="0 0 24 24">
-              <path d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 6h2v3h-2v-3zm3 0h3v3h-3v-3zm3 3h3v2h-3v-2z"/>
+              <path
+                d="M3 3h8v8H3V3zm2 2v4h4V5H5zm8-2h8v8h-8V3zm2 2v4h4V5h-4zM3 13h8v8H3v-8zm2 2v4h4v-4H5zm13-2h3v2h-3v-2zm-5 6h2v3h-2v-3zm3 0h3v3h-3v-3zm3 3h3v2h-3v-2z" />
             </svg>
             <span>Continue on mobile</span>
           </div>
         </div>
       </div>
-      
+
       <div class="profile-content-wrapper">
         <div class="profile-text">
           <h1 id="profile-name"></h1>
@@ -1274,7 +1663,7 @@
     };
 
     document.addEventListener("DOMContentLoaded", () => {
-      
+
       /* --- Cached Canvas Colors to Prevent Layout Thrashing --- */
       let cachedAccent = '#3b472e';
       let cachedParticleColor = '82, 98, 65';
@@ -1285,8 +1674,42 @@
         cachedAccent = style.getPropertyValue('--accent-green').trim() || cachedAccent;
         cachedParticleColor = style.getPropertyValue('--particle-color').trim() || cachedParticleColor;
         cachedLineColor = style.getPropertyValue('--particle-line').trim() || cachedLineColor;
+
+        // Update browser theme color dynamically
+        const bgMain = style.getPropertyValue('--bg-main').trim();
+        const themeMeta = document.getElementById('theme-color-meta');
+        if (themeMeta && bgMain) {
+          themeMeta.setAttribute('content', bgMain);
+        }
       };
       updateCanvasColors();
+
+      /* --- Dynamic Circular Favicon --- */
+      const updateFavicon = () => {
+        const favicon = document.getElementById('dynamic-favicon');
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const imgSrc = currentTheme === 'dark' ? CONFIG.profile.avatarDark : CONFIG.profile.avatarLight;
+
+        const img = new Image();
+        img.onload = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 128;
+            canvas.height = 128;
+            const ctx = canvas.getContext('2d');
+            ctx.beginPath();
+            ctx.arc(64, 64, 64, 0, Math.PI * 2);
+            ctx.clip();
+            ctx.drawImage(img, 0, 0, 128, 128);
+            favicon.href = canvas.toDataURL('image/png');
+          } catch (e) {
+            // Fallback to square if canvas becomes tainted by CORS locally
+            favicon.href = imgSrc;
+          }
+        };
+        img.src = imgSrc;
+      };
+      updateFavicon();
 
       /* --- Render Profile Data --- */
       document.getElementById('profile-name').textContent = CONFIG.profile.name;
@@ -1299,10 +1722,9 @@
         const frontFace = document.getElementById('flipper-front-face');
         const lightImg = document.getElementById('avatar-light-img');
         const currentTheme = document.documentElement.getAttribute('data-theme');
-        
-        // Check if light image is currently visible (either via light theme, or forced visibility overrides)
+
         const isLightVisible = lightImg.style.opacity === '1' || (lightImg.style.opacity !== '0' && currentTheme === 'light');
-        
+
         if (isLightVisible) {
           frontFace.classList.add('show-light');
           frontFace.classList.remove('show-dark');
@@ -1323,11 +1745,40 @@
         setTimeout(() => {
           updateCanvasColors();
           updateAvatarFaceBackground();
+          updateFavicon();
         }, 50);
       });
 
       // Initial check for avatar background match
       updateAvatarFaceBackground();
+
+      /* --- Share Functionality --- */
+      document.getElementById('share-btn').addEventListener('click', async () => {
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: CONFIG.profile.name,
+              text: CONFIG.profile.title,
+              url: window.location.href,
+            });
+          } catch (err) {
+            console.log('Share canceled or failed', err);
+          }
+        } else {
+          // Fallback to clipboard if share isn't supported
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            const banner = document.getElementById('easter-egg-banner');
+            const originalText = banner.textContent;
+            banner.textContent = "Link copied to clipboard!";
+            banner.classList.add('show');
+            setTimeout(() => {
+              banner.classList.remove('show');
+              setTimeout(() => banner.textContent = originalText, 300);
+            }, 2000);
+          } catch (e) { }
+        }
+      });
 
       /* --- Render Navigation Links --- */
       const linksContainer = document.getElementById('links-grid');
@@ -1357,14 +1808,14 @@
           el.classList.remove('auto-scroll-text');
           el.style.removeProperty('--overflow-amount');
           el.style.removeProperty('--scroll-duration');
-          
+
           const parentWidth = el.parentElement.clientWidth;
           const scrollWidth = el.scrollWidth;
-          
+
           if (scrollWidth > parentWidth + 2) {
             const overflowAmount = scrollWidth - parentWidth;
             el.style.setProperty('--overflow-amount', `-${overflowAmount}px`);
-            const duration = Math.max(3, overflowAmount / 20); 
+            const duration = Math.max(3, overflowAmount / 20);
             el.style.setProperty('--scroll-duration', `${duration}s`);
             el.classList.add('auto-scroll-text');
           }
@@ -1382,11 +1833,11 @@
               if (char === ' ') return ' ';
               return i < iterations ? char : chars[Math.floor(Math.random() * chars.length)];
             }).join('');
-            
+
             if (iterations >= originalText.length) {
               el.textContent = originalText;
               clearInterval(interval);
-              setTimeout(checkTextOverflow, 50); 
+              setTimeout(checkTextOverflow, 50);
             }
             iterations += speed;
           }, 16);
@@ -1399,20 +1850,11 @@
         const text = subEl.getAttribute('data-text');
         scrambleElement(subEl, text, 1.8, 250 + idx * 160);
       });
-      
+
       setTimeout(checkTextOverflow, 100);
 
-      /* --- GLOBAL 3D TILT, EASTER EGG ENGINE --- */
+      /* --- EASTER EGG ENGINE --- */
       const mainCard = document.getElementById('main-card');
-      let globalMouseX = window.innerWidth / 2;
-      let globalMouseY = window.innerHeight / 2;
-      let isShaking = false;
-      
-      let isDragging = false;
-      let dragStartX = 0;
-      let dragStartY = 0;
-      let currentTranslateX = 0;
-      let currentTranslateY = 0;
 
       let clickCount = 0;
       let clickTimer = null;
@@ -1421,134 +1863,10 @@
       let avatarCycleInterval = null;
       let avatarCycleState = 0;
 
-      const updateCardTilt = () => {
-        if (isShaking || isDragging) return;
-        
-        const rect = mainCard.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const isMobile = window.innerWidth <= 480;
-        
-        let repulseX = 0;
-        let repulseY = 0;
-        let shakeOffsetRotX = 0;
-        let shakeOffsetRotY = 0;
-
-        if (easterEggActive) {
-          const distX = globalMouseX - centerX;
-          const distY = globalMouseY - centerY;
-          const distance = Math.hypot(distX, distY) || 1;
-          
-          if (!isMobile && distance < 280) {
-            const pushIntensity = (280 - distance) / 280;
-            repulseX = -(distX / distance) * pushIntensity * 220;
-            repulseY = -(distY / distance) * pushIntensity * 220;
-          }
-
-          const currentDistanceFromCenter = Math.hypot(currentTranslateX + repulseX, currentTranslateY + repulseY);
-          const borderResistanceFactor = 1 + (currentDistanceFromCenter / 100);
-
-          shakeOffsetRotX = (Math.sin(performance.now() * 0.06 * borderResistanceFactor) * 3.5 * borderResistanceFactor);
-          shakeOffsetRotY = (Math.cos(performance.now() * 0.065 * borderResistanceFactor) * 3.5 * borderResistanceFactor);
-        }
-        
-        let tiltX, tiltY;
-
-        if (isMobile) {
-          tiltX = shakeOffsetRotX.toFixed(2);
-          tiltY = shakeOffsetRotY.toFixed(2);
-        } else {
-          const isHovering = globalMouseX >= rect.left && globalMouseX <= rect.right && 
-                             globalMouseY >= rect.top && globalMouseY <= rect.bottom;
-                           
-          const maxTilt = isHovering ? 0.25 : 1.8; 
-          const deltaX = globalMouseX - centerX;
-          const deltaY = globalMouseY - centerY;
-          
-          const percentX = Math.max(-1, Math.min(1, deltaX / (window.innerWidth / 2)));
-          const percentY = Math.max(-1, Math.min(1, deltaY / (window.innerHeight / 2)));
-          
-          tiltX = (percentY * -maxTilt + shakeOffsetRotX).toFixed(2);
-          tiltY = (percentX * maxTilt + shakeOffsetRotY).toFixed(2);
-        }
-        
-        const maxAllowedX = window.innerWidth / 2 - rect.width / 2 - 20;
-        const maxAllowedY = window.innerHeight / 2 - rect.height / 2 - 20;
-        
-        let targetX = currentTranslateX + repulseX;
-        let targetY = currentTranslateY + repulseY;
-        
-        targetX = Math.max(-maxAllowedX, Math.min(maxAllowedX, targetX));
-        targetY = Math.max(-maxAllowedY, Math.min(maxAllowedY, targetY));
-
-        mainCard.style.transition = 'transform 0.1s ease-out';
-        mainCard.style.transform = `translate(${targetX}px, ${targetY}px) perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1, 1, 1)`;
-      };
-
-      const handlePointerMove = (clientX, clientY) => {
-        globalMouseX = clientX;
-        globalMouseY = clientY;
-        resetQrInactivityTimer();
-        
-        if (isDragging) {
-          const rawDx = clientX - dragStartX;
-          const rawDy = clientY - dragStartY;
-          
-          const maxStretch = 180;
-          currentTranslateX = maxStretch * Math.atan(rawDx / maxStretch);
-          currentTranslateY = maxStretch * Math.atan(rawDy / maxStretch);
-          
-          mainCard.style.transition = 'none';
-          mainCard.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) perspective(1000px) rotateX(0deg) rotateY(0deg)`;
-          return;
-        }
-
-        updateCardTilt();
-      };
-
-      window.addEventListener('mousemove', (e) => handlePointerMove(e.clientX, e.clientY));
-      window.addEventListener('touchmove', (e) => {
-        if (e.touches.length > 0) handlePointerMove(e.touches[0].clientX, e.touches[0].clientY);
-      }, { passive: true });
-
-      const handlePointerUp = () => {
-        if (isDragging) {
-          isDragging = false;
-          currentTranslateX = 0;
-          currentTranslateY = 0;
-          mainCard.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
-          mainCard.style.transform = `translate(0px, 0px) perspective(1000px) rotateX(0deg) rotateY(0deg)`;
-        }
-      };
-
-      window.addEventListener('mouseup', handlePointerUp);
-      window.addEventListener('touchend', handlePointerUp);
-
-      document.addEventListener('mouseleave', () => {
-        if (isShaking || isDragging) return;
-        mainCard.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-        mainCard.style.transform = `translate(0px, 0px) perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-      });
-
       const handleCardTap = (e) => {
-        if (e.target.closest('.avatar-flipper-container') || 
-            e.target.closest('.link-item') || 
-            e.target.closest('.copy-action')) {
+        if (e.target.closest('.link-item') || e.target.closest('.copy-action')) {
           return;
         }
-
-        let clientX = e.clientX;
-        let clientY = e.clientY;
-        
-        if (e.type === 'touchstart') {
-          clientX = e.touches[0].clientX;
-          clientY = e.touches[0].clientY;
-        }
-
-        isDragging = true;
-        dragStartX = clientX - currentTranslateX;
-        dragStartY = clientY - currentTranslateY;
-
         clickCount++;
         clearTimeout(clickTimer);
         clickTimer = setTimeout(() => { clickCount = 0; }, 1500);
@@ -1557,29 +1875,6 @@
           clickCount = 0;
           triggerEasterEgg();
         }
-
-        isShaking = true;
-        const rect = mainCard.getBoundingClientRect();
-        const cardCenterX = rect.left + rect.width / 2;
-        const cardCenterY = rect.top + rect.height / 2;
-        
-        const clickOffsetX = clientX - cardCenterX;
-        const clickOffsetY = clientY - cardCenterY;
-        
-        const shakeTiltX = (clickOffsetY / (rect.height / 2)) * -1.2;
-        const shakeTiltY = (clickOffsetX / (rect.width / 2)) * 1.2;
-        
-        mainCard.style.transition = 'transform 0.08s cubic-bezier(0.2, 0.8, 0.2, 1)';
-        mainCard.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) perspective(1000px) rotateX(${shakeTiltX.toFixed(2)}deg) rotateY(${shakeTiltY.toFixed(2)}deg) scale3d(0.985, 0.985, 0.985)`;
-        
-        setTimeout(() => {
-          mainCard.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) perspective(1000px) rotateX(${(-shakeTiltX * 0.4).toFixed(2)}deg) rotateY(${(-shakeTiltY * 0.4).toFixed(2)}deg) scale3d(1.002, 1.002, 1.002)`;
-          
-          setTimeout(() => {
-            isShaking = false;
-            updateCardTilt(); 
-          }, 150);
-        }, 80);
       };
 
       mainCard.addEventListener('mousedown', handleCardTap);
@@ -1599,14 +1894,11 @@
         const avatarContainer = document.getElementById('avatar-flipper-btn');
         const lightImg = document.getElementById('avatar-light-img');
         const darkImg = document.getElementById('avatar-dark-img');
-        
+
         avatarCycleInterval = setInterval(() => {
           avatarCycleState = (avatarCycleState + 1) % 2;
-          
-          if (window.innerWidth > 480) {
-            avatarContainer.classList.remove('flipped');
-          }
-          
+          if (window.innerWidth > 480) avatarContainer.classList.remove('flipped');
+
           if (avatarCycleState === 0) {
             lightImg.style.opacity = '1';
             darkImg.style.opacity = '0';
@@ -1618,7 +1910,7 @@
         }, 200);
 
         if (typeof navigator.vibrate === 'function') {
-          try { navigator.vibrate([50, 100, 50, 100, 200]); } catch(_) {}
+          try { navigator.vibrate([50, 100, 50, 100, 200]); } catch (_) { }
         }
 
         clearTimeout(easterEggTimeout);
@@ -1657,7 +1949,7 @@
           mobileAvatarState = 1 - mobileAvatarState;
           const lightImg = document.getElementById('avatar-light-img');
           const darkImg = document.getElementById('avatar-dark-img');
-          
+
           if (mobileAvatarState === 1) {
             lightImg.style.opacity = '0';
             darkImg.style.opacity = '1';
@@ -1669,7 +1961,7 @@
         } else {
           avatarBtn.classList.toggle('flipped');
           const isFlipped = avatarBtn.classList.contains('flipped');
-          
+
           if (isFlipped) {
             avatarBtn.classList.add('qr-visible');
             tooltipGroup.classList.add('persistent-visible');
@@ -1685,7 +1977,7 @@
       /* --- Info Popover --- */
       const infoBtn = document.getElementById('info-btn');
       const infoPopover = document.getElementById('info-popover');
-      
+
       infoBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         const isOpen = infoPopover.classList.toggle('active');
@@ -1701,12 +1993,12 @@
 
       /* --- Link Navigation --- */
       document.querySelectorAll('.link-item').forEach(item => {
-        item.addEventListener('click', function(e) {
+        item.addEventListener('click', function (e) {
           if (e.target.closest('.copy-action')) return;
           const url = this.getAttribute('data-url');
           if (this.id === 'book-btn') {
             if (window.calendar?.schedulingButton?.load) {
-              try { window.calendar.schedulingButton.load({ url }); return; } catch(_) {}
+              try { window.calendar.schedulingButton.load({ url }); return; } catch (_) { }
             }
             window.open(url, '_blank');
           } else if (url.startsWith('mailto:')) {
@@ -1719,27 +2011,27 @@
 
       /* --- Pill Copy Action --- */
       document.querySelectorAll('.copy-action').forEach(btn => {
-        btn.addEventListener('mousemove', function(e) {
+        btn.addEventListener('mousemove', function (e) {
           const rect = this.getBoundingClientRect();
           const mx = (e.clientX - rect.left - rect.width / 2) * 0.16;
           const my = (e.clientY - rect.top - rect.height / 2) * 0.16;
           this.style.transform = `translate(${mx}px, ${my}px)`;
         });
-        btn.addEventListener('mouseleave', function() {
+        btn.addEventListener('mouseleave', function () {
           this.style.transform = 'translate(0px, 0px)';
         });
-        btn.addEventListener('click', function(e) {
+        btn.addEventListener('click', function (e) {
           e.preventDefault();
           e.stopPropagation();
 
           if (typeof navigator.vibrate === 'function') {
-            try { navigator.vibrate([12, 40, 15]); } catch (_) {}
+            try { navigator.vibrate([12, 40, 15]); } catch (_) { }
           }
 
           const text = this.getAttribute('data-copy');
           const title = this.querySelector('.tooltip-title');
           const original = title.textContent;
-          
+
           const onCopied = () => {
             this.classList.add('copied');
             title.textContent = 'Copied!';
@@ -1758,7 +2050,7 @@
             ta.style.left = "-9999px";
             document.body.appendChild(ta);
             ta.select();
-            try { document.execCommand('copy'); onCopied(); } catch(_) {}
+            try { document.execCommand('copy'); onCopied(); } catch (_) { }
             ta.remove();
           }
         });
@@ -1791,10 +2083,10 @@
       let progress = 0;
 
       const getBeatDuration = () => easterEggActive ? 120 : 420;
-      const DISTANCE_TO_N = 5.0; 
-      const BASE_OFFSET_Y = 1.65; 
-      const MAX_HEIGHT_I = 2.2;   
-      const MAX_HEIGHT_N = 2.9; 
+      const DISTANCE_TO_N = 5.0;
+      const BASE_OFFSET_Y = 1.65;
+      const MAX_HEIGHT_I = 2.2;
+      const MAX_HEIGHT_N = 2.9;
 
       linkedinItem?.addEventListener('mouseenter', () => isLinkedInHovered = true);
       linkedinItem?.addEventListener('mouseleave', () => isLinkedInHovered = false);
@@ -1876,9 +2168,9 @@
       const toggleJitterPhase = () => {
         if (!githubLoopActive) return;
         isJitterPhase = !isJitterPhase;
-        
+
         if (!isJitterPhase && githubIcon) githubIcon.style.transform = 'rotate(0deg)';
-        
+
         const dur = isJitterPhase ? getNextDuration(0.35, 1.05, lastDuration) : getNextDuration(0.40, 1.20, lastDuration);
         lastDuration = dur;
         githubPhaseTimer = setTimeout(toggleJitterPhase, dur * 1000);
@@ -1909,11 +2201,11 @@
       };
       requestAnimationFrame(updateGithubFrame);
 
-      /* --- INFO RADAR GAUGE CACHED BUFFER FIX --- */
+      /* --- INFO RADAR GAUGE & DYNAMIC 'i' CUTOUT --- */
       const infoCanvas = document.getElementById('info-canvas');
       const infoCtx = infoCanvas.getContext('2d');
       let angle = 0, pulse = 0;
-      
+
       const dpr = window.devicePixelRatio || 1;
       const size = 44;
       infoCanvas.width = size * dpr;
@@ -1925,20 +2217,39 @@
 
         const center = size / 2;
         const speedMultiplier = easterEggActive ? 3.5 : 1.0;
-        angle += 0.011 * speedMultiplier; 
+        angle += 0.011 * speedMultiplier;
         pulse += 0.013 * speedMultiplier;
-        
-        const pulseSine = Math.sin(pulse);
 
+        const pulseSine = Math.sin(pulse);
         const coreRadius = 5.2 + (pulseSine + 1) * 3.1;
+
         infoCtx.beginPath();
         infoCtx.arc(center, center, coreRadius, 0, Math.PI * 2);
         infoCtx.fillStyle = cachedAccent;
         infoCtx.fill();
 
-        const sharedOrbitRadius = 14.2 + (pulseSine + 1) * 1.8; 
+        // Punch the "i" directly out of the pulsing center block
+        infoCtx.globalCompositeOperation = 'destination-out';
+        const iScale = coreRadius / 8;
+
+        infoCtx.fillStyle = '#fff';
+        infoCtx.beginPath();
+        infoCtx.arc(center, center - 2.5 * iScale, 1.0 * iScale, 0, Math.PI * 2);
+        infoCtx.fill();
+
+        infoCtx.strokeStyle = '#fff';
+        infoCtx.lineWidth = 2.0 * iScale;
+        infoCtx.lineCap = 'round';
+        infoCtx.beginPath();
+        infoCtx.moveTo(center, center - 0.3 * iScale);
+        infoCtx.lineTo(center, center + 3.8 * iScale);
+        infoCtx.stroke();
+
+        infoCtx.globalCompositeOperation = 'source-over'; // Reset compositing
+
+        const sharedOrbitRadius = 14.2 + (pulseSine + 1) * 1.8;
         const satAngle = -angle * 0.95;
-        const satStrokeWidth = 2.4; 
+        const satStrokeWidth = 2.4;
         const dotRadius = satStrokeWidth / 2;
 
         const nx = center + Math.cos(satAngle) * sharedOrbitRadius;
@@ -1948,8 +2259,8 @@
         infoCtx.fillStyle = cachedAccent;
         infoCtx.fill();
 
-        const trailGap = 0.52; 
-        const trailLength = 0.32; 
+        const trailGap = 0.52;
+        const trailLength = 0.32;
         infoCtx.beginPath();
         infoCtx.arc(center, center, sharedOrbitRadius, satAngle - trailGap - trailLength, satAngle - trailGap);
         infoCtx.strokeStyle = cachedAccent;
@@ -1975,7 +2286,36 @@
       };
       drawInfoGauge();
 
-      /* --- EVENLY DISTRIBUTED MESH --- */
+      /* --- BLACKHOLE DRAG MOUSE LISTENERS --- */
+      let isMouseDown = false;
+
+      const handleBgDown = (e) => {
+        if (e.target.closest('.card') || e.target.closest('.floating-circle-btn')) return;
+        isMouseDown = true;
+      };
+
+      const handleBgUp = () => {
+        if (isMouseDown && mouse.x !== null) {
+          particles.forEach(p => {
+            const dx = p.x - mouse.x;
+            const dy = p.y - mouse.y;
+            const dist = Math.hypot(dx, dy) || 1;
+            if (dist < 300) {
+              const force = Math.min(30, 4000 / dist);
+              p.vx += (dx / dist) * force;
+              p.vy += (dy / dist) * force;
+            }
+          });
+        }
+        isMouseDown = false;
+      };
+
+      window.addEventListener('mousedown', handleBgDown);
+      window.addEventListener('touchstart', handleBgDown, { passive: true });
+      window.addEventListener('mouseup', handleBgUp);
+      window.addEventListener('touchend', handleBgUp);
+
+      /* --- EVENLY DISTRIBUTED MESH WITH BLACKHOLE FORCES --- */
       const canvas = document.getElementById('gravity-canvas');
       const ctx = canvas.getContext('2d');
       let width, height;
@@ -1995,11 +2335,11 @@
 
       window.addEventListener('mousemove', (e) => onPointerMove(e.clientX, e.clientY));
       window.addEventListener('mouseleave', () => { mouse.active = false; mouseDecay = 0; });
-      window.addEventListener('touchstart', (e) => e.touches.length && onPointerMove(e.touches[0].clientX, e.touches[0].clientY), {passive: true});
+      window.addEventListener('touchstart', (e) => e.touches.length && onPointerMove(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
       window.addEventListener('touchend', () => { mouse.active = false; mouseDecay = 0; });
 
       const PARTICLE_COUNT = 820;
-      const BASE_LINK_DIST = 0; 
+      const BASE_LINK_DIST = 0;
 
       class Particle {
         constructor() {
@@ -2024,12 +2364,29 @@
             const dx = mouse.x - this.x;
             const dy = mouse.y - this.y;
             const dist = Math.hypot(dx, dy);
-            const influenceRadius = 240;
 
-            if (dist < influenceRadius && dist > 1) {
-              const pull = Math.sin((1 - dist / influenceRadius) * Math.PI * 0.5) * 0.034;
-              fx = (dx / dist) * pull;
-              fy = (dy / dist) * pull;
+            if (isMouseDown) {
+              if (dist > 3) {
+                const pull = Math.min(3.5, 3000 / (dist * dist));
+                fx = (dx / dist) * pull;
+                fy = (dy / dist) * pull;
+
+                const vortex = Math.min(2.0, 300 / dist);
+                fx += (dy / dist) * vortex;
+                fy += (-dx / dist) * vortex;
+              } else {
+                this.x = mouse.x;
+                this.y = mouse.y;
+                this.vx = 0;
+                this.vy = 0;
+              }
+            } else {
+              const influenceRadius = 240;
+              if (dist < influenceRadius && dist > 1) {
+                const pull = Math.sin((1 - dist / influenceRadius) * Math.PI * 0.5) * 0.034;
+                fx = (dx / dist) * pull;
+                fy = (dy / dist) * pull;
+              }
             }
           }
 
@@ -2057,7 +2414,6 @@
 
       const animateMesh = () => {
         ctx.clearRect(0, 0, width, height);
-
         mouseDecay *= 0.975;
 
         for (let i = 0; i < particles.length; i++) {
@@ -2066,7 +2422,7 @@
         }
 
         const hasMouse = mouse.active && mouse.x !== null;
-        const cellSize = 82; 
+        const cellSize = 82;
         const grid = new Map();
 
         for (let i = 0; i < particles.length; i++) {
@@ -2083,14 +2439,15 @@
           let bonus = 0;
           if (hasMouse) {
             const md = Math.hypot(pi.x - mouse.x, pi.y - mouse.y);
-            const reach = 280; 
+            const reach = isMouseDown ? 350 : 280;
             if (md < reach) {
               bonus = (1 - md / reach) * 85 * (0.4 + mouseDecay * 0.6);
+              if (isMouseDown) bonus *= 1.5;
             }
           }
-          
+
           const maxDist = BASE_LINK_DIST + bonus;
-          if (maxDist <= 0) continue; 
+          if (maxDist <= 0) continue;
 
           const cx = Math.floor(pi.x / cellSize);
           const cy = Math.floor(pi.y / cellSize);
@@ -2119,11 +2476,11 @@
             }
           }
         }
-
         requestAnimationFrame(animateMesh);
       };
       animateMesh();
     });
   </script>
 </body>
+
 </html>
