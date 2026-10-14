@@ -1413,7 +1413,7 @@
       <!-- 2. Canvas2D Vector Graphics -->
       <div class="tech-item">
         <span class="tech-name">Canvas Graphics</span>
-        <span class="tech-desc">A custom 820-node vector math loop handles floating background particles, elastic mesh
+        <span class="tech-desc">A custom 820-node vector loop renders gently drifting background particles, glowing cursor
           links, and radar telemetry.</span>
         <div class="pill-marquee-wrapper">
           <div class="pill-marquee-track">
@@ -2286,47 +2286,15 @@
       };
       drawInfoGauge();
 
-      /* --- BLACKHOLE DRAG MOUSE LISTENERS --- */
-      let isMouseDown = false;
-
-      const handleBgDown = (e) => {
-        if (e.target.closest('.card') || e.target.closest('.floating-circle-btn')) return;
-        isMouseDown = true;
-      };
-
-      const handleBgUp = () => {
-        if (isMouseDown && mouse.x !== null) {
-          particles.forEach(p => {
-            const dx = p.x - mouse.x;
-            const dy = p.y - mouse.y;
-            const dist = Math.hypot(dx, dy) || 1;
-            if (dist < 300) {
-              const force = Math.min(30, 4000 / dist);
-              p.vx += (dx / dist) * force;
-              p.vy += (dy / dist) * force;
-            }
-          });
-        }
-        isMouseDown = false;
-      };
-
-      window.addEventListener('mousedown', handleBgDown);
-      window.addEventListener('touchstart', handleBgDown, { passive: true });
-      window.addEventListener('mouseup', handleBgUp);
-      window.addEventListener('touchend', handleBgUp);
-
-      /* --- EVENLY DISTRIBUTED MESH WITH BLACKHOLE FORCES --- */
+      /* --- AMBIENT PARTICLE FIELD WITH SUBTLE PROXIMITY LINKS --- */
       const canvas = document.getElementById('gravity-canvas');
       const ctx = canvas.getContext('2d');
       let width, height;
       let particles = [];
       let mouse = { x: null, y: null, active: false };
-      let lastMouse = { x: null, y: null };
       let mouseDecay = 0;
 
       const onPointerMove = (x, y) => {
-        lastMouse.x = mouse.x;
-        lastMouse.y = mouse.y;
         mouse.x = x;
         mouse.y = y;
         mouse.active = true;
@@ -2359,39 +2327,8 @@
           const tx = this.ox + Math.cos(this.angle) * this.orbit;
           const ty = this.oy + Math.sin(this.angle) * this.orbit;
 
-          let fx = 0, fy = 0;
-          if (mouse.active && mouse.x !== null) {
-            const dx = mouse.x - this.x;
-            const dy = mouse.y - this.y;
-            const dist = Math.hypot(dx, dy);
-
-            if (isMouseDown) {
-              if (dist > 3) {
-                const pull = Math.min(3.5, 3000 / (dist * dist));
-                fx = (dx / dist) * pull;
-                fy = (dy / dist) * pull;
-
-                const vortex = Math.min(2.0, 300 / dist);
-                fx += (dy / dist) * vortex;
-                fy += (-dx / dist) * vortex;
-              } else {
-                this.x = mouse.x;
-                this.y = mouse.y;
-                this.vx = 0;
-                this.vy = 0;
-              }
-            } else {
-              const influenceRadius = 240;
-              if (dist < influenceRadius && dist > 1) {
-                const pull = Math.sin((1 - dist / influenceRadius) * Math.PI * 0.5) * 0.034;
-                fx = (dx / dist) * pull;
-                fy = (dy / dist) * pull;
-              }
-            }
-          }
-
-          this.vx = (this.vx + (tx - this.x) * 0.012 + fx) * 0.93;
-          this.vy = (this.vy + (ty - this.y) * 0.012 + fy) * 0.93;
+          this.vx = (this.vx + (tx - this.x) * 0.012) * 0.93;
+          this.vy = (this.vy + (ty - this.y) * 0.012) * 0.93;
           this.x += this.vx;
           this.y += this.vy;
         }
@@ -2416,6 +2353,15 @@
         ctx.clearRect(0, 0, width, height);
         mouseDecay *= 0.975;
 
+        if (mouse.active && mouse.x !== null && mouseDecay > 0.01) {
+          const glowRadius = 220;
+          const glow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, glowRadius);
+          glow.addColorStop(0, `rgba(${cachedParticleColor}, ${0.10 * mouseDecay})`);
+          glow.addColorStop(1, `rgba(${cachedParticleColor}, 0)`);
+          ctx.fillStyle = glow;
+          ctx.fillRect(mouse.x - glowRadius, mouse.y - glowRadius, glowRadius * 2, glowRadius * 2);
+        }
+
         for (let i = 0; i < particles.length; i++) {
           particles[i].update();
           particles[i].draw(cachedParticleColor);
@@ -2439,10 +2385,9 @@
           let bonus = 0;
           if (hasMouse) {
             const md = Math.hypot(pi.x - mouse.x, pi.y - mouse.y);
-            const reach = isMouseDown ? 350 : 280;
+            const reach = 280;
             if (md < reach) {
               bonus = (1 - md / reach) * 85 * (0.4 + mouseDecay * 0.6);
-              if (isMouseDown) bonus *= 1.5;
             }
           }
 

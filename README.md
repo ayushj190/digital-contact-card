@@ -65,10 +65,10 @@ On initial page load, the profile bio and link URLs run through an asynchronous 
 
 ## 🌌 Canvas2D Rendering Engines
 
-### 1. Antigravity Particle Field (`#gravity-canvas`)
+### 1. Ambient Particle Field (`#gravity-canvas`)
 - **820 Anchored Nodes**: Each node computes an orbital equilibrium around a randomized anchor point.
 - **Spatial Hash Grid Partitioning**: To maintain 60 FPS without massive distance checks, the canvas is indexed into spatial bins. Proximity checks only execute against immediate neighbors.
-- **Dynamic Proximity Linking**: Inter-node mesh lines default to invisible. Approaching the cursor energizes adjacent nodes, dynamically fading in connecting lines based on distance.
+- **Cursor Glow and Proximity Linking**: Particles drift independently of the cursor. Brighter connecting lines and a soft glow follow the cursor and fade when it stops, with no click pull or swirl effect.
 
 ### 2. Telemetry Radar HUD (`#info-canvas`)
 - Features a harmonic breathing solid center core, a counter-rotating satellite orbital node, and a sweeping radar ping indicator.
