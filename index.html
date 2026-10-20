@@ -1051,6 +1051,28 @@
       gap: 6px;
     }
 
+    .info-tooltip::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 16px;
+    }
+
+    .info-tooltip a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 600;
+      word-break: break-all;
+      transition: opacity 0.2s ease;
+    }
+
+    .info-tooltip a:hover {
+      opacity: 0.8;
+    }
+
     .info-tooltip-icon {
       width: 14px;
       height: 14px;
@@ -1072,11 +1094,125 @@
     body:not(.info-open) .info-circle-container:hover .info-tooltip {
       opacity: 1;
       transform: translateY(0);
+      pointer-events: auto;
     }
 
     body.info-open .info-tooltip {
       opacity: 0 !important;
       pointer-events: none !important;
+    }
+
+    /* TOP DROP-DOWN RIBBON BANNER */
+    .top-ribbon-banner {
+      position: fixed;
+      top: 1.25rem;
+      left: 50%;
+      transform: translate(-50%, -140%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 120;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      background: var(--card-bg-start);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+      padding: 0.45rem 0.65rem 0.45rem 0.85rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      font-size: 0.75rem;
+      line-height: 1.35;
+      width: max-content;
+      max-width: calc(100vw - 140px);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+    }
+
+    .top-ribbon-banner.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .ribbon-content {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .ribbon-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.62rem;
+      font-weight: 600;
+      background: var(--tag-bg);
+      border: 1px solid var(--tag-border);
+      color: var(--accent-green);
+      padding: 2px 7px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    .ribbon-text {
+      color: var(--text-main);
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+    }
+
+    .ribbon-link {
+      color: var(--accent-green);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .ribbon-link:hover {
+      opacity: 0.8;
+    }
+
+    .ribbon-arrow {
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+    }
+
+    .ribbon-link:hover .ribbon-arrow {
+      transform: translate(2px, -2px);
+    }
+
+    .ribbon-desc {
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .ribbon-close-btn {
+      background: transparent;
+      border: none;
+      padding: 4px;
+      margin-left: 0.2rem;
+      border-radius: 50%;
+      cursor: pointer;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .ribbon-close-btn:hover {
+      background: var(--item-hover);
+      color: var(--text-main);
+      transform: scale(1.08);
     }
 
     /* EASTER EGG POPUP BANNER */
@@ -1181,95 +1317,91 @@
       border-radius: 4px;
     }
 
-    .tech-item {
+    /* PROJECT PANELS */
+    .project-panel {
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      gap: 0.45rem;
       background: var(--item-bg);
-      padding: 0.7rem 0.85rem;
-      border-radius: 12px;
+      padding: 0.85rem 0.95rem;
+      border-radius: 14px;
       border: 1px solid var(--item-border);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
     }
 
-    .tech-name {
+    .project-panel:hover {
+      background: var(--item-hover);
+      border-color: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1.5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .project-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .project-panel-title {
       font-family: 'Fira Code', monospace;
       font-weight: 600;
       color: var(--accent-green);
-      font-size: 0.78rem;
+      font-size: 0.82rem;
+      letter-spacing: -0.01em;
     }
 
-    .tech-desc {
+    .project-panel-arrow {
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .project-panel:hover .project-panel-arrow {
+      transform: translate(2px, -2px);
+      color: var(--accent-green);
+    }
+
+    .project-panel-desc {
       color: var(--text-main);
       font-size: 0.72rem;
-      line-height: 1.45;
+      line-height: 1.48;
+      margin: 0;
     }
 
-    .popover-footer {
-      margin-top: 0.3rem;
-      padding-top: 0.8rem;
-      border-top: 1px solid var(--item-border);
-      text-align: center;
-      font-size: 0.68rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    .popover-footer a {
-      color: var(--accent-green);
-      text-decoration: none;
-      font-weight: 600;
-      transition: opacity 0.2s;
-    }
-
-    .popover-footer a:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-
-    .pill-marquee-wrapper {
-      position: relative;
-      overflow: hidden;
-      width: 100%;
-      margin-top: 0.3rem;
-      mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
-    }
-
-    .pill-marquee-track {
-      display: flex;
-      gap: 0.4rem;
-      width: max-content;
-      animation: pillTrackScroll 16s linear infinite;
-    }
-
-    .pill-marquee-track:hover {
-      animation-play-state: paused;
-    }
-
-    @keyframes pillTrackScroll {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .mini-pill {
+    .project-panel-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
       font-family: 'Fira Code', monospace;
-      font-size: 0.62rem;
-      font-weight: 500;
-      background: var(--tag-bg);
-      border: 1px solid var(--tag-border);
-      color: var(--tag-text);
-      padding: 2px 7px;
-      border-radius: 9999px;
-      white-space: nowrap;
-      flex-shrink: 0;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+      opacity: 0.85;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+
+    .project-panel:hover .project-panel-link {
+      opacity: 1;
+      color: var(--accent-green);
     }
 
     @media (max-width: 480px) {
+      .top-ribbon-banner {
+        top: 0.75rem;
+        max-width: calc(100vw - 1.5rem);
+        padding: 0.4rem 0.55rem 0.4rem 0.75rem;
+        font-size: 0.7rem;
+        border-radius: 16px;
+      }
+
+      .ribbon-desc {
+        display: none;
+      }
+
       .card {
         padding: 2.25rem 1.5rem;
         border-radius: 32px;
@@ -1366,15 +1498,37 @@
   <!-- Easter Egg Tooltip Notification -->
   <div class="easter-egg-banner" id="easter-egg-banner">Easter Egg! ⚡</div>
 
+  <!-- Top Drop-down Ribbon Banner -->
+  <div class="top-ribbon-banner" id="project-ribbon-banner" role="banner" aria-label="Project announcement">
+    <div class="ribbon-content">
+      <span class="ribbon-tag">Project</span>
+      <span class="ribbon-text">
+        Check out my project:
+        <a href="https://autotheorietest.com/" target="_blank" rel="noopener noreferrer" class="ribbon-link">
+          autotheorietest.com
+          <svg class="ribbon-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
+        </a>
+        <span class="ribbon-desc">— Free CBR theory practice exams</span>
+      </span>
+    </div>
+    <button class="ribbon-close-btn" id="ribbon-close-btn" aria-label="Close banner">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
   <!-- Circular Info Radar Button -->
   <div class="floating-circle-btn info-circle-container" id="info-btn" aria-label="Project Information">
     <canvas id="info-canvas"></canvas>
-    <!-- Sleek 2-Line Tooltip -->
+    <!-- Sleek Tooltip -->
     <div class="info-tooltip">
       <svg class="info-tooltip-icon" viewBox="0 0 24 24">
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
       </svg>
-      <div>Ayush's AI Agents on the grind. ⚡<br>They built this digital card, they say hi! 🤖</div>
+      <div>Check out the repo on GitHub:<br><a href="https://github.com/ayushj190/digital-contact-card" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">https://github.com/ayushj190/digital-contact-card</a></div>
     </div>
   </div>
 
@@ -1383,101 +1537,45 @@
     <div class="popover-header">
       <div class="popover-title-group">
         <svg viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+          <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
         </svg>
-        <span>Info</span>
+        <span>Checkout my other projects</span>
       </div>
     </div>
     <div class="popover-body">
-      <!-- 1. Vanilla DOM -->
-      <div class="tech-item">
-        <span class="tech-name">Plain JavaScript</span>
-        <span class="tech-desc">Zero frameworks, zero dependencies, and instant baseline execution. Built purely with
-          native web standards.</span>
-        <div class="pill-marquee-wrapper">
-          <div class="pill-marquee-track">
-            <span class="mini-pill">Vanilla DOM</span>
-            <span class="mini-pill">Zero Bloat</span>
-            <span class="mini-pill">ES6 Modules</span>
-            <span class="mini-pill">Web APIs</span>
-            <span class="mini-pill">Native Events</span>
-            <span class="mini-pill">Vanilla DOM</span>
-            <span class="mini-pill">Zero Bloat</span>
-            <span class="mini-pill">ES6 Modules</span>
-            <span class="mini-pill">Web APIs</span>
-            <span class="mini-pill">Native Events</span>
-          </div>
+      <!-- 1. AutoTheorieTest -->
+      <a href="https://autotheorietest.com" target="_blank" rel="noopener noreferrer" class="project-panel">
+        <div class="project-panel-header">
+          <span class="project-panel-title">AutoTheorieTest</span>
+          <svg class="project-panel-arrow" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
         </div>
-      </div>
-
-      <!-- 2. Canvas2D Vector Graphics -->
-      <div class="tech-item">
-        <span class="tech-name">Canvas Graphics</span>
-        <span class="tech-desc">A custom 820-node vector loop renders gently drifting background particles, glowing cursor
-          links, and radar telemetry.</span>
-        <div class="pill-marquee-wrapper">
-          <div class="pill-marquee-track">
-            <span class="mini-pill">HTML5 Canvas</span>
-            <span class="mini-pill">Spatial Hash</span>
-            <span class="mini-pill">60 FPS</span>
-            <span class="mini-pill">Vector Physics</span>
-            <span class="mini-pill">Euler Spring</span>
-            <span class="mini-pill">HTML5 Canvas</span>
-            <span class="mini-pill">Spatial Hash</span>
-            <span class="mini-pill">60 FPS</span>
-            <span class="mini-pill">Vector Physics</span>
-            <span class="mini-pill">Euler Spring</span>
-          </div>
+        <p class="project-panel-desc">Free car driving theory practice exams for CBR theory exam, I wanted to make it to enable free education and practice for soon-to-be new drivers.</p>
+        <div class="project-panel-link">
+          <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor">
+            <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+          </svg>
+          <span>autotheorietest.com</span>
         </div>
-      </div>
+      </a>
 
-      <!-- 3. AI Agent Harness -->
-      <div class="tech-item">
-        <span class="tech-name">AI Agent Harness</span>
-        <span class="tech-desc">Iteratively engineered using autonomous agent loops, dynamic prompt contexts, and
-          human-in-the-loop pair programming.</span>
-        <div class="pill-marquee-wrapper">
-          <div class="pill-marquee-track">
-            <span class="mini-pill">Google Antigravity</span>
-            <span class="mini-pill">GitHub Copilot</span>
-            <span class="mini-pill">Multi Model</span>
-            <span class="mini-pill">Agentic Flow</span>
-            <span class="mini-pill">LSP MCP</span>
-            <span class="mini-pill">Google Antigravity</span>
-            <span class="mini-pill">GitHub Copilot</span>
-            <span class="mini-pill">Multi Model</span>
-            <span class="mini-pill">Agentic Flow</span>
-            <span class="mini-pill">LSP MCP</span>
-          </div>
+      <!-- 2. Digital Contact Card Repo -->
+      <a href="https://github.com/ayushj190/digital-contact-card" target="_blank" rel="noopener noreferrer" class="project-panel">
+        <div class="project-panel-header">
+          <span class="project-panel-title">Digital Contact Card</span>
+          <svg class="project-panel-arrow" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
         </div>
-      </div>
-
-      <!-- 4. Cloudflare Edge Delivery -->
-      <div class="tech-item">
-        <span class="tech-name">Cloudflare Edge</span>
-        <span class="tech-desc">Continuous deployment wired directly from Git to Cloudflare's edge network for global
-          single-millisecond TTFB.</span>
-        <div class="pill-marquee-wrapper">
-          <div class="pill-marquee-track">
-            <span class="mini-pill">Cloudflare Pages</span>
-            <span class="mini-pill">Global CDN</span>
-            <span class="mini-pill">Domain DNS</span>
-            <span class="mini-pill">Instant TTFB</span>
-            <span class="mini-pill">Git Webhook</span>
-            <span class="mini-pill">Cloudflare Pages</span>
-            <span class="mini-pill">Global CDN</span>
-            <span class="mini-pill">Domain DNS</span>
-            <span class="mini-pill">Instant TTFB</span>
-            <span class="mini-pill">Git Webhook</span>
-          </div>
+        <p class="project-panel-desc">Project files and agent skills for making this digital contact card.</p>
+        <div class="project-panel-link">
+          <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>github.com/ayushj190/digital-contact-card</span>
         </div>
-      </div>
-
-      <!-- Footer Call to Action -->
-      <div class="popover-footer">
-        Want to easily make your own digital card?<br>
-        <a href="https://github.com/ayushj190/digital-contact-card" target="_blank">Check out the GitHub repo</a>.
-      </div>
+      </a>
     </div>
   </div>
 
@@ -1990,6 +2088,25 @@
           document.body.classList.remove('info-open');
         }
       });
+
+      /* --- Drop-down Ribbon Banner --- */
+      const ribbonBanner = document.getElementById('project-ribbon-banner');
+      const ribbonCloseBtn = document.getElementById('ribbon-close-btn');
+
+      if (ribbonBanner && ribbonCloseBtn) {
+        if (!sessionStorage.getItem('dismissed_autotheorie_banner')) {
+          setTimeout(() => {
+            ribbonBanner.classList.add('show');
+          }, 400);
+        }
+
+        ribbonCloseBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          ribbonBanner.classList.remove('show');
+          sessionStorage.setItem('dismissed_autotheorie_banner', 'true');
+        });
+      }
 
       /* --- Link Navigation --- */
       document.querySelectorAll('.link-item').forEach(item => {
