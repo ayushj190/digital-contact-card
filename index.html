@@ -1102,119 +1102,6 @@
       pointer-events: none !important;
     }
 
-    /* TOP DROP-DOWN RIBBON BANNER */
-    .top-ribbon-banner {
-      position: fixed;
-      top: 1.25rem;
-      left: 50%;
-      transform: translate(-50%, -140%);
-      opacity: 0;
-      pointer-events: none;
-      z-index: 120;
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      background: var(--card-bg-start);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--card-border);
-      color: var(--text-main);
-      padding: 0.45rem 0.65rem 0.45rem 0.85rem;
-      border-radius: 9999px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      font-size: 0.75rem;
-      line-height: 1.35;
-      width: max-content;
-      max-width: calc(100vw - 140px);
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
-    }
-
-    .top-ribbon-banner.show {
-      transform: translate(-50%, 0);
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .ribbon-content {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
-
-    .ribbon-tag {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.62rem;
-      font-weight: 600;
-      background: var(--tag-bg);
-      border: 1px solid var(--tag-border);
-      color: var(--accent-green);
-      padding: 2px 7px;
-      border-radius: 9999px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      flex-shrink: 0;
-    }
-
-    .ribbon-text {
-      color: var(--text-main);
-      font-weight: 500;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-    }
-
-    .ribbon-link {
-      color: var(--accent-green);
-      font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.2rem;
-      transition: opacity 0.2s ease;
-    }
-
-    .ribbon-link:hover {
-      opacity: 0.8;
-    }
-
-    .ribbon-arrow {
-      flex-shrink: 0;
-      transition: transform 0.2s ease;
-    }
-
-    .ribbon-link:hover .ribbon-arrow {
-      transform: translate(2px, -2px);
-    }
-
-    .ribbon-desc {
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .ribbon-close-btn {
-      background: transparent;
-      border: none;
-      padding: 4px;
-      margin-left: 0.2rem;
-      border-radius: 50%;
-      cursor: pointer;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-    }
-
-    .ribbon-close-btn:hover {
-      background: var(--item-hover);
-      color: var(--text-main);
-      transform: scale(1.08);
-    }
-
     /* EASTER EGG POPUP BANNER */
     .easter-egg-banner {
       position: fixed;
@@ -1390,18 +1277,6 @@
     }
 
     @media (max-width: 480px) {
-      .top-ribbon-banner {
-        top: 0.75rem;
-        max-width: calc(100vw - 1.5rem);
-        padding: 0.4rem 0.55rem 0.4rem 0.75rem;
-        font-size: 0.7rem;
-        border-radius: 16px;
-      }
-
-      .ribbon-desc {
-        display: none;
-      }
-
       .card {
         padding: 2.25rem 1.5rem;
         border-radius: 32px;
@@ -1497,29 +1372,6 @@
 
   <!-- Easter Egg Tooltip Notification -->
   <div class="easter-egg-banner" id="easter-egg-banner">Easter Egg! ⚡</div>
-
-  <!-- Top Drop-down Ribbon Banner -->
-  <div class="top-ribbon-banner" id="project-ribbon-banner" role="banner" aria-label="Project announcement">
-    <div class="ribbon-content">
-      <span class="ribbon-tag">Project</span>
-      <span class="ribbon-text">
-        Check out my new project:
-        <a href="https://autotheorietest.com/" target="_blank" rel="noopener noreferrer" class="ribbon-link">
-          autotheorietest.com
-          <svg class="ribbon-arrow" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M7 17L17 7M17 7H7M17 7V17" />
-          </svg>
-        </a>
-        <span class="ribbon-desc">— Free CBR theory practice exams</span>
-      </span>
-
-    </div>
-    <button class="ribbon-close-btn" id="ribbon-close-btn" aria-label="Close banner">
-      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
-        <path d="M18 6L6 18M6 6l12 12" />
-      </svg>
-    </button>
-  </div>
 
   <!-- Circular Info Radar Button -->
   <div class="floating-circle-btn info-circle-container" id="info-btn" aria-label="Project Information">
@@ -2089,25 +1941,6 @@
           document.body.classList.remove('info-open');
         }
       });
-
-      /* --- Drop-down Ribbon Banner --- */
-      const ribbonBanner = document.getElementById('project-ribbon-banner');
-      const ribbonCloseBtn = document.getElementById('ribbon-close-btn');
-
-      if (ribbonBanner && ribbonCloseBtn) {
-        if (!sessionStorage.getItem('dismissed_autotheorie_banner')) {
-          setTimeout(() => {
-            ribbonBanner.classList.add('show');
-          }, 400);
-        }
-
-        ribbonCloseBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          ribbonBanner.classList.remove('show');
-          sessionStorage.setItem('dismissed_autotheorie_banner', 'true');
-        });
-      }
 
       /* --- Link Navigation --- */
       document.querySelectorAll('.link-item').forEach(item => {
